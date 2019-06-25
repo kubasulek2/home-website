@@ -254,7 +254,6 @@ body {
 }
 
 .logo {
-  background: #323232;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -264,6 +263,28 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.bg-vid {
+  background: #323232;
+  position: fixed;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+}
+
+@media (max-aspect-ratio:16 / 9) {
+  .bg-vid video {
+    width: auto;
+    height: 100%;
+  }
+}
+
+@media (min-aspect-ratio:16 / 9) {
+  .bg-vid video {
+    width: 100%;
+    height: auto;
+  }
 }
 
 #logo-top {
