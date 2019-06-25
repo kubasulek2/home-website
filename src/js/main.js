@@ -2,11 +2,29 @@ $(() => {
 	const
 		glimpse = $('.glimpse'),
 		logo = $('.logo'),
-		tlIntro = new TimelineMax();
+		loader = $('.loader'),
+		tlIntro = new TimelineMax(),
+		tlLoad = new TimelineMax(),
+		myFunc = () => {
+			console.log('aaa');
 
-	tlIntro
-		.to(glimpse, .3, { y: '-100%' }, 1)
-		.set(glimpse, { y: '100%' });
+		};
+
+
+	tlLoad.staggerFrom(loader, 1, { opacity: 0, y: -100, ease: Bounce.easeOut, repeat: -1, repeatDelay: .2 }, .1);
+	$(window).on('load', function () {
+		setTimeout(() => {
+
+
+			tlLoad.kill();
+			TweenMax.to(loader, 1, { opacity: 0, onComplete: myFunc });
+
+		}, 1800);
+
+	});
+
+
+
 
 
 

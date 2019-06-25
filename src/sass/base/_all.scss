@@ -1,48 +1,59 @@
 /* General Styling */
 * {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 html,
 body {
-	width: 100%;
-	height: 100%;
+  width: 100%;
+  height: 100%;
 }
-body{
-	position: relative;
-	background: $base-background;
-	display: flex;
-	font-family: Arial, Helvetica, sans-serif;
-	color: $base-white;
-	overflow: hidden;
+body {
+  position: relative;
+  background: $base-background;
+  display: flex;
+  font-family: Arial, Helvetica, sans-serif;
+  color: $base-white;
+  overflow: hidden;
 }
 
 /*  */
-.logo, .glimpse{
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	left: 0;
-	top: 0;
-}.glimpse{
-	background: $darker-background;
+.logo,
+.glimpse {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
 }
-.logo{
-	background: $base-background;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	
+.glimpse {
+  background: $darker-background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .loader {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+		background: lighten($base-background, 10%);
+		margin: 5px;
+    opacity: .5;
+  }
+}
+.logo {
+  background: $base-background;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-#logo-top{
-	font-family: Anton, sans-serif;
-	font-size: 30vmin;
-	
+#logo-top {
+  font-family: Anton, sans-serif;
+  font-size: 30vmin;
 }
-#logo-bottom{
-	font-family: Questrial, sans-serif;
-	font-size: 4vmin;
-	color: $darker-white;
+#logo-bottom {
+  font-family: Questrial, sans-serif;
+  font-size: 4vmin;
+  color: $darker-white;
 }
