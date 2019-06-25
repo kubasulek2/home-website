@@ -5,7 +5,7 @@ const
 	uglify = require('gulp-uglify-es').default,
 	sourcemaps = require('gulp-sourcemaps'),
 	gulpResolveUrl = require('gulp-resolve-url');
-	browserify = require('gulp-browserify');
+browserify = require('gulp-browserify');
 
 gulp.task( 'styles', function () {
 	return gulp
@@ -22,7 +22,7 @@ gulp.task( 'styles', function () {
 
 gulp.task('vendorScripts', function() {
 	gulp.src('./src/js/vendor/**/*.js')
-			.pipe(gulp.dest('public/js/vendor'));
+		.pipe(gulp.dest('public/js/vendor'));
 });
 
 // js urls arent corectly rewritten, so to open a page from public/html file, rewrite publicj/js/app.js url: instead
@@ -61,21 +61,21 @@ gulp.task( 'images', function () {
 
 
 gulp.task('fonts', function () {
-    return gulp
-        .src( 'src/font/**' )
-        .pipe(gulp.dest('public/font'));
-})
+	return gulp
+		.src( 'src/font/**' )
+		.pipe(gulp.dest('public/font'));
+});
 
 gulp.task( 'html', function () {
 	return gulp
 		.src( './src/**/*.html' )
-		.pipe( gulp.dest( 'public/' ) )
+		.pipe( gulp.dest( 'public/' ) );
 } );
 
 gulp.task( 'browser-sync', ['styles', 'scripts'], function () {
 	browserSync( {
 		server: {
-			baseDir: "./public/",
+			baseDir: './public/',
 			injectChanges: true // this is new
 		}
 	} );
@@ -90,7 +90,7 @@ gulp.task( 'deploy', function () {
 gulp.task( 'watch', function () {
 	// Watch .html files
 	gulp.watch( 'src/**/*.html', ['html', browserSync.reload] );
-	gulp.watch( "public/*.html" ).on( 'change', browserSync.reload );
+	gulp.watch( 'public/*.html' ).on( 'change', browserSync.reload );
 	// Watch .sass files
 	gulp.watch( 'src/sass/**/*.scss', ['styles', browserSync.reload] );
 	// Watch .js files

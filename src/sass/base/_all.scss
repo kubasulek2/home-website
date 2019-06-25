@@ -26,7 +26,6 @@ body{
 	left: 0;
 	top: 0;
 }.glimpse{
-	top: 100%;
 	background: $darker-background;
 }
 .logo{
@@ -34,5 +33,16 @@ body{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	font-size: 5vmax;
+	
+}
+
+#logo-top{
+	font-family: Anton, sans-serif;
+	font-size: 30vmin;
+	
+}
+#logo-bottom{
+	font-family: Questrial, sans-serif;
+	font-size: 4vmin;
+	color: $darker-white;
 }

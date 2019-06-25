@@ -1,3 +1,19 @@
+@font-face {
+  font-family: Anton;
+  src: url(../font/Anton-Regular.eot);
+  src: url(../font/Anton-Regular.eot) format("embedded-opentype"),url(../font/Anton-Regular.woff2) format("woff2"),url(../font/Anton-Regular.woff) format("woff"),url(../font/Anton-Regular.ttf) format("truetype"),url(../font/Anton-Regular.svg) format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Questrial;
+  src: url(../font/Questrial-Regular.eot);
+  src: url(../font/Questrial-Regular.eot) format("embedded-opentype"),url(../font/Questrial-Regular.woff2) format("woff2"),url(../font/Questrial-Regular.woff) format("woff"),url(../font/Questrial-Regular.ttf) format("truetype"),url(../font/Questrial-Regular.svg) format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -216,7 +232,6 @@ body {
 }
 
 .glimpse {
-  top: 100%;
   background: #2a2a2a;
 }
 
@@ -231,7 +246,17 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  font-size: 5vmax;
+}
+
+#logo-top {
+  font-family: Anton,sans-serif;
+  font-size: 30vmin;
+}
+
+#logo-bottom {
+  font-family: Questrial,sans-serif;
+  font-size: 4vmin;
+  color: #bababa;
 }
 
 
