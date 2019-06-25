@@ -1,1 +1,1 @@
-{"version":3,"sources":["main.js"],"names":["$"],"mappings":"AAAAA,EAAE,MAAM,CAEP,CAFD","file":"main.js","sourcesContent":["$(() => {\n\n})"]}
+{"version":3,"sources":["main.js"],"names":["$","console","log","Modernizr","preserve3d"],"mappings":"AAAAA,EAAE,MAAM;AACPC,SAAQC,GAAR,CAAYC,UAAUC,UAAtB;AAGA,CAJD","file":"main.js","sourcesContent":["$(() => {\n\tconsole.log(Modernizr.preserve3d);\n\t\n\t\t\n});"]}
