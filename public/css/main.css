@@ -185,6 +185,8 @@ template {
 * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 body,
@@ -195,10 +197,13 @@ html {
 
 body {
   position: relative;
-  background: #2a2a2a;
+  background: #323232;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  font-family: Arial,Helvetica,sans-serif;
+  color: #f1f1f1;
+  overflow: hidden;
 }
 
 .glimpse,
@@ -206,9 +211,27 @@ body {
   position: absolute;
   width: 100%;
   height: 100%;
-  top: -100%;
   left: 0;
+  top: 0;
+}
+
+.glimpse {
+  top: 100%;
+  background: #2a2a2a;
+}
+
+.logo {
   background: #323232;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  font-size: 5vmax;
 }
 
 

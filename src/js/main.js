@@ -1,5 +1,9 @@
 $(() => {
-	console.log(Modernizr.preserve3d);
+	const 
+	glimpse = $('.glimpse'),
+	logo = $('.logo'),
+	tlIntro = new TimelineMax();
+
 	
 		
 });
