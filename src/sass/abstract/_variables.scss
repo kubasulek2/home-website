@@ -3,3 +3,23 @@ $darker-background: #2a2a2a;
 $base-white: #f5f5f5;
 $darker-white: #868686;
 $base-yellow: #f1bd00;
+
+
+@keyframes fill {
+  0% {
+    transform: translateY(80%);
+  }
+  100% {
+    transform: translateY(-10%);
+  }
+}
+@keyframes backward {
+  100% {
+    transform: translateX(-50%);
+  }
+}
+@keyframes forward {
+  100% {
+    transform: translateX(-50%);
+  }
+}

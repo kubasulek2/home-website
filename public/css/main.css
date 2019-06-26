@@ -1,3 +1,55 @@
+@-webkit-keyframes fill {
+  0% {
+    -webkit-transform: translateY(80%);
+    transform: translateY(80%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-10%);
+    transform: translateY(-10%);
+  }
+}
+
+@keyframes fill {
+  0% {
+    -webkit-transform: translateY(80%);
+    transform: translateY(80%);
+  }
+
+  100% {
+    -webkit-transform: translateY(-10%);
+    transform: translateY(-10%);
+  }
+}
+
+@-webkit-keyframes backward {
+  100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes backward {
+  100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
+@-webkit-keyframes forward {
+  100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes forward {
+  100% {
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+  }
+}
+
 @font-face {
   font-family: 'Rubik Mono One';
   src: url(../font/RubikMonoOne-Regular.eot);
@@ -266,11 +318,40 @@ body {
 }
 
 #logo-top {
-  color: #f1bd00;
+  width: 100%;
   margin-left: 20%;
   font-family: "Rubik Mono One",sans-serif;
-  font-size: 30vmin;
-  text-shadow: -2px 0 #2a2a2a,0 2px #2a2a2a,2px 0 #2a2a2a,0 -2px #2a2a2a;
+}
+
+#logo-top svg {
+  display: block;
+}
+
+#logo-top g#svg-animation {
+  -webkit-transform: translateY(80%);
+  transform: translateY(80%);
+  -webkit-animation: fill 3s linear forwards;
+  animation: fill 3s linear forwards;
+}
+
+#logo-top #svg-text text {
+  font-size: 30px;
+}
+
+#logo-top use {
+  fill: #f1bd00;
+}
+
+#logo-top #myWave {
+  -webkit-transform: translateX(-100%);
+  transform: translateX(-100%);
+  -webkit-animation: forward 1.5s infinite ease-in-out alternate;
+  animation: forward 1.5s infinite ease-in-out alternate;
+}
+
+#logo-top #myWave2 {
+  -webkit-animation: backward 1.5s infinite ease-in-out alternate;
+  animation: backward 1.5s infinite ease-in-out alternate;
 }
 
 #logo-bottom {

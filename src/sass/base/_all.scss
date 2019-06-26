@@ -48,12 +48,36 @@ body {
 }
 
 #logo-top {
-  color: $base-yellow;
+  width: 100%;
   margin-left: 20%;
-  font-family: "Rubik Mono One", sans-serif;
-	font-size: 30vmin;
-	text-shadow: -2px 0 $darker-background, 0 2px $darker-background, 2px 0 $darker-background, 0 -2px $darker-background;
-}
+	font-family: "Rubik Mono One", sans-serif;
+	
+	svg{
+		display: block;
+	}
+	g#svg-animation{
+		transform: translateY(80%);
+		animation: fill	3s linear forwards;
+	}
+	#svg-text{
+		text{
+			font-size: 30px;
+		}
+	}
+
+		
+	use{
+		fill: #f1bd00
+	}
+	#myWave{
+		transform: translateX(-100%);
+		animation: forward 1.5s infinite ease-in-out alternate;
+	}
+	#myWave2{
+		animation: backward 1.5s infinite ease-in-out alternate;
+
+	}
+	}
 
 #logo-bottom {
 	letter-spacing: 5px;

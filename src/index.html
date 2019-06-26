@@ -9,9 +9,35 @@
 	<script src="js/vendor/modernizr.js"></script>
 </head>
 <body>
+
+	<svg style="display: none;">
+	
+			<symbol viewBox="0 0 116 42" id="svg-wave">
+					<path d="M58,0 C70.6086957,0 79.3822464,6 87,6 L58,6 L29,6 C36.6177536,6 45.3913043,0 58,0 Z M0,0 C12.6086957,0 21.3822464,6 29,6 L0,6 L0,0 Z M116,0 L116,6 L87,6 C94.6177536,6 103.391304,0 116,0 Z"></path>
+			</symbol>
+			<symbol viewBox='0,0 58 42' id='svg-fill'>
+				<path d='M0 6 L58 6 L58 42 L0 42 Z'>
+			</symbol>
+	</svg>
+
 	<div class="logo">
 		<div id='logo-placement'>
-			<div id="logo-top">KS</div>
+			<div id="logo-top">
+				<svg viewBox='0 0 58 42' >
+					<defs>
+							<clipPath id="svg-text">
+								<text fill='black' x="50%" y='50%' alignment-baseline='middle' text-anchor='middle' ">KS</text>
+							</clipPath>
+						</defs>
+						<g clip-path="url(#svg-text)">
+							<g id="svg-animation" >
+								<use id="myWave" width='200%' xlink:href='#svg-wave' />
+								<use id="myWave2" width='200%' xlink:href='#svg-wave' />
+								<use id='WaveFill' width='100%'xlink:href='#svg-fill' transform='translate(0, -.1)'/>	
+							</g>
+						</g>
+				</svg>
+			</div>
 			<div id="logo-bottom">Frontend <b>Developer</b><span>|</span></div>
 		</div>
 	</div>
