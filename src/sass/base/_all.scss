@@ -36,26 +36,35 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%;
-		background: lighten($base-background, 10%);
-		margin: 5px;
-    opacity: .5;
+    background: lighten($base-background, 10%);
+    margin: 5px;
+    opacity: 0.5;
   }
 }
 .logo {
   display: flex;
   justify-content: center;
-	align-items: center;
+  align-items: center;
 }
 
 #logo-top {
-  font-family: 'Rubik Mono One', sans-serif;
-  font-size: 30vmin;
+  color: $base-yellow;
+  margin-left: 20%;
+  font-family: "Rubik Mono One", sans-serif;
+	font-size: 30vmin;
+	text-shadow: -2px 0 $darker-background, 0 2px $darker-background, 2px 0 $darker-background, 0 -2px $darker-background;
 }
+
 #logo-bottom {
+	letter-spacing: 5px;
   font-family: Questrial, sans-serif;
-  font-size: 4vmin;
+  font-size: 3.5vmin;
 	color: $darker-white;
-	span{
-		opacity: 0
+	b{
+	font-size: 4vmin;
+	color: $base-white;
 	}
+  span {
+    opacity: 0;
+  }
 }

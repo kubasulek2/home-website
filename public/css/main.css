@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'Rubik Mono One';
-  src: url(../../font/RubikMonoOne-Regular.eot);
-  src: url(../../font/RubikMonoOne-Regular.eot?#iefix) format("embedded-opentype"),url(../../font/RubikMonoOne-Regular.woff2) format("woff2"),url(../../font/RubikMonoOne-Regular.woff) format("woff"),url(../../font/RubikMonoOne-Regular.ttf) format("truetype"),url(../../font/RubikMonoOne-Regular.svg#RubikMonoOne-Regular) format("svg");
+  src: url(../font/RubikMonoOne-Regular.eot);
+  src: url(../font/RubikMonoOne-Regular.eot) format("embedded-opentype"),url(../font/RubikMonoOne-Regular.woff2) format("woff2"),url(../font/RubikMonoOne-Regular.woff) format("woff"),url(../font/RubikMonoOne-Regular.ttf) format("truetype"),url(../font/RubikMonoOne-Regular.svg) format("svg");
   font-weight: 400;
   font-style: normal;
 }
@@ -266,14 +266,23 @@ body {
 }
 
 #logo-top {
-  font-family: 'Rubik Mono One',sans-serif;
+  color: #f1bd00;
+  margin-left: 20%;
+  font-family: "Rubik Mono One",sans-serif;
   font-size: 30vmin;
+  text-shadow: -2px 0 #2a2a2a,0 2px #2a2a2a,2px 0 #2a2a2a,0 -2px #2a2a2a;
 }
 
 #logo-bottom {
+  letter-spacing: 5px;
   font-family: Questrial,sans-serif;
-  font-size: 4vmin;
+  font-size: 3.5vmin;
   color: #868686;
+}
+
+#logo-bottom b {
+  font-size: 4vmin;
+  color: #f5f5f5;
 }
 
 #logo-bottom span {
