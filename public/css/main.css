@@ -66,6 +66,26 @@
   }
 }
 
+@-webkit-keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
 @font-face {
   font-family: 'Rubik Mono One';
   src: url(../font/RubikMonoOne-Regular.eot);
@@ -333,6 +353,10 @@ body {
   align-items: center;
 }
 
+#logo-placement {
+  position: relative;
+}
+
 #logo-top {
   width: 100%;
   margin-left: 20%;
@@ -382,11 +406,32 @@ body {
   animation: waves 4s linear;
 }
 
-#logo-bottom {
+#logo-bottom-hidden {
   letter-spacing: 5px;
   font-family: Questrial,sans-serif;
   font-size: 3.5vmin;
   color: #868686;
+  visibility: hidden;
+  border-right: .1em solid #f1bd00;
+}
+
+#logo-bottom-hidden b {
+  font-size: 4vmin;
+  color: #f5f5f5;
+}
+
+#logo-bottom {
+  border-right: .1em solid #f1bd00;
+  position: absolute;
+  white-space: nowrap;
+  letter-spacing: 5px;
+  font-family: Questrial,sans-serif;
+  font-size: 3.5vmin;
+  color: #868686;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  overflow: hidden;
 }
 
 #logo-bottom b {
@@ -394,8 +439,9 @@ body {
   color: #f5f5f5;
 }
 
-#logo-bottom span {
-  opacity: 0;
+#logo-bottom.animate {
+  -webkit-animation: typing 2.5s steps(18,end) forwards;
+  animation: typing 2.5s steps(18,end) forwards;
 }
 
 

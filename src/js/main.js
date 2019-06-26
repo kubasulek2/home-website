@@ -43,11 +43,20 @@ $(() => {
 	const logoAnimation = () => {
 		const
 			waves = $('.wave'),
-			svgAnimation = $('#svg-animation');
+			svgAnimation = $('#svg-animation'),
+			logoBottom = $('#logo-bottom'),
+			tlTyping = new TimelineMax();
 
 		waves.addClass('animate');
 		svgAnimation.addClass('animate');
-
+		tlTyping
+			.to(logoBottom, .25, { borderRightColor: '#323232', yoyo: true, repeat: -1 })
+			.add(() => logoBottom.addClass('animate')).addCallback(() => {
+				tlIntro
+					.to(glimpse, .5, {y: '0%'})
+					//.set(glimpse,{y: '100%'});
+			},'end+=5')
+			.addCallback(() => tlTyping.kill(),'end+=5');
 	};
 
 	loadingAnimation();

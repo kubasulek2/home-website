@@ -27,3 +27,8 @@ $base-yellow: #f1bd00;
     transform: translateX(-30%);
 	}
 }
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}

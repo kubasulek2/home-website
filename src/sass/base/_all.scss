@@ -46,59 +46,80 @@ body {
   justify-content: center;
   align-items: center;
 }
-
+#logo-placement{
+	position: relative;
+}
 #logo-top {
   width: 100%;
   margin-left: 20%;
-	font-family: "Rubik Mono One", sans-serif;
-	
-	svg{
-		display: block;
-	}
-	g#svg-text-bg rect{
-		width: 100%;
-		height: 100%;
-		fill: $darker-background;
-	}
-	g#svg-animation{
-		transform: translateY(75%);
-		&.animate{
-			animation: fill	4s linear forwards;
-		}
-	}
-	#svg-text{
-		text{
-			font-size: 30px;
-		}
-	}
+  font-family: "Rubik Mono One", sans-serif;
 
-		
-	use{
-		fill: #f1bd00
-	}
-	#myWave{
-		transform: translateX(-100%);
-		&.animate{
-			animation: waves 4s linear;
-		}
-	}
-	#myWave2{
-		&.animate{
-			animation: waves 4s linear;
-		}
-	}
+  svg {
+    display: block;
+  }
+  g#svg-text-bg rect {
+    width: 100%;
+    height: 100%;
+    fill: $darker-background;
+  }
+  g#svg-animation {
+    transform: translateY(75%);
+    &.animate {
+      animation: fill 4s linear forwards;
+    }
+  }
+  #svg-text {
+    text {
+      font-size: 30px;
+    }
+  }
+
+  use {
+    fill: $base-yellow;
+  }
+  #myWave {
+    transform: translateX(-100%);
+    &.animate {
+      animation: waves 4s linear;
+    }
+  }
+  #myWave2 {
+    &.animate {
+      animation: waves 4s linear;
+    }
+  }
 }
 
-#logo-bottom {
-	letter-spacing: 5px;
+#logo-bottom-hidden {
+  letter-spacing: 5px;
   font-family: Questrial, sans-serif;
   font-size: 3.5vmin;
 	color: $darker-white;
-	b{
-	font-size: 4vmin;
-	color: $base-white;
+	visibility: hidden;
+	border-right: .10em solid $base-yellow;
+  b {
+    font-size: 4vmin;
+    color: $base-white;
 	}
-  span {
-    opacity: 0;
-  }
+}
+#logo-bottom{
+	border-right: .10em solid $base-yellow;
+	position: absolute;
+	white-space: nowrap;
+	letter-spacing: 5px;
+	font-family: Questrial, sans-serif;
+	font-size: 3.5vmin;
+	color: $darker-white;
+	bottom: 0;
+	left: 0;
+	width: 0;
+	overflow: hidden;
+	b {
+    font-size: 4vmin;
+    color: $base-white;
+	}
+	&.animate{
+		animation: 
+    typing 2.5s steps(18, end) forwards,
+	}
 }
