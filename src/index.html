@@ -26,13 +26,16 @@
 				<svg viewBox='0 0 58 42' >
 					<defs>
 							<clipPath id="svg-text">
-								<text fill='black' x="50%" y='50%' alignment-baseline='middle' text-anchor='middle' ">KS</text>
+								<text fill='white' x="50%" y='50%' alignment-baseline='middle' text-anchor='middle' ">KS</text>
 							</clipPath>
 						</defs>
 						<g clip-path="url(#svg-text)">
+							<g id='svg-text-bg'>
+								<rect/>
+							</g>
 							<g id="svg-animation" >
-								<use id="myWave" width='200%' xlink:href='#svg-wave' />
-								<use id="myWave2" width='200%' xlink:href='#svg-wave' />
+								<use class='wave' id="myWave" width='200%' xlink:href='#svg-wave' />
+								<use class='wave' id="myWave2" width='200%' xlink:href='#svg-wave' />
 								<use id='WaveFill' width='100%'xlink:href='#svg-fill' transform='translate(0, -.1)'/>	
 							</g>
 						</g>

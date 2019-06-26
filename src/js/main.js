@@ -41,7 +41,13 @@ $(() => {
 	};
 
 	const logoAnimation = () => {
-	
+		const
+			waves = $('.wave'),
+			svgAnimation = $('#svg-animation');
+
+		waves.addClass('animate');
+		svgAnimation.addClass('animate');
+
 	};
 
 	loadingAnimation();

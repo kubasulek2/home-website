@@ -7,19 +7,23 @@ $base-yellow: #f1bd00;
 
 @keyframes fill {
   0% {
-    transform: translateY(80%);
-  }
+    transform: translateY(75%);
+	}
   100% {
-    transform: translateY(-10%);
+    transform: translateY(5%);
   }
 }
-@keyframes backward {
-  100% {
-    transform: translateX(-50%);
-  }
-}
-@keyframes forward {
-  100% {
-    transform: translateX(-50%);
-  }
+@keyframes waves {
+  25% {
+    transform: translateX(-70%);
+	}
+	50% {
+    transform: translateX(-30%);
+	}
+	75% {
+    transform: translateX(-70%);
+	}
+	100% {
+    transform: translateX(-30%);
+	}
 }
