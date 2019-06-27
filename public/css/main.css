@@ -66,23 +66,23 @@
   }
 }
 
-@-webkit-keyframes typing {
-  from {
-    width: 0;
+@-webkit-keyframes blink {
+  from, to {
+    border-right-color: #323232;
   }
 
-  to {
-    width: 100%;
+  50% {
+    border-right-color: #f1bd00;
   }
 }
 
-@keyframes typing {
-  from {
-    width: 0;
+@keyframes blink {
+  from, to {
+    border-right-color: #323232;
   }
 
-  to {
-    width: 100%;
+  50% {
+    border-right-color: #f1bd00;
   }
 }
 
@@ -421,7 +421,7 @@ body {
 }
 
 #logo-bottom {
-  border-right: .1em solid #f1bd00;
+  border-right: .1em solid #323232;
   position: absolute;
   white-space: nowrap;
   letter-spacing: 5px;
@@ -430,8 +430,10 @@ body {
   color: #868686;
   bottom: 0;
   left: 0;
-  width: 0;
-  overflow: hidden;
+}
+
+#logo-bottom .maintain-height {
+  visibility: hidden;
 }
 
 #logo-bottom b {
@@ -439,9 +441,13 @@ body {
   color: #f5f5f5;
 }
 
+#logo-bottom span {
+  display: none;
+}
+
 #logo-bottom.animate {
-  -webkit-animation: typing 2.5s steps(18,end) forwards;
-  animation: typing 2.5s steps(18,end) forwards;
+  -webkit-animation: blink .8s step-end infinite;
+  animation: blink .8s step-end infinite;
 }
 
 

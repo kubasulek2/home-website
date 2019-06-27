@@ -103,7 +103,7 @@ body {
 	}
 }
 #logo-bottom{
-	border-right: .10em solid $base-yellow;
+	border-right: .10em solid $base-background;
 	position: absolute;
 	white-space: nowrap;
 	letter-spacing: 5px;
@@ -112,14 +112,18 @@ body {
 	color: $darker-white;
 	bottom: 0;
 	left: 0;
-	width: 0;
-	overflow: hidden;
+	.maintain-height{
+		visibility: hidden;
+	}
+
 	b {
     font-size: 4vmin;
     color: $base-white;
 	}
+	span{
+		display: none;
+	}
 	&.animate{
-		animation: 
-    typing 2.5s steps(18, end) forwards,
+		animation: blink .8s step-end infinite;
 	}
 }

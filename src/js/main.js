@@ -1,12 +1,9 @@
 $(() => {
 	const
 		glimpse = $('.glimpse'),
-		logo = $('.logo'),
 		loader = $('.loader'),
-		dots = $('#logo-bottom span'),
 		tlIntro = new TimelineMax(),
-		tlLoader = new TimelineMax(),
-		tlDots = new TimelineMax({ repeat: -1, repeatDelay: .3 });
+		tlLoader = new TimelineMax();
 
 	const loadingAnimation = () => {
 		tlLoader.staggerFrom(loader, 1, { opacity: 0, y: -100, ease: Bounce.easeOut, repeat: -1, repeatDelay: .4 }, .1);
@@ -50,13 +47,14 @@ $(() => {
 		waves.addClass('animate');
 		svgAnimation.addClass('animate');
 		tlTyping
-			.to(logoBottom, .25, { borderRightColor: '#323232', yoyo: true, repeat: -1 })
-			.add(() => logoBottom.addClass('animate')).addCallback(() => {
-				tlIntro
-					.to(glimpse, .5, {y: '0%'})
-					//.set(glimpse,{y: '100%'});
-			},'end+=5')
-			.addCallback(() => tlTyping.kill(),'end+=5');
+			.addCallback(() => logoBottom.addClass('animate'),'+=4')
+			.staggerTo($('#logo-bottom > span'), 0, { display: 'inline' }, .15, '+=1.5')
+			.staggerTo($('#logo-bottom>b>span'), 0, { display: 'inline' }, .15, '+=1.5');
+		// .addCallback(() => logoBottom.addClass('animate'),'+=1.5').addCallback(() => {
+		// 	tlIntro
+		// 		.to(glimpse, .5, {y: '0%'});
+		// },'end+=5')
+		// .addCallback(() => tlTyping.kill(),'end+=5');
 	};
 
 	loadingAnimation();
