@@ -334,6 +334,38 @@ body {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  overflow: hidden;
+}
+
+.glimpse .column-wrap {
+  position: absolute;
+  width: 140%;
+  height: 220%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-transform: rotateZ(25deg);
+  transform: rotateZ(25deg);
+  background: #2a2a2a;
+}
+
+@media (orientation:portrait) {
+  .glimpse .column-wrap {
+    width: 200%;
+    height: 140%;
+  }
+}
+
+.glimpse .column-wrap .column {
+  width: 12.5%;
+  height: 100%;
+  overflow: hidden;
+  background: #2a2a2a;
+}
+
+.glimpse .column-wrap .column:nth-child(odd) {
+  background: 0 0;
+  width: 0;
 }
 
 .glimpse .loader {

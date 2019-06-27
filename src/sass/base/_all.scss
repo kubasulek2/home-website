@@ -33,8 +33,35 @@ body {
   background: $darker-background;
   display: flex;
   justify-content: center;
-  align-items: center;
+	align-items: center;
+	overflow: hidden;
   
+}
+.glimpse .column-wrap{
+	position: absolute;
+    width: 140%;
+    height: 220%;
+    display: flex;
+    transform: rotateZ(25deg);
+    background: $darker-background;
+		
+		@media (orientation: portrait) {
+			& {
+				width: 200%;
+				height: 140%;	
+			}
+		}
+  .column {
+    width: 12.5%;
+    height: 100%;
+    overflow: hidden;
+    background: $darker-background;
+
+    &:nth-child(odd) {
+      background: transparent;
+      width: 0;
+    }
+  }
 }
 
 

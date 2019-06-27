@@ -42,7 +42,7 @@ $(() => {
 		tlIntro.to(glimpse, 0.5, {
 			y: '-100%',
 			onComplete: logoAnimation
-		}).set(glimpse, { y: '100%' });
+		}).set(glimpse, { y: '100%', opacity: 0 });
 	};
 
 	/* logoAnimation - last part, then page redirect */
@@ -53,7 +53,7 @@ $(() => {
 		      logoBottom = $('.logo-bottom').not('not-visible'),
 		      tlTyping = new TimelineMax({ paused: true });
 
-		tlTyping.addCallback(() => logoBottom.addClass('animate'), '+=2.5').staggerTo($('.logo-bottom > span'), 0, { display: 'inline' }, .15, 'typing+=1.2').staggerTo($('.logo-bottom>b>span'), 0, { display: 'inline' }, .15, '+=1.5').addCallback(() => tlIntro.to(glimpse, .5, { y: '0%' }), '+=2').addCallback(() => window.location.replace('about.html'), '+=.5');
+		tlTyping.addCallback(() => logoBottom.addClass('animate'), '+=2.5').staggerTo($('.logo-bottom > span'), 0, { display: 'inline' }, .15, 'typing+=1.2').staggerTo($('.logo-bottom>b>span'), 0, { display: 'inline' }, .15, '+=1.5').addCallback(() => tlIntro.to(glimpse, .5, { y: '0%', opacity: 1 }), '+=2').addCallback(() => window.location.replace('about.html'), '+=.5');
 
 		if (Modernizr.svgclippaths) {
 			waves.addClass('animate');
