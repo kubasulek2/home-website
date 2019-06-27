@@ -63,7 +63,7 @@ $(() => {
 			.staggerTo($('.logo-bottom > span'), 0, { display: 'inline' }, .15, 'typing+=1.2')
 			.staggerTo($('.logo-bottom>b>span'), 0, { display: 'inline' }, .15, '+=1.5')
 			.addCallback(() => tlIntro.to(glimpse, .5, { y: '0%', opacity: 1}), '+=2')
-			.addCallback(() => window.location.replace('about.html'), '+=.5');
+			.addCallback(() => window.location.href = 'about.html', '+=.5');
 
 		if (Modernizr.svgclippaths) {
 			waves.addClass('animate');

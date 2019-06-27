@@ -4,7 +4,7 @@ const isMobileDevice = () => {
 	return (typeof window.orientation !== 'undefined') || (navigator.userAgent.indexOf('IEMobile') !== -1);
 };
 const viewPortWidth = () => {
-	return $(window).outerWidth();	
+	return $(window).outerWidth();
 };
 
 $(document).ready(function () {
@@ -40,6 +40,14 @@ $(document).ready(function () {
 	/* about.html code */
 
 	if ($('body#about').length) {
-		viewPortWidth();
+		const appendImage = () => {
+
+			const imageUrl = viewPortWidth() > 1024 ? 'about.jpg' : 'about-mobile.jpg';
+			const image = new Image();
+			image.src = '../images/' + imageUrl;
+			image.onload = () => $('.img-wrapper').append(image);
+
+		};
+		appendImage();
 	}
 });
