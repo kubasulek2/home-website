@@ -51,17 +51,25 @@ $(() => {
 		const waves = $('.wave'),
 		      svgAnimation = $('#svg-animation'),
 		      logoBottom = $('.logo-bottom').not('not-visible'),
-		      tlTyping = new TimelineMax();
+		      tlTyping = new TimelineMax({ paused: true });
 
-		waves.addClass('animate');
-		svgAnimation.addClass('animate');
+		tlTyping.addCallback(() => logoBottom.addClass('animate'), '+=2.5').staggerTo($('.logo-bottom > span'), 0, { display: 'inline' }, .15, 'typing+=1.2').staggerTo($('.logo-bottom>b>span'), 0, { display: 'inline' }, .15, '+=1.5').addCallback(() => tlIntro.to(glimpse, .5, { y: '0%' }), '+=2').addCallback(() => window.location.replace('about.html'), '+=.5');
 
-		tlTyping.addCallback(() => logoBottom.addClass('animate'), '+=2.5').staggerTo($('.logo-bottom > span'), 0, { display: 'inline' }, .15, '+=1.2').staggerTo($('.logo-bottom>b>span'), 0, { display: 'inline' }, .15, '+=1.5').addCallback(() => tlIntro.to(glimpse, .5, { y: '0%' }), '+=2').addCallback(() => window.location.replace('about.html'), '+=.5');
+		if (Modernizr.svgclippaths) {
+			waves.addClass('animate');
+			svgAnimation.addClass('animate');
+			tlTyping.play();
+		} else {
+			logoBottom.addClass('animate');
+			tlTyping.play().seek('typing');
+		}
 	};
 
 	/* call initial Functions */
 
 	introAnimation();
+
+	/* !!!!!!!!!!!!!!!!!!! sometime after hard reload wont trigger, check it later (maybe just browserSync or liveServer issue? ) */
 	pageReady();
 });
 //# sourceMappingURL=intro.js.map
