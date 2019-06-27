@@ -17,113 +17,24 @@ body {
   color: $base-white;
   overflow: hidden;
 }
+.hide{
+	display: none;
+}
+.not-visible{
+	visibility: hidden;
+}
 
-/* intro animations */
-.logo,
 .glimpse {
-  position: absolute;
+	position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-}
-.glimpse {
   background: $darker-background;
   display: flex;
   justify-content: center;
   align-items: center;
-  .loader {
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
-    background: lighten($base-background, 10%);
-    margin: 5px;
-    opacity: 0.5;
-  }
-}
-.logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#logo-placement{
-	position: relative;
-}
-#logo-top {
-  width: 100%;
-  margin-left: 20%;
-  font-family: "Rubik Mono One", sans-serif;
-
-  svg {
-    display: block;
-  }
-  g#svg-text-bg rect {
-    width: 100%;
-    height: 100%;
-    fill: $darker-background;
-  }
-  g#svg-animation {
-    transform: translateY(75%);
-    &.animate {
-      animation: fill 4s linear forwards;
-    }
-  }
-  #svg-text {
-    text {
-      font-size: 30px;
-    }
-  }
-
-  use {
-    fill: $base-yellow;
-  }
-  #myWave {
-    transform: translateX(-100%);
-    &.animate {
-      animation: waves 4s linear;
-    }
-  }
-  #myWave2 {
-    &.animate {
-      animation: waves 4s linear;
-    }
-  }
+  
 }
 
-#logo-bottom-hidden {
-  letter-spacing: 5px;
-  font-family: Questrial, sans-serif;
-  font-size: 3.5vmin;
-	color: $darker-white;
-	visibility: hidden;
-	border-right: .10em solid $base-yellow;
-  b {
-    font-size: 4vmin;
-    color: $base-white;
-	}
-}
-#logo-bottom{
-	border-right: .10em solid $base-background;
-	position: absolute;
-	white-space: nowrap;
-	letter-spacing: 5px;
-	font-family: Questrial, sans-serif;
-	font-size: 3.5vmin;
-	color: $darker-white;
-	bottom: 0;
-	left: 0;
-	.maintain-height{
-		visibility: hidden;
-	}
 
-	b {
-    font-size: 4vmin;
-    color: $base-white;
-	}
-	span{
-		display: none;
-	}
-	&.animate{
-		animation: blink .8s step-end infinite;
-	}
-}

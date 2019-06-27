@@ -1,36 +1,28 @@
 $(() => {
+
+	/* variables, animations Timelines */
 	const
 		glimpse = $('.glimpse'),
 		loader = $('.loader'),
 		tlIntro = new TimelineMax(),
 		tlLoader = new TimelineMax();
 
-	const loadingAnimation = () => {
-		console.log('loading');
+	/* first Animation */	
+	
+	const introAnimation = () => {
 		
 		tlLoader.staggerFrom(loader, 1, { opacity: 0, y: -100, ease: Bounce.easeOut, repeat: -1, repeatDelay: .4 }, .1);
 	};
 
-	const glimpseAnimation = () => {
-		console.log('glimpse');
-		
-		tlIntro
-			.to(glimpse, 0.5, {
-				y: '-100%',
-				onComplete: logoAnimation
-			})
-			.set(glimpse, { y: '100%' });
-	};
+	/* window loaded check and call quit introAnimation */
 
 	const pageReady = () => {
-		console.log('pageReady');
-		
 		$(window).on('load', quitIntro);
 	};
 
+	/* quit IntroAnimation and call glimpseAnimation */
+
 	const quitIntro = () => {
-		console.log('quitIntro');
-		
 
 		setTimeout(() => {
 			tlLoader.kill();
@@ -45,26 +37,41 @@ $(() => {
 
 	};
 
-	const logoAnimation = () => {
-		console.log('logoAnimation');
+	/* glimpseAnimation  - onComplete: logoAnimation*/
+
+	const glimpseAnimation = () => {
 		
+		tlIntro
+			.to(glimpse, 0.5, {
+				y: '-100%',
+				onComplete: logoAnimation
+			})
+			.set(glimpse, { y: '100%' });
+	};
+
+	/* logoAnimation - last part, then page redirect */
+	
+	const logoAnimation = () => {
 		const
 			waves = $('.wave'),
 			svgAnimation = $('#svg-animation'),
-			logoBottom = $('#logo-bottom'),
+			logoBottom = $('.logo-bottom').not('not-visible'),
 			tlTyping = new TimelineMax();
 
 		waves.addClass('animate');
 		svgAnimation.addClass('animate');
+		
 		tlTyping
-			.addCallback(() => logoBottom.addClass('animate'), '+=3')
-			.staggerTo($('#logo-bottom > span'), 0, { display: 'inline' }, .15, '+=1.5')
-			.staggerTo($('#logo-bottom>b>span'), 0, { display: 'inline' }, .15, '+=1.5')
+			.addCallback(() => logoBottom.addClass('animate'), '+=2.5')
+			.staggerTo($('.logo-bottom > span'), 0, { display: 'inline' }, .15, '+=1.2')
+			.staggerTo($('.logo-bottom>b>span'), 0, { display: 'inline' }, .15, '+=1.5')
 			.addCallback(() => tlIntro.to(glimpse, .5, { y: '0%' }), '+=2')
-			.addCallback(() => window.location.replace( 'about.html'), '+=.5' );
+			.addCallback(() => window.location.replace('about.html'), '+=.5');
 	};
 
-	loadingAnimation();
+	/* call initial Functions */
+
+	introAnimation();
 	pageReady();
 
 
