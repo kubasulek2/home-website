@@ -33,6 +33,7 @@ gulp.task( 'scripts', function () {
 		.src( [
 			'./src/js/!(vendor)**/!(main)*.js',
 			'./src/js/main.js',
+			'./src/js/intro.js'
 
 		] )
 		.pipe(sourcemaps.init())
