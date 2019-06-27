@@ -1,0 +1,30 @@
+/* right panel with photo inside */
+
+#about-right-panel{
+	width: 30%;
+	height: 100%;
+	margin: auto 0 auto auto;
+	background: $lighter-background;
+	display: flex;
+	align-items: center;
+
+	.img-wrapper{
+		width: 100%;
+		margin-left: -20%;
+	}
+	.img-wrapper img{
+		width: 100%;
+		height: auto;
+	}
+
+	@media (min-width:768px) and (orientation:landscape){
+		margin-right: 5%;	
+		height: 90%;
+	}
+	@media (min-width:1025px){
+		height: 80%;
+		width: 35%;
+		margin-right: 10%;
+	}	
+	
+}

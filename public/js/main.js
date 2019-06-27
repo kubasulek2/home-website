@@ -1,11 +1,22 @@
+/* utility functions */
+
+const isMobileDevice = () => {
+	return typeof window.orientation !== 'undefined' || navigator.userAgent.indexOf('IEMobile') !== -1;
+};
+const viewPortWidth = () => {
+	return $(window).outerWidth();
+};
+
 $(document).ready(function () {
 
 	/* colors to use on the page */
+
 	const $darkerBackground = '#2a2a2a',
 	      $baseBackground = '#323232';
 
+	/* Background animation played after each subpage loaded */
+
 	const bgTransition = () => {
-		console.log('aaa');
 
 		const columnEven = $('.column:nth-child(even)'),
 		      columnOdd = $('.column:nth-child(odd)'),
@@ -17,5 +28,11 @@ $(document).ready(function () {
 	};
 
 	bgTransition();
+
+	/* about.html code */
+
+	if ($('body#about').length) {
+		viewPortWidth();
+	}
 });
 //# sourceMappingURL=main.js.map
