@@ -39,30 +39,30 @@ $base-yellow: #f1bd00;
 }
 @keyframes glitch {
 	from, to{
-		transform: translateX(2px)
+		transform: translateX(5px)
 	}
 	11%{
-		transform: translateX(5px)
+		transform: translateX(7px)
 	}
 	22%{
 		transform: translateX(1px)			
 	}
 	33%{
-		transform: translateX(3px)
-	}
-	44%{
-		transform: translateX(3px)			
-	}
-	55%{
 		transform: translateX(4px)
 	}
+	44%{
+		transform: translateX(4px)			
+	}
+	55%{
+		transform: translateX(0px)
+	}
 	66%{
-		transform: translateX(1px)			
+		transform: translateX(6px)			
 	}
 	77%{
-		transform: translateX(3px)
+		transform: translateX(4px)
 	}
 	88%{
-		transform: translateX(3px)			
+		transform: translateX(2px)			
 	}
 }
