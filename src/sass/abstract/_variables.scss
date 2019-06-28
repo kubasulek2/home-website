@@ -37,3 +37,32 @@ $base-yellow: #f1bd00;
     border-right-color: $base-yellow;
   }
 }
+@keyframes glitch {
+	from, to{
+		transform: translateX(2px)
+	}
+	11%{
+		transform: translateX(5px)
+	}
+	22%{
+		transform: translateX(1px)			
+	}
+	33%{
+		transform: translateX(3px)
+	}
+	44%{
+		transform: translateX(3px)			
+	}
+	55%{
+		transform: translateX(4px)
+	}
+	66%{
+		transform: translateX(1px)			
+	}
+	77%{
+		transform: translateX(3px)
+	}
+	88%{
+		transform: translateX(3px)			
+	}
+}

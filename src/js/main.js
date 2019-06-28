@@ -56,11 +56,15 @@ $(document).ready(function () {
 			if (bgTransitionEnd) {
 
 				const $panel = $('#about-right-panel');
+				const $image = $('.img-wrapper');
 				const tlPanel = new TimelineMax();
 				const marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
 
-				tlPanel.to($panel, .6, { width: '100%', left: '0' });
-				tlPanel.to($panel.parent(), 1, {  marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut });
+				tlPanel
+					.to($panel, .4, { width: '100%', left: '0' })
+					.to($panel.parent(), 1, {  marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut })
+					.add(appendImage)
+					.from($image, 1, { opacity: 0, x: '-100%', ease: Power3.easeOut});
 			} else setTimeout(showRightPanel, 200);
 
 		};
