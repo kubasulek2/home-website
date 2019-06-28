@@ -1,18 +1,27 @@
 /* right panel with photo inside */
 
-#about-right-panel{
-	width: 30%;
+.panel-container{
+	position: relative;
+	width: 40%;
 	height: 100%;
 	margin: auto 0 auto auto;
-	background: $lighter-background;
-
-
+	
+	
+	#about-right-panel{
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 0;
+		height: 100%;
+		background:  $lighter-background;
+		
+	}
 	.img-wrapper{
 		width: 180%;
 		height: auto;		
 		margin-left: -100%;
 		margin-top: 30%;
-		box-shadow: 0 0 15px rgba(0,0,0,0.4);
+		//box-shadow: 0 0 15px rgba(0,0,0,0.4);
 	}
 	.img-wrapper img{
 		width: 100%;
@@ -20,17 +29,16 @@
 		
 	}
 
-	@media (min-width:768px) and (orientation:landscape){
-		margin-right: 5%;	
-		height: 90%;
+	@media (min-width:768px) {
+		
 		.img-wrapper{
 			width: 120%;
 			margin-left: -20%;
 		}
 	}
 	@media (min-width:1025px){
-		height: 95%;
-		width: 35%;
+		margin-right: 5%;	
+		height: 80%;		
 		.img-wrapper{
 			width: 100%;
 			margin-left: -15%

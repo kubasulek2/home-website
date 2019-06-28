@@ -495,46 +495,48 @@ body {
   animation: blink .8s step-end infinite;
 }
 
-#about-right-panel {
-  width: 30%;
+.panel-container {
+  position: relative;
+  width: 40%;
   height: 100%;
   margin: auto 0 auto auto;
+}
+
+.panel-container #about-right-panel {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 0;
+  height: 100%;
   background: #363636;
 }
 
-#about-right-panel .img-wrapper {
+.panel-container .img-wrapper {
   width: 180%;
   height: auto;
   margin-left: -100%;
   margin-top: 30%;
-  -webkit-box-shadow: 0 0 15px rgba(0,0,0,.4);
-  box-shadow: 0 0 15px rgba(0,0,0,.4);
 }
 
-#about-right-panel .img-wrapper img {
+.panel-container .img-wrapper img {
   width: 100%;
   display: block;
 }
 
-@media (min-width:768px) and (orientation:landscape) {
-  #about-right-panel {
-    margin-right: 5%;
-    height: 90%;
-  }
-
-  #about-right-panel .img-wrapper {
+@media (min-width:768px) {
+  .panel-container .img-wrapper {
     width: 120%;
     margin-left: -20%;
   }
 }
 
 @media (min-width:1025px) {
-  #about-right-panel {
-    height: 95%;
-    width: 35%;
+  .panel-container {
+    margin-right: 5%;
+    height: 80%;
   }
 
-  #about-right-panel .img-wrapper {
+  .panel-container .img-wrapper {
     width: 100%;
     margin-left: -15%;
   }

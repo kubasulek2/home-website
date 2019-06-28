@@ -16,7 +16,7 @@ $(document).ready(function () {
 		$baseBackground = '#323232';
 
 	/* Background animation played after each subpage loaded */
-
+	let bgTransitionEnd = false;
 	const bgTransition = () => {
 
 		const
@@ -32,7 +32,8 @@ $(document).ready(function () {
 			.to(columnEven, .6, { width: 0 }, 'synchro')
 			.to(columnOdd, .6, { width: '12.5%' }, 'synchro')
 			.set(background, { y: '100%' })
-			.set([background, columnWrapper], { background: $darkerBackground });
+			.set([background, columnWrapper], { background: $darkerBackground })
+			.add(() => bgTransitionEnd = true);
 	};
 
 	bgTransition();
@@ -40,6 +41,7 @@ $(document).ready(function () {
 	/* about.html code */
 
 	if ($('body#about').length) {
+
 		const appendImage = () => {
 
 			const imageUrl = viewPortWidth() > 1024 ? 'about.jpg' : 'about-mobile.jpg';
@@ -48,6 +50,21 @@ $(document).ready(function () {
 			image.onload = () => $('.img-wrapper').append(image);
 
 		};
-		appendImage();
+
+		const showRightPanel = () => {
+
+			if (bgTransitionEnd) {
+
+				const $panel = $('#about-right-panel');
+				const tlPanel = new TimelineMax();
+				const marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
+
+				tlPanel.to($panel, .6, { width: '100%', left: '0' });
+				tlPanel.to($panel.parent(), 1, {  marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut });
+			} else setTimeout(showRightPanel, 200);
+
+		};
+		showRightPanel();
 	}
 });
+
