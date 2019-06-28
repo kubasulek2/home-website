@@ -29,61 +29,55 @@
 	}
 	.img-wrapper img{
 		width: 100%;
-		display: block;
-		//visibility: hidden;
-		//opacity: 0;
+		display: block;		
+		//filter: blur(3%)
+
 		
 	}
-	// .img-wrapper:after{
-	// 	content: '';
-	// 	display: block;
-	// 	position: absolute;
-	// 	width: 100%;
-	// 	height: 100%;
-	// 	opacity: 0.3;
-	// 	top:0;
-	// 	left: 0;
-	// 	background: url('../../images/about.jpg') center/contain;
-	// 	//animation: glitch 1.2s steps(10, end) infinite alternate;
+	.img-wrapper:after{
+		content: '';
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		opacity: 0.3;
+		top:0;
+		left: 0;
+		background: url('../../images/about.jpg') center/contain;
+		//animation: glitch-effect 1.2s steps(10, end) infinite alternate;
 		
-	// }
+	}
 	.glitch{
 		position: absolute;
 		width: 100%;
 		height: 100%;
 		top: 0;
 		left: 0;
+	}
+	.glitch:before, .glitch:after{
+		content: '';
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;  
+		top:0;
+		left: 0;
+		overflow: hidden;
 		background: url('../../images/about.jpg') center/contain;
-		clip-path: polygon(0 9%, 100% 16%, 100% 22%, 0 9%, 0 9%);
-		animation: glitch .2s steps(10, end) infinite alternate;
+		
+	 }
+	.glitch:after{
+		left:8px;
+		clip-path: polygon(0 9%, 100% 16%, 100% 22%, 0 9%);
+		//animation: glitch-effect-2 2s infinite linear
+	}
+	.glitch:before{
+		left: 4px;
+		//animation: glitch-effect-2 3s infinite linear
 
 	}
-	// .glitch:before /*, .glitch:after */{
-	// 	content: '';
-	// 	display: block;
-	// 	position: absolute;
-	// 	width: 100%;
-	// 	height: 100%;  
-	// 	top:0;
-	// 	left: 0;
-	// 	overflow: hidden;
-	// 	background: rgba(0, 0, 0, 0.2);
-		
-	// }
-	// .glitch:after{
-	// 	left:8px;
-	// 	clip-path: inset(5%,0,80%,0)
-	// }
-	// .glitch:before{
-	// 	left: 4px;
-		
-	// }
 
-	@keyframes glitch-effect {
-		5%{
-			clip-path: inset(5px,0,200px,0)
-		}
-	}
+	
 	@media (min-width:768px) {
 		
 	}
