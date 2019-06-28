@@ -21,16 +21,15 @@
 	}
 	.img-wrapper{
 		position: relative;
-		width: 60%;
-		height: auto;
+		width: auto;
+		height: 80%;
 		margin-right: -10%;
-		overflow: hidden;		
-		//box-shadow: 0 0 15px rgba(0,0,0,0.4);
-	}
+		//overflow: hidden;	
+		}
 	.img-wrapper img{
-		width: 100%;
+		height: 100%;
 		display: block;		
-		//filter: blur(3%)
+		filter: blur(3%)
 
 		
 	}
@@ -44,7 +43,7 @@
 		top:0;
 		left: 0;
 		background: url('../../images/about.jpg') center/contain;
-		//animation: glitch-effect 1.2s steps(10, end) infinite alternate;
+		animation: glitch-effect 1.2s steps(10, end) infinite alternate;
 		
 	}
 	.glitch{
@@ -69,11 +68,11 @@
 	.glitch:after{
 		left:8px;
 		clip-path: polygon(0 9%, 100% 16%, 100% 22%, 0 9%);
-		//animation: glitch-effect-2 2s infinite linear
+		animation: glitch-effect-2 2s infinite linear
 	}
 	.glitch:before{
 		left: 4px;
-		//animation: glitch-effect-2 3s infinite linear
+		animation: glitch-effect-2 3s infinite linear
 
 	}
 

@@ -830,15 +830,16 @@ body {
 
 .panel-container .img-wrapper {
   position: relative;
-  width: 60%;
-  height: auto;
+  width: auto;
+  height: 80%;
   margin-right: -10%;
-  overflow: hidden;
 }
 
 .panel-container .img-wrapper img {
-  width: 100%;
+  height: 100%;
   display: block;
+  -webkit-filter: blur(3%);
+  filter: blur(3%);
 }
 
 .panel-container .img-wrapper:after {
@@ -851,6 +852,8 @@ body {
   top: 0;
   left: 0;
   background: url(../images/about.jpg) center/contain;
+  -webkit-animation: glitch-effect 1.2s steps(10,end) infinite alternate;
+  animation: glitch-effect 1.2s steps(10,end) infinite alternate;
 }
 
 .panel-container .glitch {
@@ -878,10 +881,14 @@ body {
   left: 8px;
   -webkit-clip-path: polygon(0 9%,100% 16%,100% 22%,0 9%);
   clip-path: polygon(0 9%,100% 16%,100% 22%,0 9%);
+  -webkit-animation: glitch-effect-2 2s infinite linear;
+  animation: glitch-effect-2 2s infinite linear;
 }
 
 .panel-container .glitch:before {
   left: 4px;
+  -webkit-animation: glitch-effect-2 3s infinite linear;
+  animation: glitch-effect-2 3s infinite linear;
 }
 
 @media (min-width:1025px) {

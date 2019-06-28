@@ -112,7 +112,9 @@ $(document).ready(function () {
 					.to($panel, .4, { width: '100%', left: '0' })
 					.to($panel.parent(), 1, {  marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut })
 					.add(appendImage)
-					.from($image, 1, { opacity: 0, x: '-100%', ease: Power3.easeOut});
+					.set($image, {opacity: 0.05})
+					.from($image, 3, { opacity: 0, ease: Power3.easeOut},'image+=0.2')
+					.from($image, 1, { x: '-100%', ease: Power3.easeOut},'image');
 
 				if (!Modernizr.cssclippathpolygon) $('.glitch').hide();
 			
