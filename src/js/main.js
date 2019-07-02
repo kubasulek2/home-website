@@ -63,7 +63,7 @@ $(document).ready(function () {
 		$darkerBackground = '#2a2a2a',
 		$baseBackground = '#323232';
 
-	/* Background animation played after each subpage loaded */
+	/* Background animation - playing after each subpage loaded */
 	let bgTransitionEnd = false;
 	const bgTransition = () => {
 

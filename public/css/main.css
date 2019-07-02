@@ -677,6 +677,19 @@ body {
   width: 0;
 }
 
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  position: fixed;
+  -ms-flex-pack: distribute;
+  justify-content: space-around;
+  z-index: 1;
+  top: 0;
+  left: 0;
+}
+
 .glimpse .loader {
   width: 20px;
   height: 20px;
