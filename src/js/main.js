@@ -107,6 +107,8 @@ $(document).ready(function () {
 					.from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2')
 					.from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image')
 					.addCallback(() => {
+
+						// call this function only if  not on mobile and with 3d support
 						if (Modernizr.preserve3d && Modernizr.csstransforms3d && !isMobileDevice()) mouseOver3dEffect();
 					}, 'image+=1');
 
@@ -116,7 +118,7 @@ $(document).ready(function () {
 
 		};
 
-		/* load right image version after image is loaded */
+		/* load right image version after is loaded */
 
 		const appendImage = () => {
 
@@ -170,27 +172,32 @@ $(document).ready(function () {
 				TweenMax.to(inner, .5, { rotationX: 0, rotationY: 0 });
 			};
 
-			/* Update rotation every once a while */
+			/* Update rotation every once a while on mousemove */
 			
 			const onMouseMoveHandler = (event) => {
-
+				
 				if (isTimeToUpdate()) {
 					update(event);
 				}
 			};
+			
+			/* Actual update here */
 
 			const update = (event) => {
 				mouse.updatePosition(event);
 
-				updateTransformStyle(
+				transformRotation(
 					(mouse.y / inner.outerHeight() / 3).toFixed(2),
 					(mouse.x / inner.outerWidth() / 3).toFixed(2)
 				);
 			};
 
-			const updateTransformStyle = function (x, y) {
+			/* Apply styles */
+			const transformRotation = function (x, y) {
 				TweenMax.to(inner, .4, { rotationX: x, rotationY: y });
 			};
+
+			/* Prevent Updating every milisecond */
 
 			let counter = 0;
 			const updateRate = 10;
@@ -198,6 +205,8 @@ $(document).ready(function () {
 			const isTimeToUpdate = function () {
 				return counter++ % updateRate === 0;
 			};
+
+			/* Event Listeners */
 
 			outer.on('mouseenter', onMouseEnterHandler);
 			outer.on('mouseleave', onMouseLeaveHandler);
