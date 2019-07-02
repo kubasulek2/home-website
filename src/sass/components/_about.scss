@@ -24,7 +24,10 @@
 		width: auto;
 		height: 80%;
 		margin-right: -10%;
-		//overflow: hidden;	
+		overflow: hidden;	
+		border-radius: .5em;
+		box-shadow: 1px 1px 5px 0px rgba(0,0,0,0.3);
+		cursor: pointer;
 		}
 	.img-wrapper img{
 		height: 100%;

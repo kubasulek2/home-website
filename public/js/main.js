@@ -103,6 +103,11 @@ $(document).ready(function () {
 				if (!Modernizr.cssclippathpolygon) $('.glitch').hide();
 			} else setTimeout(showRightPanel, 200);
 		};
+
+		if (Modernizr.preserve3d && Modernizr.csstransforms3d) {
+
+			const mouseOver3dEffect = () => {};
+		}
 		showRightPanel();
 	}
 });
