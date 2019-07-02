@@ -6,7 +6,7 @@ const isMobileDevice = () => {
 const viewPortWidth = () => {
 	return $(window).outerWidth();
 };
-/* update Modernizr to recognize support for CSS clip-path polygon */
+/* Update Modernizr to recognize support for CSS clip-path polygon */
 (function (Modernizr) {
 
 	// Here are all the values we will test. If you want to use just one or two, comment out the lines of test you don't need.
@@ -57,12 +57,24 @@ const viewPortWidth = () => {
 
 $(document).ready(function () {
 
-	/* colors to use on the page */
+	/* Colors to use on the page */
 
 	const $darkerBackground = '#2a2a2a',
-	      $baseBackground = '#323232';
+	      $baseBackground = '#323232',
+	      $baseWhite = '#fafafa';
 
+	/* Menu items to manipulate */
+
+	const menu = $('#menu'),
+	      menuBar = $('#menu .bar');
+
+	const openMenu = () => {
+		const tlOpenMenu = new TimelineMax();
+		tlOpenMenu.set(menu, { borderColor: $baseWhite }).to(menuBar.eq(2), .5, { z: -10, ease: Power0.easeNone }, 'bar').to(menuBar.eq(1), .5, { z: -5, ease: Power0.easeNone }, 'bar').to(menuBar.eq(2), .5, { y: '-250%', ease: Power0.easeNone });
+	};
+	menu.on('click', openMenu);
 	/* Background animation - playing after each subpage loaded */
+
 	let bgTransitionEnd = false;
 	const bgTransition = () => {
 
