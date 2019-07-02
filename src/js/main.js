@@ -7,7 +7,7 @@ const viewPortWidth = () => {
 	return $(window).outerWidth();
 };
 /* update Modernizr to recognize support for CSS clip-path polygon */
-(function (Modernizr) {
+(function(Modernizr){
 
 	// Here are all the values we will test. If you want to use just one or two, comment out the lines of test you don't need.
 	var tests = [
@@ -20,27 +20,27 @@ const viewPortWidth = () => {
 	for (; t < tests.length; t++) {
 		name = tests[t].name;
 		value = tests[t].value;
-		Modernizr.addTest('cssclippath' + name, function () {
+		Modernizr.addTest('cssclippath' + name, function(){
 			// Try using window.CSS.supports
-			if ('CSS' in window && 'supports' in window.CSS) {
+			if ( 'CSS' in window && 'supports' in window.CSS ) {
 				for (var i = 0; i < Modernizr._prefixes.length; i++) {
-					prop = Modernizr._prefixes[i] + 'clip-path'
-
-					if (window.CSS.supports(prop, value)) { return true; }
+					prop = Modernizr._prefixes[i] + 'clip-path';
+					
+					if ( window.CSS.supports(prop,value) ) { return true; }
 				}
 				return false;
 			}
 			// Otherwise, use Modernizr.testStyles and examine the property manually
-			return Modernizr.testStyles('#modernizr { ' + Modernizr._prefixes.join('clip-path:' + value + '; ') + ' }', function (elem, rule) {
+			return Modernizr.testStyles('#modernizr { '+Modernizr._prefixes.join('clip-path:'+value+'; ')+' }',function(elem, rule) {
 				var style = getComputedStyle(elem),
 					clip = style.clipPath;
 
-				if (!clip || clip == "none") {
+				if ( !clip || clip == 'none' ) {
 					clip = false;
 
 					for (var i = 0; i < Modernizr._domPrefixes.length; i++) {
 						test = Modernizr._domPrefixes[i] + 'ClipPath';
-						if (style[test] && style[test] !== "none") {
+						if ( style[test] && style[test] !== 'none' ) {
 							clip = true;
 							break;
 						}
@@ -99,7 +99,7 @@ $(document).ready(function () {
 
 		};
 
-		const showRightPanel = () => {
+		const showAside = () => {
 
 			if (bgTransitionEnd) {
 
@@ -110,26 +110,64 @@ $(document).ready(function () {
 
 				tlPanel
 					.to($panel, .4, { width: '100%', left: '0' })
-					.to($panel.parent(), 1, { marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut })
+					.to($panel.parent(), 1, {  marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut })
 					.add(appendImage)
-					.set($image, { opacity: 0.05 })
-					.from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2')
-					.from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image');
+					.set($image, {opacity: 0.05})
+					.from($image, 3, { opacity: 0, ease: Power3.easeOut},'image+=0.2')
+					.from($image, 1, { x: '-100%', ease: Power3.easeOut},'image');
 
 				if (!Modernizr.cssclippathpolygon) $('.glitch').hide();
-
-			} else setTimeout(showRightPanel, 200);
+			
+			} else setTimeout(showAside, 200);
 
 		};
+	
 
-		if (Modernizr.preserve3d && Modernizr.csstransforms3d) {
-		
+		if (Modernizr.preserve3d && Modernizr.csstransforms3d && !isMobileDevice()) {
+			
 			const mouseOver3dEffect = () => {
 				
-			};
+				const outer = $('.img-wrapper-outer');
+				const inner = $('.img-wrapper');
 
+				const onMouseEnterHandler = (event) => {
+					update(event);
+				};
+				
+				const onMouseLeaveHandler = () => {
+					inner.style = '';
+				};
+				
+				const onMouseMoveHandler = (event) => {
+					console.log(counter);
+					
+					if (isTimeToUpdate()) {
+						update(event);
+					}
+				};
+
+				const update = (event) => {
+
+				};
+				
+				let counter = 0;
+				const updateRate = 10;
+				
+				const isTimeToUpdate = function() {
+					return counter++ % updateRate === 0;
+				};
+
+				outer.onmouseenter = onMouseEnterHandler;
+				outer.onmouseleave = onMouseLeaveHandler;
+				outer.on( 'mousemove', onMouseMoveHandler);
+			};
+		
+			mouseOver3dEffect();
 		}
-		showRightPanel();
+		showAside();
 	}
+
+		
+	
 });
 

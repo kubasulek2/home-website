@@ -828,16 +828,22 @@ body {
   align-items: center;
 }
 
-.panel-container .img-wrapper {
-  position: relative;
+.panel-container .img-wrapper-outer {
   width: auto;
   height: 80%;
   margin-right: -10%;
-  overflow: hidden;
-  border-radius: .5em;
-  -webkit-box-shadow: 1px 1px 5px 0 rgba(0,0,0,.3);
-  box-shadow: 1px 1px 5px 0 rgba(0,0,0,.3);
   cursor: pointer;
+  -webkit-perspective: 40px;
+  perspective: 40px;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+}
+
+.panel-container .img-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .panel-container .img-wrapper img {
@@ -856,7 +862,7 @@ body {
   opacity: .3;
   top: 0;
   left: 0;
-  background: url(../images/about.jpg) center/contain;
+  background: url(../images/about.jpg) center/cover;
   -webkit-animation: glitch-effect 1.2s steps(10,end) infinite alternate;
   animation: glitch-effect 1.2s steps(10,end) infinite alternate;
 }
