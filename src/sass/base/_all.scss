@@ -121,10 +121,10 @@ header #menu{
 	transform: translate(-50%, -50%);
 	
 	&:first-child{
-		top: 33%;
+		top: 67%;
 	}
 	&:last-child{
-		top: 67%;
+		top: 33%;
 	}
 	
 }

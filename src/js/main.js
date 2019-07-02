@@ -62,7 +62,8 @@ $(document).ready(function () {
 	const
 		$darkerBackground = '#2a2a2a',
 		$baseBackground = '#323232',
-		$baseWhite = '#fafafa';
+		$baseWhite = '#fafafa',
+		$baseYellow = '#f1bd00';
 
 	/* Menu items to manipulate */
 
@@ -74,10 +75,19 @@ $(document).ready(function () {
 		const tlOpenMenu = new TimelineMax();
 		tlOpenMenu
 			.set(menu, { borderColor: $baseWhite })
-			.to(menuBar.eq(2), .5, { z: -10, ease: Power0.easeNone }, 'bar')
-			.to(menuBar.eq(1), .5, { z: -5, ease: Power0.easeNone }, 'bar')
-			.to(menuBar.eq(2), .5, { y: '-250%', ease: Power0.easeNone }, );
-			
+			.to(menuBar.eq(0), .4, { z: -10, ease: Power0.easeNone }, 'translateZ')
+			.to(menuBar.eq(1), .4, { z: -5, ease: Power0.easeNone }, 'translateZ')
+			.to(menuBar.eq(0), .2, { y: '-390%', ease: Power0.easeNone }, 'equal+=.2')
+			.to(menuBar.eq(2), .2, { y: '290%', ease: Power0.easeNone }, 'equal+=.2')
+			.add(() => {
+				menuBar.css('transform', '');
+				menuBar.css('top', '50%');
+			})
+			.set(menuBar, { clearProps: 'z' })
+			.to(menuBar.eq(2), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate')
+			.to(menuBar.eq(1), .3, { rotation: -45, background: $baseYellow, ease: Power0.easeNone }, 'rotate')
+			.to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate');
+
 
 	};
 	menu.on('click', openMenu);

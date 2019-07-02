@@ -751,11 +751,11 @@ header #menu:hover {
 }
 
 #menu .bar:first-child {
-  top: 33%;
+  top: 67%;
 }
 
 #menu .bar:last-child {
-  top: 67%;
+  top: 33%;
 }
 
 .glimpse .loader {
