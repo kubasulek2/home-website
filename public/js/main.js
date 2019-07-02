@@ -81,14 +81,6 @@ $(document).ready(function () {
 
 	if ($('body#about').length) {
 
-		const appendImage = () => {
-
-			const imageUrl = viewPortWidth() > 1024 ? 'about.jpg' : 'about-mobile.jpg';
-			const image = new Image();
-			image.src = '../images/' + imageUrl;
-			image.onload = () => $('.img-wrapper').append(image);
-		};
-
 		const showAside = () => {
 
 			if (bgTransitionEnd) {
@@ -98,72 +90,98 @@ $(document).ready(function () {
 				const tlPanel = new TimelineMax();
 				const marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
 
-				tlPanel.to($panel, .4, { width: '100%', left: '0' }).to($panel.parent(), 1, { marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut }).add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2').from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image');
+				tlPanel.to($panel, .4, { width: '100%', left: '0' }).to($panel.parent(), 1, { marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut }).add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2').from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image').addCallback(() => {
+					if (Modernizr.preserve3d && Modernizr.csstransforms3d && !isMobileDevice()) mouseOver3dEffect();
+				}, 'image+=1');
 
 				if (!Modernizr.cssclippathpolygon) $('.glitch').hide();
 			} else setTimeout(showAside, 200);
 		};
 
-		if (Modernizr.preserve3d && Modernizr.csstransforms3d && !isMobileDevice()) {
+		/* load right image version after image is loaded */
 
-			const mouseOver3dEffect = () => {
+		const appendImage = () => {
 
-				const outer = $('.img-wrapper-outer');
-				const inner = $('.img-wrapper');
-				const mouse = {
-					_x: 0,
-					_y: 0,
-					x: 0,
-					y: 0,
-					updatePosition: function (event) {
-						const e = event || window.event;
-						this.x = e.clientX - this._x;
-						this.y = (e.clientY - this._y) * -1;
-					},
-					setOrigin: function (e) {
-						this._x = e.offset().left + Math.floor(e.outerWidth() / 2);
-						this._y = e.offset().top + Math.floor(e.outerHeight() / 2);
-					},
-					show: function () {
-						return '(' + this.x + ', ' + this.y + ')';
-					}
-				};
+			const imageUrl = viewPortWidth() > 1024 ? 'about.jpg' : 'about-mobile.jpg';
+			const image = new Image();
+			image.src = '../images/' + imageUrl;
+			image.onload = () => $('.img-wrapper').append(image);
+		};
 
-				/*  Track the mouse position relative to the center of the container. */
+		/* 3d rotation of image on mouse over */
 
-				const onMouseEnterHandler = event => {
-					update(event);
-				};
+		const mouseOver3dEffect = () => {
 
-				const onMouseLeaveHandler = () => {
-					inner.style = '';
-				};
+			/* Elements  */
 
-				const onMouseMoveHandler = event => {
-					mouse.setOrigin(outer);
-					mouse.updatePosition();
-					console.log(mouse);
-					if (isTimeToUpdate()) {
-						update(event);
-					}
-				};
+			const outer = $('.img-wrapper-outer');
+			const inner = $('.img-wrapper');
 
-				const update = event => {};
+			/* Mouse object: _x and _y: center of the image offset coordinates; x and y mouse event offset from center of the image */
 
-				let counter = 0;
-				const updateRate = 10;
-
-				const isTimeToUpdate = function () {
-					return counter++ % updateRate === 0;
-				};
-
-				outer.on('mouseenter', onMouseEnterHandler);
-				outer.on('mouseleave', onMouseLeaveHandler);
-				outer.on('mousemove', onMouseMoveHandler);
+			const mouse = {
+				_x: 0,
+				_y: 0,
+				x: 0,
+				y: 0,
+				updatePosition: function (event) {
+					const e = event || window.event;
+					this.x = e.clientX - this._x;
+					this.y = (e.clientY - this._y) * -1;
+				},
+				setOrigin: function (e) {
+					this._x = e.offset().left + Math.floor(e.outerWidth() / 2);
+					this._y = e.offset().top + Math.floor(e.outerHeight() / 2);
+				}
 			};
 
-			mouseOver3dEffect();
-		}
+			/* calculate central point of image relative to page */
+
+			mouse.setOrigin(outer);
+
+			/* Initial rotation */
+
+			const onMouseEnterHandler = event => {
+				update(event);
+			};
+
+			/* Reset rotation */
+
+			const onMouseLeaveHandler = () => {
+				TweenMax.to(inner, .5, { rotationX: 0, rotationY: 0 });
+			};
+
+			/* Update rotation every once a while */
+
+			const onMouseMoveHandler = event => {
+
+				if (isTimeToUpdate()) {
+					update(event);
+				}
+			};
+
+			const update = event => {
+				mouse.updatePosition(event);
+
+				updateTransformStyle((mouse.y / inner.outerHeight() / 3).toFixed(2), (mouse.x / inner.outerWidth() / 3).toFixed(2));
+			};
+
+			const updateTransformStyle = function (x, y) {
+				TweenMax.to(inner, .4, { rotationX: x, rotationY: y });
+			};
+
+			let counter = 0;
+			const updateRate = 10;
+
+			const isTimeToUpdate = function () {
+				return counter++ % updateRate === 0;
+			};
+
+			outer.on('mouseenter', onMouseEnterHandler);
+			outer.on('mouseleave', onMouseLeaveHandler);
+			outer.on('mousemove', onMouseMoveHandler);
+		};
+
 		showAside();
 	}
 });
