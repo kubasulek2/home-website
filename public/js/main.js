@@ -33,7 +33,7 @@ const viewPortWidth = () => {
 				return false;
 			}
 			// Otherwise, use Modernizr.testStyles and examine the property manually
-			return Modernizr.testStyles('#modernizr { ' + Modernizr._prefixes.join('clip-path:' + value + '; ') + ' }', function (elem, rule) {
+			return Modernizr.testStyles('#modernizr { ' + Modernizr._prefixes.join('clip-path:' + value + '; ') + ' }', function (elem) {
 				var style = getComputedStyle(elem),
 				    clip = style.clipPath;
 
@@ -110,6 +110,26 @@ $(document).ready(function () {
 
 				const outer = $('.img-wrapper-outer');
 				const inner = $('.img-wrapper');
+				const mouse = {
+					_x: 0,
+					_y: 0,
+					x: 0,
+					y: 0,
+					updatePosition: function (event) {
+						const e = event || window.event;
+						this.x = e.clientX - this._x;
+						this.y = (e.clientY - this._y) * -1;
+					},
+					setOrigin: function (e) {
+						this._x = e.offset().left + Math.floor(e.outerWidth() / 2);
+						this._y = e.offset().top + Math.floor(e.outerHeight() / 2);
+					},
+					show: function () {
+						return '(' + this.x + ', ' + this.y + ')';
+					}
+				};
+
+				/*  Track the mouse position relative to the center of the container. */
 
 				const onMouseEnterHandler = event => {
 					update(event);
@@ -120,8 +140,9 @@ $(document).ready(function () {
 				};
 
 				const onMouseMoveHandler = event => {
-					console.log(counter);
-
+					mouse.setOrigin(outer);
+					mouse.updatePosition();
+					console.log(mouse);
 					if (isTimeToUpdate()) {
 						update(event);
 					}
@@ -136,8 +157,8 @@ $(document).ready(function () {
 					return counter++ % updateRate === 0;
 				};
 
-				outer.onmouseenter = onMouseEnterHandler;
-				outer.onmouseleave = onMouseLeaveHandler;
+				outer.on('mouseenter', onMouseEnterHandler);
+				outer.on('mouseleave', onMouseLeaveHandler);
 				outer.on('mousemove', onMouseMoveHandler);
 			};
 
