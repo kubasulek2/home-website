@@ -59,8 +59,8 @@ $(document).ready(function () {
 
 	/* Colors to use on the page */
 
-	const $darkerBackground = '#2a2a2a',
-	      $baseBackground = '#323232',
+	const $darkerBackground = '#242424',
+	      $baseBackground = '#2d2d2d',
 	      $baseWhite = '#fafafa',
 	      $baseYellow = '#f1bd00';
 
@@ -71,12 +71,25 @@ $(document).ready(function () {
 
 	const openMenu = () => {
 		const tlOpenMenu = new TimelineMax();
+
+		/* complex menu navigation */
+
 		tlOpenMenu.set(menu, { borderColor: $baseWhite }).to(menuBar.eq(0), .4, { z: -10, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(1), .4, { z: -5, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(0), .2, { y: '-390%', ease: Power0.easeNone }, 'equal+=.2').to(menuBar.eq(2), .2, { y: '290%', ease: Power0.easeNone }, 'equal+=.2').add(() => {
 			menuBar.css('transform', '');
 			menuBar.css('top', '50%');
-		}).set(menuBar, { clearProps: 'z' }).to(menuBar.eq(2), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(1), .3, { rotation: -45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate');
+		}).set(menuBar, { clearProps: 'z' }).to(menuBar.eq(2), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(1), .3, { rotation: -45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to('.menu-bg', 1, { width: '200%', height: '200%' }, 'background-=.3').to(menu, .05, { borderColor: $baseBackground }, 'background-=.3').set('#logo-nav', { visibility: 'hidden' }, 'background-=.3').add(() => {
+			// create event to close the nav
+			menu.one('click', closeMenu);
+		});
 	};
-	menu.on('click', openMenu);
+
+	const closeMenu = () => {
+		const tmCloseMenu = new TimelineMax();
+
+		tmCloseMenu.to(menuBar.eq(2), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(1), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(0), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation');
+	};
+
+	menu.one('click', openMenu);
 	/* Background animation - playing after each subpage loaded */
 
 	let bgTransitionEnd = false;
@@ -183,7 +196,7 @@ $(document).ready(function () {
 			const update = event => {
 				mouse.updatePosition(event);
 
-				transformRotation((mouse.y / inner.outerHeight() / 3).toFixed(2), (mouse.x / inner.outerWidth() / 3).toFixed(2));
+				transformRotation((mouse.y / inner.outerHeight() / 2).toFixed(2), (mouse.x / inner.outerWidth() / 2).toFixed(2));
 			};
 
 			/* Apply styles */

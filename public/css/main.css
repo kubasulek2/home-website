@@ -703,8 +703,8 @@ header {
   font-size: 4em;
 }
 
-header .logo-nav {
-  font-family: 'Rubik Mono One',sans-serif;
+header #logo-nav {
+  font-family: "Rubik Mono One",sans-serif;
   letter-spacing: -.15em;
   color: #fafafa;
   cursor: pointer;
@@ -712,7 +712,7 @@ header .logo-nav {
   transition: all .5s;
 }
 
-header .logo-nav:hover {
+header #logo-nav:hover {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
   color: #f1bd00;
@@ -746,6 +746,7 @@ header #menu:hover {
   position: absolute;
   top: 50%;
   left: 50%;
+  border-radius: .1em;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
 }
@@ -756,6 +757,17 @@ header #menu:hover {
 
 #menu .bar:last-child {
   top: 33%;
+}
+
+.menu-bg {
+  position: absolute;
+  background: #242424;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  top: -50%;
+  right: -50%;
+  z-index: 1;
 }
 
 .glimpse .loader {
@@ -930,8 +942,6 @@ header #menu:hover {
 .panel-container .img-wrapper img {
   height: 100%;
   display: block;
-  -webkit-filter: blur(3%);
-  filter: blur(3%);
 }
 
 .panel-container .img-wrapper:after {

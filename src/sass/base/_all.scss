@@ -7,34 +7,34 @@
 html,
 body {
   width: 100%;
-	height: 100%;
-	-webkit-font-smoothing: antialiased;
+  height: 100%;
+  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
 }
 body {
   position: relative;
   background: $base-background;
-	display: flex;
-	justify-content: center;
+  display: flex;
+  justify-content: center;
   //font-family: Arial, Helvetica, sans-serif;
   color: $base-white;
   overflow: hidden;
 }
 a {
-  color: inherit; 
+  color: inherit;
   text-decoration: inherit;
 }
-.hide{
-	display: none;
+.hide {
+  display: none;
 }
-.not-visible{
-	visibility: hidden;
+.not-visible {
+  visibility: hidden;
 }
 
 .glimpse {
-	z-index: 5;
-	position: absolute;
+  z-index: 5;
+  position: absolute;
   width: 100%;
   height: 100%;
   left: 0;
@@ -42,24 +42,23 @@ a {
   background: $darker-background;
   display: flex;
   justify-content: center;
-	align-items: center;
-	overflow: hidden;
-  
+  align-items: center;
+  overflow: hidden;
 }
-.glimpse .column-wrap{
-	position: absolute;
-    width: 140%;
-    height: 220%;
-    display: flex;
-    transform: rotateZ(25deg);
-    background: $darker-background;
-		
-		@media (orientation: portrait) {
-			& {
-				width: 200%;
-				height: 140%;	
-			}
-		}
+.glimpse .column-wrap {
+  position: absolute;
+  width: 140%;
+  height: 220%;
+  display: flex;
+  transform: rotateZ(25deg);
+  background: $darker-background;
+
+  @media (orientation: portrait) {
+    & {
+      width: 200%;
+      height: 140%;
+    }
+  }
   .column {
     width: 12.5%;
     height: 100%;
@@ -72,60 +71,68 @@ a {
     }
   }
 }
-header{
-	display: flex;
-	width: 100%;
-	padding: 1rem 2rem;
-	position: fixed;
-	justify-content: space-between;
-	z-index: 2;
-	top: 0;
-	left: 0;
-	font-size: 4em;
+header {
+  display: flex;
+  width: 100%;
+  padding: 1rem 2rem;
+  position: fixed;
+  justify-content: space-between;
+  z-index: 2;
+  top: 0;
+  left: 0;
+  font-size: 4em;
 }
-header .logo-nav {
-	font-family: 'Rubik Mono One', sans-serif;
-	letter-spacing: -.15em;
-	color: $base-white;
-	cursor: pointer;
-	transition: all .5s;
-	&:hover{
-		transform: scale(1.1);
-		color: $base-yellow;
-	}
+header #logo-nav {
+  font-family: "Rubik Mono One", sans-serif;
+  letter-spacing: -0.15em;
+  color: $base-white;
+  cursor: pointer;
+  transition: all 0.5s;
+  &:hover {
+    transform: scale(1.1);
+    color: $base-yellow;
+  }
 }
-header #menu{
-	width: 1em;
-	height: 1em;
-	border-radius: 50%;
-	border: solid .025em $base-yellow;
-	position: relative;
-	cursor: pointer;
-	perspective: 40px;
-	transform-style: preserve-3d;
-	transition: all .5s;
-	
-	&:hover{
-		transform: scale(1.1);
-		border-color: $base-white;
+header #menu {
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: solid 0.025em $base-yellow;
+  position: relative;
+  cursor: pointer;
+  perspective: 40px;
+  transform-style: preserve-3d;
+  transition: all 0.5s;
 
-	}
+  &:hover {
+    transform: scale(1.1);
+    border-color: $base-white;
+  }
 }
-#menu .bar{
-	width: 50%;
-	height: 5%;
-	background: $base-white;
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	
-	&:first-child{
-		top: 67%;
-	}
-	&:last-child{
-		top: 33%;
-	}
-	
-}
+#menu .bar {
+  width: 50%;
+  height: 5%;
+  background: $base-white;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 0.1em;
+  transform: translate(-50%, -50%);
 
+  &:first-child {
+    top: 67%;
+  }
+  &:last-child {
+    top: 33%;
+  }
+}
+.menu-bg {
+  position: absolute;
+  background: $darker-background;
+  width: 50%;
+  height: 50%;
+  border-radius: 50%;
+  top: -50%;
+	right: -50%;
+	z-index: 1;
+}
