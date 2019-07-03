@@ -5,12 +5,17 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="author" content="Kuba Sulkowski">
-	<title>SKILLS | Kuba Sulkowski</title> 
+	<title> | SKILLS</title> 
+	<link rel="icon" href="images/logo.png">
 	<link rel="stylesheet" href="css/main.css">
 	<link href="https://fonts.googleapis.com/css?family=Lato|Roboto&display=swap" rel="stylesheet">
 	<script src="js/vendor/modernizr.js"></script>
 </head>
-<body id="about">
+<body id="skills">
+		<div id="cursor">
+				<div class="vertical"></div>
+				<div class="horizontal"></div>
+			</div>
   <div class="glimpse">
 		<div class="column-wrap">
 				<div class="column"></div>
@@ -37,14 +42,14 @@
 					</div>
 					<nav aria-label="site">
 							<ul>
-								<li class="active"><a href="about.html">about</a></li>
-								<li><a href="skills.html">skills</a></li>
-								<li><a href="projects.html">projects</a></li>
+								<li data-interactive><a href="about.html">about</a></li>
+								<li data-interactive class="active"><a href="skills.html">skills</a></li>
+								<li data-interactive><a href="projects.html">projects</a></li>
 							</ul>
 						</nav>
 				</div>
-		<div id="logo-nav"><a href="index.html">KS</a></div>
-		<div id="menu" aria-label="nav-icon">
+		<div data-interactive id="logo-nav"><a href="index.html">KS</a></div>
+		<div data-interactive id="menu" aria-label="nav-icon">
 			<div class="bar"></div>
 			<div class="bar"></div>
 			<div class="bar"></div>
