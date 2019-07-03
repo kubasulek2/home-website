@@ -4,11 +4,7 @@
   margin: 0;
   padding: 0;
 }
-html {
-	cursor: none;
-  @media (min-width: 1200px) {
-  }
-}
+
 html,
 body {
   width: 100%;
@@ -46,15 +42,14 @@ ul {
 /* custom cursor */
 
 #cursor {
-	display: none;
 	position: absolute;
+	display: none;
 	z-index: 10;
-  top: 50%;
-	left: 50%;
 	width: 15px;
 	height: 15px;
 	pointer-events: none;
 	transform: translate(-50%, -50%);
+
 	div{
 		position: absolute;
 		top: 50%;
@@ -155,7 +150,7 @@ header #logo-nav {
   font-family: "Rubik Mono One", sans-serif;
   letter-spacing: -0.15em;
   color: $base-white;
-  //cursor: pointer;
+  cursor: pointer;
   transition: all 0.5s;
   &:hover {
     transform: scale(1.1);
@@ -170,7 +165,7 @@ header #menu {
   border: solid 0.025em $base-yellow;
   position: relative;
   z-index: 2;
-  //cursor: pointer;
+  cursor: pointer;
   perspective: 40px;
   transform-style: preserve-3d;
   transition: all 0.5s;

@@ -23,12 +23,13 @@
 		width: auto;
 		height: 80%;
 		margin-right: -10%;
-		//cursor: pointer;
+		
 		perspective: 40px;
 		transform-style: preserve-3d;
 		
 	}
 	.img-wrapper{
+		cursor: pointer;
 		position: relative;
 		overflow: hidden;	
 		width: 100%;

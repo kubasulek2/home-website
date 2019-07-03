@@ -6,6 +6,7 @@ const isMobileDevice = () => {
 const viewPortWidth = () => {
 	return $(window).outerWidth();
 };
+
 /* Update Modernizr to recognize support for CSS clip-path polygon */
 (function (Modernizr) {
 
@@ -73,7 +74,9 @@ $(document).ready(function () {
 		cursor.toggleClass('interact');
 	};
 
-	(function followCursor() {
+	/* Move cursor element to mouse position  */
+
+	const followCursor = () => {
 
 		const position = { x: 0, y: 0 },
 		      mouse = { x: 0, y: 0 };
@@ -96,17 +99,35 @@ $(document).ready(function () {
 		};
 		$(document).on('mousemove', getMouse);
 		setInterval(followMouse, 20);
+	};
+	/* Decide if custom cursor is enabled*/
+
+	(function customCursorCheck() {
+		/* Custom cursor condition */
+		if (viewPortWidth() >= 1200 && !isMobileDevice()) {
+
+			followCursor();
+
+			/* Change style over elements with data-interactive */
+
+			interactElems.hover(mouseInteract);
+
+			/* Hide cursor when out of html */
+
+			$('html').on('mouseenter', () => {
+				cursor.show(0);
+			});
+			$('html').on('mouseleave', () => {
+				cursor.hide(0);
+			});
+
+			/* Hide default cursors on the page */
+
+			$('html').css('cursor', 'none');
+			$('[data-interactive]').css('cursor', 'none');
+			$('#cursor').show(0);
+		}
 	})();
-
-	/* Change style over elements with data-interactive */
-
-	interactElems.hover(mouseInteract);
-
-	/* Hide cursor when out of html */
-
-	$('html').hover(() => {
-		cursor.toggle(0);
-	});
 
 	/* Menu items to manipulate */
 

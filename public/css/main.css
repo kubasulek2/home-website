@@ -601,10 +601,6 @@ template {
   padding: 0;
 }
 
-html {
-  cursor: none;
-}
-
 body,
 html {
   width: 100%;
@@ -649,11 +645,9 @@ ul {
 }
 
 #cursor {
-  display: none;
   position: absolute;
+  display: none;
   z-index: 10;
-  top: 50%;
-  left: 50%;
   width: 15px;
   height: 15px;
   pointer-events: none;
@@ -780,6 +774,7 @@ header #logo-nav {
   font-family: "Rubik Mono One",sans-serif;
   letter-spacing: -.15em;
   color: #fafafa;
+  cursor: pointer;
   -webkit-transition: all .5s;
   transition: all .5s;
 }
@@ -798,6 +793,7 @@ header #menu {
   border: solid .025em #f1bd00;
   position: relative;
   z-index: 2;
+  cursor: pointer;
   -webkit-perspective: 40px;
   perspective: 40px;
   -webkit-transform-style: preserve-3d;
@@ -1033,6 +1029,7 @@ header #menu:hover {
 }
 
 .panel-container .img-wrapper {
+  cursor: pointer;
   position: relative;
   overflow: hidden;
   width: 100%;
