@@ -65,6 +65,53 @@ $(document).ready(function () {
 		$baseWhite = '#fafafa',
 		$baseYellow = '#f1bd00';
 
+	/* Custom mouse */
+
+	const interactElems = $('[data-interactive]'),
+		cursor = $('#cursor');
+
+	const mouseInteract = () => {
+		cursor.toggleClass('interact');
+	};
+
+	(function followCursor() {
+
+		const 
+			position = { x: 0, y: 0 },
+			mouse = { x: 0, y: 0 }; 
+
+		const getMouse = (e) => {
+			mouse.x = e.pageX;
+			mouse.y = e.pageY;
+		};
+		
+		const followMouse = () => {
+
+			var distX = mouse.x - position.x;
+			var distY = mouse.y - position.y;
+
+			position.x += distX / 5;
+			position.y += distY / 5;
+
+			cursor.css('left', position.x + 'px');
+			cursor.css('top', position.y + 'px');
+
+		};
+		$(document).on('mousemove', getMouse);
+		setInterval(followMouse, 20);
+	})();
+
+	/* Change style over elements with data-interactive */
+
+	interactElems.hover(mouseInteract);
+
+	/* Hide cursor when out of html */
+
+	$('html').hover(() => {
+		cursor.toggle(0);
+	});
+
+
 	/* Menu items to manipulate */
 
 	const
@@ -114,7 +161,7 @@ $(document).ready(function () {
 		const tmCloseMenu = new TimelineMax();
 
 		tmCloseMenu
-			.addCallback(() => showMenuItems(false),'+=.5') //without arrow function here callback stops timeline
+			.addCallback(() => showMenuItems(false), '+=.5') //without arrow function here callback stops timeline
 			.to(menuBar.eq(2), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation+=1')
 			.to(menuBar.eq(1), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation+=1')
 			.to(menuBar.eq(0), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation+=1')
@@ -232,10 +279,10 @@ $(document).ready(function () {
 		/* load right image version after is loaded */
 
 		const appendImage = () => {
-
+			
 			const imageUrl = viewPortWidth() > 1024 ? 'about.jpg' : 'about-mobile.jpg';
 			const image = new Image();
-			image.src = '../images/' + imageUrl;
+			image.src = '../images/' + imageUrl; // ./images/ if open from public html
 			image.onload = () => $('.img-wrapper').append(image);
 
 		};

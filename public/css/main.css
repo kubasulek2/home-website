@@ -601,6 +601,10 @@ template {
   padding: 0;
 }
 
+html {
+  cursor: none;
+}
+
 body,
 html {
   width: 100%;
@@ -625,6 +629,7 @@ body {
 a {
   color: inherit;
   text-decoration: inherit;
+  cursor: inherit;
 }
 
 ul {
@@ -641,6 +646,67 @@ ul {
 
 .active {
   color: #f1bd00;
+}
+
+#cursor {
+  display: none;
+  position: absolute;
+  z-index: 10;
+  top: 50%;
+  left: 50%;
+  width: 15px;
+  height: 15px;
+  pointer-events: none;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+#cursor div {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: #fafafa;
+  width: 10px;
+  height: 4px;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+}
+
+#cursor div:after,
+#cursor div:before {
+  content: '';
+  display: block;
+  position: absolute;
+  border-radius: 50%;
+  width: 4px;
+  height: 4px;
+  background: inherit;
+  top: 0;
+}
+
+#cursor div:before {
+  left: -2px;
+}
+
+#cursor div:after {
+  right: -2px;
+}
+
+#cursor div.vertical {
+  -webkit-transform: translate(-50%,-50%) rotate(-45deg);
+  transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+#cursor div.horizontal {
+  -webkit-transform: translate(-50%,-50%) rotate(45deg);
+  transform: translate(-50%,-50%) rotate(45deg);
+}
+
+#cursor.interact div {
+  width: 0;
+  background: #f1bd00;
+  -webkit-transform: translate(-50%,-50%) rotate(0);
+  transform: translate(-50%,-50%) rotate(0);
 }
 
 .glimpse {
@@ -714,7 +780,6 @@ header #logo-nav {
   font-family: "Rubik Mono One",sans-serif;
   letter-spacing: -.15em;
   color: #fafafa;
-  cursor: pointer;
   -webkit-transition: all .5s;
   transition: all .5s;
 }
@@ -733,7 +798,6 @@ header #menu {
   border: solid .025em #f1bd00;
   position: relative;
   z-index: 2;
-  cursor: pointer;
   -webkit-perspective: 40px;
   perspective: 40px;
   -webkit-transform-style: preserve-3d;
@@ -796,7 +860,7 @@ header #menu:hover {
 }
 
 .menu-container ul {
-  font-family: 'Rubik Mono One',sans-serif;
+  font-family: "Rubik Mono One",sans-serif;
   font-size: 6rem;
   text-transform: uppercase;
 }
@@ -962,7 +1026,6 @@ header #menu:hover {
   width: auto;
   height: 80%;
   margin-right: -10%;
-  cursor: pointer;
   -webkit-perspective: 40px;
   perspective: 40px;
   -webkit-transform-style: preserve-3d;
