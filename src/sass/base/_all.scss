@@ -99,7 +99,10 @@ header #logo-nav {
   transition: all 0.5s;
   &:hover {
     transform: scale(1.1);
-    color: $base-yellow;
+		color: $base-yellow;
+		text-shadow:
+            0 0 2px rgba(241,	189,	0, .9),
+            0 0 20px rgba(241,	189,	0, .7);          
   }
 }
 header #menu {

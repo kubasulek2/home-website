@@ -114,15 +114,15 @@ $(document).ready(function () {
 		const tmCloseMenu = new TimelineMax();
 
 		tmCloseMenu
-			.to(menuBar.eq(2), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation')
-			.to(menuBar.eq(1), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation')
-			.to(menuBar.eq(0), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation')
+			.addCallback(() => showMenuItems(false),'+=.5') //without arrow function here callback stops timeline
+			.to(menuBar.eq(2), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation+=1')
+			.to(menuBar.eq(1), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation+=1')
+			.to(menuBar.eq(0), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation+=1')
 			.set(menuBar, { transition: 'all .5s' })
 			.set(menuBar.eq(0), { top: '67%' })
 			.set(menuBar.eq(2), { top: '33%' })
-			.addCallback(() => showMenuItems(false),'+=.5') //without arrow function here callback stops timeline
-			.to(menuBg, .6, { width: '50%', height: '50%' }, 'hide+=1')
-			.set(logoNav, { visibility: 'visible' }, 'hide+=1.1')
+			.to(menuBg, .6, { width: '50%', height: '50%' }, 'hide')
+			.set(logoNav, { visibility: 'visible' }, 'hide+=.1')
 			.to(menuIcon, 0.2, { borderColor: $baseYellow }, '-=.4')
 			.set([menuBar, menuBg, menuIcon, menuContainer, logoNav], { clearProps: 'all' })
 			.add(() => {
