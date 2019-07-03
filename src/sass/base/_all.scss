@@ -92,7 +92,6 @@ header #logo-nav {
   font-family: "Rubik Mono One", sans-serif;
   letter-spacing: -0.15em;
 	color: $base-white;
-	position: relative;
   cursor: pointer;
   transition: all 0.5s;
   &:hover {
@@ -137,23 +136,25 @@ header #menu {
 /* Fullscreen Menu */
 
 .menu-container {
-  position: fixed;
-	
+	position: fixed;
+	display: none;
+	justify-content: center;
+	align-items: center;
 	width: 100vw;
   height: 100vh;
   top: 0;
 	right: 0;
-	
-	.menu-bg{
-		z-index: 1;
-		position: absolute;
-		width: 50%;
-		height: 50%;
-		border-radius: 50%;
-		top: -50%;
-		right: -50%;
-		background: $darker-background;
-			
-	}
+}
+.menu-bg{
+	z-index: 1;
+	position: absolute;
+	width: 50%;
+	height: 50%;
+	border-radius: 50%;
+	top: -50%;
+	right: -50%;
+	background: $darker-background;		
+}
+.menu-container nav{
 
 }

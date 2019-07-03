@@ -67,6 +67,7 @@ $(document).ready(function () {
 	/* Menu items to manipulate */
 
 	const menuIcon = $('#menu'),
+	      menuContainer = $('.menu-container'),
 	      menuBar = $('#menu .bar'),
 	      menuBg = $('.menu-bg'),
 	      logoNav = $('#logo-nav');
@@ -78,7 +79,7 @@ $(document).ready(function () {
 
 		/* complex menu navigation */
 
-		tlOpenMenu.set(menuIcon, { borderColor: $baseWhite }).to(menuBar.eq(0), .4, { z: -10, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(1), .4, { z: -5, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(0), .2, { y: '-390%', ease: Power0.easeNone }, 'equal+=.2').to(menuBar.eq(2), .2, { y: '290%', ease: Power0.easeNone }, 'equal+=.2').add(() => {
+		tlOpenMenu.set(menuContainer, { display: 'flex' }).set(menuIcon, { borderColor: $baseWhite }).to(menuBar.eq(0), .4, { z: -10, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(1), .4, { z: -5, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(0), .2, { y: '-390%', ease: Power0.easeNone }, 'equal+=.2').to(menuBar.eq(2), .2, { y: '290%', ease: Power0.easeNone }, 'equal+=.2').add(() => {
 			menuBar.css('transform', '');
 			menuBar.css('top', '50%');
 		}).set(menuBar, { clearProps: 'z' }).to(menuBar.eq(2), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(1), .3, { rotation: -45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBg, 1, { width: '200%', height: '200%' }, 'background-=.3').to(menuIcon, .05, { borderColor: $baseBackground }, 'background-=.3').set(logoNav, { visibility: 'hidden' }, 'background-=.45').add(() => {
@@ -92,12 +93,27 @@ $(document).ready(function () {
 	const closeMenu = () => {
 		const tmCloseMenu = new TimelineMax();
 
-		tmCloseMenu.to(menuBar.eq(2), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(1), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(0), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').set(menuBar, { transition: 'all .5s' }).set(menuBar.eq(0), { top: '67%' }).set(menuBar.eq(2), { top: '33%' }).to(menuBg, 1, { width: '50%', height: '50%' }, 'hide').set(logoNav, { visibility: 'visible' }, 'hide+=.2').to(menuIcon, 0.2, { borderColor: $baseYellow }, '-=.4').set(menuBar, { clearProps: 'all' }).set(menuBg, { clearProps: 'all' }).set(menuIcon, { clearProps: 'all' }).set(logoNav, { clearProps: 'all' }).add(() => {
+		tmCloseMenu.to(menuBar.eq(2), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(1), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(0), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').set(menuBar, { transition: 'all .5s' }).set(menuBar.eq(0), { top: '67%' }).set(menuBar.eq(2), { top: '33%' }).to(menuBg, 1, { width: '50%', height: '50%' }, 'hide').set(logoNav, { visibility: 'visible' }, 'hide+=.2').to(menuIcon, 0.2, { borderColor: $baseYellow }, '-=.4').set([menuBar, menuBg, menuIcon, menuContainer, logoNav], { clearProps: 'all' }).add(() => {
 			menuIcon.one('click', openMenu);
 		});
 	};
 
+	const showMenuItems = boolean => {};
+
 	menuIcon.one('click', openMenu);
+
+	/* glimpse animation then change page */
+
+	const redirect = e => {
+
+		e.preventDefault();
+		const url = e.currentTarget.href,
+		      background = $('.glimpse'),
+		      tlGlimpse = new TimelineMax();
+
+		tlGlimpse.to(background, .5, { y: '0%', opacity: 1 }).add(() => window.location.href = url);
+	};
+
 	/* Background animation - playing after each subpage loaded */
 
 	let bgTransitionEnd = false;
@@ -113,18 +129,6 @@ $(document).ready(function () {
 	};
 
 	bgTransition();
-
-	/* glimpse animation then change page */
-
-	const redirect = e => {
-
-		e.preventDefault();
-		const url = e.currentTarget.href,
-		      background = $('.glimpse'),
-		      tlGlimpse = new TimelineMax();
-
-		tlGlimpse.to(background, .5, { y: '0%', opacity: 1 }).add(() => window.location.href = url);
-	};
 
 	/* Set default link behaviour */
 

@@ -69,6 +69,7 @@ $(document).ready(function () {
 
 	const
 		menuIcon = $('#menu'),
+		menuContainer = $('.menu-container'),
 		menuBar = $('#menu .bar'),
 		menuBg = $('.menu-bg'),
 		logoNav = $('#logo-nav');
@@ -81,6 +82,7 @@ $(document).ready(function () {
 		/* complex menu navigation */
 
 		tlOpenMenu
+			.set(menuContainer, { display: 'flex' })
 			.set(menuIcon, { borderColor: $baseWhite })
 			.to(menuBar.eq(0), .4, { z: -10, ease: Power0.easeNone }, 'translateZ')
 			.to(menuBar.eq(1), .4, { z: -5, ease: Power0.easeNone }, 'translateZ')
@@ -120,16 +122,33 @@ $(document).ready(function () {
 			.to(menuBg, 1, { width: '50%', height: '50%' }, 'hide')
 			.set(logoNav, { visibility: 'visible' }, 'hide+=.2')
 			.to(menuIcon, 0.2, { borderColor: $baseYellow }, '-=.4')
-			.set(menuBar, { clearProps: 'all' })
-			.set(menuBg, { clearProps: 'all' })
-			.set(menuIcon, { clearProps: 'all' })
-			.set(logoNav, { clearProps: 'all' })
+			.set([menuBar, menuBg, menuIcon, menuContainer, logoNav], { clearProps: 'all' })
 			.add(() => {
 				menuIcon.one('click', openMenu);
 			});
 	};
 
+	const showMenuItems = (boolean) => {
+	
+	};
+
 	menuIcon.one('click', openMenu);
+
+	/* glimpse animation then change page */
+
+	const redirect = (e) => {
+
+		e.preventDefault();
+		const
+			url = e.currentTarget.href,
+			background = $('.glimpse'),
+			tlGlimpse = new TimelineMax();
+
+		tlGlimpse
+			.to(background, .5, { y: '0%', opacity: 1 })
+			.add(() => window.location.href = url);
+	};
+
 	/* Background animation - playing after each subpage loaded */
 
 	let bgTransitionEnd = false;
@@ -153,21 +172,6 @@ $(document).ready(function () {
 	};
 
 	bgTransition();
-
-	/* glimpse animation then change page */
-
-	const redirect = (e) => {
-		
-		e.preventDefault();
-		const
-			url = e.currentTarget.href,
-			background = $('.glimpse'),
-			tlGlimpse = new TimelineMax();
-
-		tlGlimpse
-			.to(background, .5, { y: '0%', opacity: 1 })
-			.add(() => window.location.href = url);
-	};
 
 
 	/* Set default link behaviour */
