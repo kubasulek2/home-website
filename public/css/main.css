@@ -759,15 +759,23 @@ header #menu:hover {
   top: 33%;
 }
 
-.menu-bg {
+.menu-container {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  right: 0;
+}
+
+.menu-container .menu-bg {
+  z-index: 1;
   position: absolute;
-  background: #242424;
   width: 50%;
   height: 50%;
   border-radius: 50%;
   top: -50%;
   right: -50%;
-  z-index: 1;
+  background: #242424;
 }
 
 .glimpse .loader {
