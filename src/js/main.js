@@ -96,12 +96,13 @@ $(document).ready(function () {
 			.to(menuBar.eq(2), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate')
 			.to(menuBar.eq(1), .3, { rotation: -45, background: $baseYellow, ease: Power0.easeNone }, 'rotate')
 			.to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate')
-			.to(menuBg, 1, { width: '200%', height: '200%' }, 'background-=.3')
+			.to(menuBg, .8, { width: '200%', height: '200%' }, 'background-=.3')
 			.to(menuIcon, .05, { borderColor: $baseBackground }, 'background-=.3')
 			.set(logoNav, { visibility: 'hidden' }, 'background-=.45')
 			.add(() => {
 				// create event to close the nav
 				menuIcon.one('click', closeMenu);
+				showMenuItems(true);
 			});
 
 
@@ -119,8 +120,9 @@ $(document).ready(function () {
 			.set(menuBar, { transition: 'all .5s' })
 			.set(menuBar.eq(0), { top: '67%' })
 			.set(menuBar.eq(2), { top: '33%' })
-			.to(menuBg, 1, { width: '50%', height: '50%' }, 'hide')
-			.set(logoNav, { visibility: 'visible' }, 'hide+=.2')
+			.addCallback(() => showMenuItems(false),'+=.5') //without arrow function here callback stops timeline
+			.to(menuBg, .6, { width: '50%', height: '50%' }, 'hide+=1')
+			.set(logoNav, { visibility: 'visible' }, 'hide+=1.1')
 			.to(menuIcon, 0.2, { borderColor: $baseYellow }, '-=.4')
 			.set([menuBar, menuBg, menuIcon, menuContainer, logoNav], { clearProps: 'all' })
 			.add(() => {
@@ -129,8 +131,25 @@ $(document).ready(function () {
 	};
 
 	const showMenuItems = (boolean) => {
-	
+
+		const
+			menuItems = menuContainer.find('li'),
+			tlItems = new TimelineMax();
+
+		if (boolean) {
+			tlItems.set(menuItems, { display: 'block' })
+				.staggerTo(menuItems, .4, { opacity: .2 }, .2, 'items')
+				.staggerFrom(menuItems, .8, { y: '30%', }, .2, 'items')
+				.staggerTo(menuItems, .4, { opacity: 1 }, .2, 'items+=.4');
+		} else {
+			tlItems
+				.staggerTo(menuItems, .4, { opacity: .2 }, -.2, 'items')
+				.staggerTo(menuItems, .8, { y: '30%', }, -.2, 'items')
+				.staggerTo(menuItems, .4, { opacity: 0 }, -.2, 'items+=.4')
+				.set(menuItems, { clearProps: 'all' });
+		}
 	};
+
 
 	menuIcon.one('click', openMenu);
 

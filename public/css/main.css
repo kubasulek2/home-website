@@ -627,6 +627,10 @@ a {
   text-decoration: inherit;
 }
 
+ul {
+  list-style: none;
+}
+
 .hide {
   display: none;
 }
@@ -727,6 +731,7 @@ header #menu {
   border-radius: 50%;
   border: solid .025em #f1bd00;
   position: relative;
+  z-index: 2;
   cursor: pointer;
   -webkit-perspective: 40px;
   perspective: 40px;
@@ -775,10 +780,10 @@ header #menu:hover {
   height: 100vh;
   top: 0;
   right: 0;
+  z-index: 1;
 }
 
 .menu-bg {
-  z-index: 1;
   position: absolute;
   width: 50%;
   height: 50%;
@@ -786,6 +791,19 @@ header #menu:hover {
   top: -50%;
   right: -50%;
   background: #242424;
+  z-index: -1;
+}
+
+.menu-container ul {
+  font-family: 'Rubik Mono One',sans-serif;
+  font-size: 6rem;
+  text-transform: uppercase;
+}
+
+.menu-container ul li {
+  margin-bottom: 1.2rem;
+  display: none;
+  opacity: 0;
 }
 
 .glimpse .loader {

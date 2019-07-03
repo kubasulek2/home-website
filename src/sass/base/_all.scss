@@ -24,6 +24,9 @@ a {
   color: inherit;
   text-decoration: inherit;
 }
+ul{
+	list-style: none;
+}
 .hide {
   display: none;
 }
@@ -104,7 +107,8 @@ header #menu {
   height: 1em;
   border-radius: 50%;
   border: solid 0.025em $base-yellow;
-  position: relative;
+	position: relative;
+	z-index: 2;
   cursor: pointer;
   perspective: 40px;
   transform-style: preserve-3d;
@@ -144,17 +148,25 @@ header #menu {
   height: 100vh;
   top: 0;
 	right: 0;
+	z-index: 1;
 }
 .menu-bg{
-	z-index: 1;
 	position: absolute;
 	width: 50%;
 	height: 50%;
 	border-radius: 50%;
 	top: -50%;
 	right: -50%;
-	background: $darker-background;		
+	background: $darker-background;
+	z-index: -1;	
 }
-.menu-container nav{
-
+.menu-container ul{
+	font-family: 'Rubik Mono One', sans-serif;
+	font-size: 6rem;
+	text-transform: uppercase;
+	li{
+		margin-bottom: 1.2rem;
+		display: none;
+		opacity: 0;
+	}
 }

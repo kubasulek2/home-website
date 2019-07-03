@@ -82,9 +82,10 @@ $(document).ready(function () {
 		tlOpenMenu.set(menuContainer, { display: 'flex' }).set(menuIcon, { borderColor: $baseWhite }).to(menuBar.eq(0), .4, { z: -10, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(1), .4, { z: -5, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(0), .2, { y: '-390%', ease: Power0.easeNone }, 'equal+=.2').to(menuBar.eq(2), .2, { y: '290%', ease: Power0.easeNone }, 'equal+=.2').add(() => {
 			menuBar.css('transform', '');
 			menuBar.css('top', '50%');
-		}).set(menuBar, { clearProps: 'z' }).to(menuBar.eq(2), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(1), .3, { rotation: -45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBg, 1, { width: '200%', height: '200%' }, 'background-=.3').to(menuIcon, .05, { borderColor: $baseBackground }, 'background-=.3').set(logoNav, { visibility: 'hidden' }, 'background-=.45').add(() => {
+		}).set(menuBar, { clearProps: 'z' }).to(menuBar.eq(2), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(1), .3, { rotation: -45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBg, .8, { width: '200%', height: '200%' }, 'background-=.3').to(menuIcon, .05, { borderColor: $baseBackground }, 'background-=.3').set(logoNav, { visibility: 'hidden' }, 'background-=.45').add(() => {
 			// create event to close the nav
 			menuIcon.one('click', closeMenu);
+			showMenuItems(true);
 		});
 	};
 
@@ -93,12 +94,23 @@ $(document).ready(function () {
 	const closeMenu = () => {
 		const tmCloseMenu = new TimelineMax();
 
-		tmCloseMenu.to(menuBar.eq(2), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(1), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(0), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').set(menuBar, { transition: 'all .5s' }).set(menuBar.eq(0), { top: '67%' }).set(menuBar.eq(2), { top: '33%' }).to(menuBg, 1, { width: '50%', height: '50%' }, 'hide').set(logoNav, { visibility: 'visible' }, 'hide+=.2').to(menuIcon, 0.2, { borderColor: $baseYellow }, '-=.4').set([menuBar, menuBg, menuIcon, menuContainer, logoNav], { clearProps: 'all' }).add(() => {
+		tmCloseMenu.to(menuBar.eq(2), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(1), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').to(menuBar.eq(0), .3, { rotation: 0, background: $baseWhite, ease: Power0.easeNone }, 'rotation').set(menuBar, { transition: 'all .5s' }).set(menuBar.eq(0), { top: '67%' }).set(menuBar.eq(2), { top: '33%' }).addCallback(() => showMenuItems(false), '+=.5') //without arrow function here callback stops timeline
+		.to(menuBg, .6, { width: '50%', height: '50%' }, 'hide+=1').set(logoNav, { visibility: 'visible' }, 'hide+=1.1').to(menuIcon, 0.2, { borderColor: $baseYellow }, '-=.4').set([menuBar, menuBg, menuIcon, menuContainer, logoNav], { clearProps: 'all' }).add(() => {
 			menuIcon.one('click', openMenu);
 		});
 	};
 
-	const showMenuItems = boolean => {};
+	const showMenuItems = boolean => {
+
+		const menuItems = menuContainer.find('li'),
+		      tlItems = new TimelineMax();
+
+		if (boolean) {
+			tlItems.set(menuItems, { display: 'block' }).staggerTo(menuItems, .4, { opacity: .2 }, .2, 'items').staggerFrom(menuItems, .8, { y: '30%' }, .2, 'items').staggerTo(menuItems, .4, { opacity: 1 }, .2, 'items+=.4');
+		} else {
+			tlItems.staggerTo(menuItems, .4, { opacity: .2 }, -.2, 'items').staggerTo(menuItems, .8, { y: '30%' }, -.2, 'items').staggerTo(menuItems, .4, { opacity: 0 }, -.2, 'items+=.4').set(menuItems, { clearProps: 'all' });
+		}
+	};
 
 	menuIcon.one('click', openMenu);
 
