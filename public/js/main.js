@@ -81,7 +81,7 @@ $(document).ready(function () {
 		tlOpenMenu.set(menuIcon, { borderColor: $baseWhite }).to(menuBar.eq(0), .4, { z: -10, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(1), .4, { z: -5, ease: Power0.easeNone }, 'translateZ').to(menuBar.eq(0), .2, { y: '-390%', ease: Power0.easeNone }, 'equal+=.2').to(menuBar.eq(2), .2, { y: '290%', ease: Power0.easeNone }, 'equal+=.2').add(() => {
 			menuBar.css('transform', '');
 			menuBar.css('top', '50%');
-		}).set(menuBar, { clearProps: 'z' }).to(menuBar.eq(2), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(1), .3, { rotation: -45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBg, 1, { width: '200%', height: '200%' }, 'background-=.3').to(menuIcon, .05, { borderColor: $baseBackground }, 'background-=.3').set(logoNav, { visibility: 'hidden' }, 'background-=.3').add(() => {
+		}).set(menuBar, { clearProps: 'z' }).to(menuBar.eq(2), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(1), .3, { rotation: -45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate').to(menuBg, 1, { width: '200%', height: '200%' }, 'background-=.3').to(menuIcon, .05, { borderColor: $baseBackground }, 'background-=.3').set(logoNav, { visibility: 'hidden' }, 'background-=.45').add(() => {
 			// create event to close the nav
 			menuIcon.one('click', closeMenu);
 		});
@@ -98,7 +98,6 @@ $(document).ready(function () {
 	};
 
 	menuIcon.one('click', openMenu);
-
 	/* Background animation - playing after each subpage loaded */
 
 	let bgTransitionEnd = false;
@@ -110,10 +109,26 @@ $(document).ready(function () {
 		      background = $('.glimpse'),
 		      tm = new TimelineMax();
 
-		tm.set([background, columnWrapper], { background: 'transparent' }).to(columnWrapper, .6, { rotationZ: 0 }, 'synchro').to(columnEven, .6, { width: 0 }, 'synchro').to(columnOdd, .6, { width: '12.5%' }, 'synchro').set(background, { y: '100%' }).set([background, columnWrapper], { background: $darkerBackground }).add(() => bgTransitionEnd = true);
+		tm.set([background, columnWrapper], { background: 'transparent' }).to(columnWrapper, .6, { rotationZ: 0 }, 'synchro').to(columnEven, .6, { width: 0 }, 'synchro').to(columnOdd, .6, { width: '12.5%' }, 'synchro').set(background, { y: '100%', opacity: 0 }).set([background, columnWrapper], { background: $darkerBackground }).add(() => bgTransitionEnd = true);
 	};
 
 	bgTransition();
+
+	/* glimpse animation then change page */
+
+	const redirect = e => {
+
+		e.preventDefault();
+		const url = e.currentTarget.href,
+		      background = $('.glimpse'),
+		      tlGlimpse = new TimelineMax();
+
+		tlGlimpse.to(background, .5, { y: '0%', opacity: 1 }).add(() => window.location.href = url);
+	};
+
+	/* Set default link behaviour */
+
+	$('a').on('click', redirect);
 
 	/* about.html code */
 
@@ -229,6 +244,7 @@ $(document).ready(function () {
 			outer.on('mousemove', onMouseMoveHandler);
 		};
 
+		/* Init functions */
 		showAside();
 	}
 });

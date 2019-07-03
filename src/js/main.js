@@ -72,7 +72,7 @@ $(document).ready(function () {
 		menuBar = $('#menu .bar'),
 		menuBg = $('.menu-bg'),
 		logoNav = $('#logo-nav');
-	
+
 	/* Open menu sequence */
 
 	const openMenu = () => {
@@ -96,7 +96,7 @@ $(document).ready(function () {
 			.to(menuBar.eq(0), .3, { rotation: 45, background: $baseYellow, ease: Power0.easeNone }, 'rotate')
 			.to(menuBg, 1, { width: '200%', height: '200%' }, 'background-=.3')
 			.to(menuIcon, .05, { borderColor: $baseBackground }, 'background-=.3')
-			.set(logoNav, { visibility: 'hidden' }, 'background-=.3')
+			.set(logoNav, { visibility: 'hidden' }, 'background-=.45')
 			.add(() => {
 				// create event to close the nav
 				menuIcon.one('click', closeMenu);
@@ -130,7 +130,6 @@ $(document).ready(function () {
 	};
 
 	menuIcon.one('click', openMenu);
-	
 	/* Background animation - playing after each subpage loaded */
 
 	let bgTransitionEnd = false;
@@ -148,12 +147,32 @@ $(document).ready(function () {
 			.to(columnWrapper, .6, { rotationZ: 0 }, 'synchro')
 			.to(columnEven, .6, { width: 0 }, 'synchro')
 			.to(columnOdd, .6, { width: '12.5%' }, 'synchro')
-			.set(background, { y: '100%' })
+			.set(background, { y: '100%', opacity: 0 })
 			.set([background, columnWrapper], { background: $darkerBackground })
 			.add(() => bgTransitionEnd = true);
 	};
 
 	bgTransition();
+
+	/* glimpse animation then change page */
+
+	const redirect = (e) => {
+		
+		e.preventDefault();
+		const
+			url = e.currentTarget.href,
+			background = $('.glimpse'),
+			tlGlimpse = new TimelineMax();
+
+		tlGlimpse
+			.to(background, .5, { y: '0%', opacity: 1 })
+			.add(() => window.location.href = url);
+	};
+
+
+	/* Set default link behaviour */
+
+	$('a').on('click', redirect);
 
 	/* about.html code */
 
@@ -282,6 +301,7 @@ $(document).ready(function () {
 			outer.on('mousemove', onMouseMoveHandler);
 		};
 
+		/* Init functions */
 		showAside();
 	}
 
