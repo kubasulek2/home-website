@@ -990,13 +990,15 @@ nav#media-items ul {
 nav#media-items ul li {
   width: 180%;
   position: absolute;
-  right: 50%;
+  right: 60%;
   line-height: 1rem;
   -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
+  opacity: 0;
 }
 
 nav#media-items ul li a {
+  padding: .6rem;
   display: block;
   width: 60%;
   text-align: right;

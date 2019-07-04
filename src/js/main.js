@@ -71,8 +71,12 @@ $(document).ready(function () {
 	const interactElems = $('[data-interactive]'),
 		cursor = $('#cursor');
 
-	const mouseInteract = () => {
+		
+
+	const mouseInteract = (e) => {
+		e.stopPropagation();
 		cursor.toggleClass('interact');
+		
 	};
 
 	/* Move cursor element to mouse position  */
@@ -223,11 +227,11 @@ $(document).ready(function () {
 	};
 
 	/* Media-menu Animation */
-	
+
 	const mediaMenuIcon = $('#menu-media');
 
 	const mediaAnim = (() => {
-		
+
 		/* Media menu items to manipulate */
 		const
 			mediaMenuBars = $('#menu-media .bar'),
@@ -242,12 +246,13 @@ $(document).ready(function () {
 
 			.set(mediaMenuIcon, { borderStyle: 'none' })
 			.to(mediaMenuBars, .2, { left: '50%', width: '50%', ease: Power1.easeOut })
-			.to(mediaMenuIconPath, 1, { strokeDashoffset: 0, ease: Power1.easeOut }, '+=.5')
+			.to(mediaMenuIconPath, .5, { strokeDashoffset: 0, ease: Power1.easeOut }, '+=.2')
 			.to(barWrapper, .4, { rotation: -60, x: '0', ease: Power0.easeNone }, 'arrow')
 			.to(mediaMenuBars.find('.before'), .4, { rotation: -50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow')
-			.to(mediaMenuBars.find('.after'), .4, { rotation: 50, x: '-10%', height: '100%', ease: Power0.easeNone },'arrow')
-			.to(barWrapper, .8, { rotation: 0, x: '0', ease: Power2.easeIn },'items+=.3')
-			.to(mediaItemsWrap, .8, { rotation: 60, y: '0', ease: Power2.easeIn },'items+=.3');
+			.to(mediaMenuBars.find('.after'), .4, { rotation: 50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow')
+			.to(barWrapper, .8, { rotation: 0, x: '0', ease: Power2.easeIn }, 'items+=.3')
+			.to(mediaItemsWrap, .8, { rotation: 60, y: '0', ease: Power2.easeIn }, 'items+=.3')
+			.staggerTo(mediaItems, .5, { opacity: 1, ease: Power2.easeIn }, .1, 'items+=.3');
 
 
 

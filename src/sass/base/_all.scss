@@ -332,14 +332,16 @@ nav#media-items ul{
 	transform: translate(0, -50%);
 
 	li{
+		
 		width: 180%;
 		position: absolute;
-		right: 50%;
+		right: 60%;
 		line-height: 1rem;
 		transform-origin: 100% 50%;
-		//opacity: 0;
+		opacity: 0;
 		
 		a{
+			padding: .6rem;	
 			display: block;
 			width: 60%;
 			text-align: right;
