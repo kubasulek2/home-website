@@ -880,7 +880,8 @@ footer {
   display: -ms-flexbox;
   display: flex;
   width: 100%;
-  padding: 1rem 2rem;
+  height: 1em;
+  padding: 0 2rem 1rem 2rem;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
@@ -892,8 +893,15 @@ footer {
 }
 
 small {
-  text-transform: uppercase;
+  word-spacing: .4em;
+  text-transform: capitalize;
   font-size: 1rem;
+  font-family: Lato;
+  color: #a6a6a6;
+}
+
+small #copyright {
+  color: #fafafa;
 }
 
 footer #menu-media {
@@ -904,7 +912,7 @@ footer #menu-media {
   border-radius: 50%;
   border: dashed .025em #a6a6a6;
   position: fixed;
-  bottom: 2rem;
+  bottom: 1rem;
   right: 2rem;
   z-index: 1;
   cursor: pointer;
