@@ -1161,6 +1161,12 @@ nav#media-items ul li.codePen {
   margin-right: 0;
 }
 
+#about-main h1 {
+  font-family: 'Rubik Mono One',sans-serif;
+  font-size: 6rem;
+  text-transform: uppercase;
+}
+
 .panel-container {
   position: relative;
   width: 40%;
