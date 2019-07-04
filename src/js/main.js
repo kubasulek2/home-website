@@ -105,27 +105,27 @@ $(document).ready(function () {
 	};
 	/* Decide if custom cursor is enabled*/
 
-	(function customCursorCheck(){
+	(function customCursorCheck() {
 		/* Custom cursor condition */
 		if (viewPortWidth() >= 1200 && !isMobileDevice()) {
 
 			followCursor();
-		
+
 			/* Change style over elements with data-interactive */
-		
+
 			interactElems.hover(mouseInteract);
-		
+
 			/* Hide cursor when out of html */
-		
+
 			$('html').on('mouseenter', () => {
 				cursor.show(0);
 			});
 			$('html').on('mouseleave', () => {
 				cursor.hide(0);
 			});
-			
+
 			/* Hide default cursors on the page */
-			
+
 			$('html').css('cursor', 'none');
 			$('[data-interactive]').css('cursor', 'none');
 			$('#cursor').show(0);
@@ -228,31 +228,40 @@ $(document).ready(function () {
 		mediaMenuBars = $('#menu-media .bar'),
 		mediaMenuIconPath = $('#media-circle circle');
 
-	/* Media-menu open */
+	/* Media-menu Animation */
 
-	const handleMediaMenu = (() => {
-		const tlMediaMenu = new TimelineMax({paused: true});
+	const mediaAnim = (() => {
+		const tlMediaMenu = new TimelineMax({ paused: true });
 
 		tlMediaMenu
-			.add(() => console.time('anim')	)
-			.set(mediaMenuIcon, {borderStyle: 'none'})
-			.to(mediaMenuBars, .2, {left:'50%', width: '50%', ease: Power1.easeOut})
-			.to(mediaMenuIconPath, 1, {strokeDashoffset: 0, ease: Power1.easeOut},'+=.5')
-			.add(()=> console.timeEnd('anim'));
-			
-			
+			.set(mediaMenuIcon, { borderStyle: 'none' })
+			.to(mediaMenuBars, .2, { left: '50%', width: '50%', ease: Power1.easeOut })
+			.to(mediaMenuIconPath, 1, { strokeDashoffset: 0, ease: Power1.easeOut }, '+=.5')
+			.to(mediaMenuBars, .2, { rotation: 20, ease: Power0.easeNone },'synch')
+
+
+
 		return tlMediaMenu;
 
 	})();
+
+	/* Media-menu event handler IIFE */
+
+	const mediaHandler = ( (anim) => {
+		let counter = 0;
+		return () => {
+			// animiation play from current time if active
+			const startAnimFrom = anim.isActive() ? Number((anim.time() ).toFixed(1)) : 0;
+			// animation direction reversed each time
+			counter % 2 ? anim.reverse(startAnimFrom) : anim.play(startAnimFrom);
+			counter++;
+		};
+	})(mediaAnim);
+
 	/* Create menu icons events  */
 
 	menuIcon.one('click', openMenu);
-	mediaMenuIcon.on('click', () => {
-		handleMediaMenu.play();
-		console.log(handleMediaMenu.isActive());
-		
-					
-	});
+	mediaMenuIcon.on('click', mediaHandler);
 
 	/* glimpse animation then change page */
 
