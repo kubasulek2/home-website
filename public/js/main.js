@@ -70,8 +70,7 @@ $(document).ready(function () {
 	const interactElems = $('[data-interactive]'),
 	      cursor = $('#cursor');
 
-	const mouseInteract = e => {
-		e.stopPropagation();
+	const mouseInteract = () => {
 		cursor.toggleClass('interact');
 	};
 
@@ -263,7 +262,7 @@ $(document).ready(function () {
 				const tlPanel = new TimelineMax();
 				const marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
 
-				tlPanel.to($panel, .4, { width: '100%', left: '0' }).to($panel.parent(), 1, { marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut }).add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2').from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image').addCallback(() => {
+				tlPanel.to($panel, .4, { width: '100%' }).to($panel.parent(), .4, { marginLeft: marginLeft, ease: Power3.easeInOut }).add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2').from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image').addCallback(() => {
 
 					// call this function only if  not on mobile and with 3d support
 					if (Modernizr.preserve3d && Modernizr.csstransforms3d && !isMobileDevice()) mouseOver3dEffect();
@@ -323,6 +322,7 @@ $(document).ready(function () {
 			/* Reset rotation */
 
 			const onMouseLeaveHandler = () => {
+
 				TweenMax.to(inner, .5, { rotationX: 0, rotationY: 0 });
 			};
 

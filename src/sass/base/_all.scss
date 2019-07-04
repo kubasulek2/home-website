@@ -4,8 +4,8 @@
   margin: 0;
   padding: 0;
 }
-html {
-  overflow: hidden;
+html {	
+	font-size: 16px;
 }
 html,
 body {
@@ -139,17 +139,17 @@ ul {
 
 /* Header style */
 header {
-  display: flex;
-  width: 100%;
-  padding: 1rem 2rem;
-  position: fixed;
-  justify-content: space-between;
-  z-index: 2;
-  top: 0;
-  left: 0;
-  font-size: 4em;
+	 font-size: 5rem;
+	 width: 100%;
+ 	
+ 
 }
 header #logo-nav {
+	position: fixed;
+	top: 1rem;
+	left: 2rem;
+	font-size: 4rem;
+	z-index: 1;
   font-family: "Rubik Mono One", sans-serif;
   letter-spacing: -0.15em;
   color: $base-white;
@@ -162,12 +162,14 @@ header #logo-nav {
   }
 }
 header #menu-main {
-  width: 1em;
-  height: 1em;
+	position: fixed;
+  top: 1rem;
+	z-index: 2;
+  right: 2rem;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   border: solid 0.025em $base-yellow;
-  position: relative;
-  z-index: 2;
   cursor: pointer;
   perspective: 40px;
   transform-style: preserve-3d;
@@ -234,8 +236,8 @@ header #menu-main {
 footer {
   display: flex;
 	width: 100%;
-	height: 1em;
-  padding: 0 2rem 1rem 2rem;
+	min-height: 4rem;
+  padding: 1rem 2rem;
   justify-content: space-between;
   align-items: flex-end;
   font-size: 4em;
@@ -258,8 +260,8 @@ small {
 
 footer #menu-media {
 	box-sizing: border-box;
-  width: 1em;
-  height: 1em;
+  width: 4rem;
+  height: 4rem;
   border-radius: 50%;
   border: dashed 0.025em $darker-white;
   position: fixed;

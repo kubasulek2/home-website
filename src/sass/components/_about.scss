@@ -1,16 +1,27 @@
-/* right panel with photo inside */
+.row{
+	height: calc(100% - 10rem);
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+/* Main element style */
+#about-main{
+	text-align: center;
+	width: 50%;
+	margin-right: 0;
+}
+
+/* aside right panel with photo inside */
 
 .panel-container{
 	position: relative;
 	width: 40%;
 	height: 100%;
-	margin: auto 0 auto auto;
-	
 	
 	#about-right-panel{
 		position: absolute;
 		top: 0;
-		left: 50%;
+		left: 0;
 		width: 0;
 		height: 100%;
 		background: $lighter-background;
@@ -23,7 +34,6 @@
 		width: auto;
 		height: 80%;
 		margin-right: -10%;
-		
 		perspective: 40px;
 		transform-style: preserve-3d;
 		
@@ -86,12 +96,4 @@
 
 	}
 
-	
-	@media (min-width:768px) {
-		
-	}
-	@media (min-width:1025px){
-		margin-right: 5%;	
-		height: 80%;		
-	}	
 }

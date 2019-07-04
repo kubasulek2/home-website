@@ -36,7 +36,7 @@
 				<div class="column"></div>
 			</div>
 	</div>
-	<header>
+	<header> <span class="not-visible">.</span> <!-- for some reasons empty header doesnt take height -->
 			<div class="menu-container">
 					<div class="menu-bg">
 					</div>
@@ -55,18 +55,20 @@
 			<div class="bar"></div>
 		</div>
 	</header>
-	<main id='about'>
-		<h1></h1>
-	</main>
-	<aside class="panel-container">
-		<div id="about-right-panel">
-			<div class="img-wrapper-outer">
-				<div data-interactive class="img-wrapper">
-						<div class="glitch"></div>
+	<div class="row">
+			<aside class="panel-container">
+			<div id="about-right-panel">
+				<div class="img-wrapper-outer">
+					<div data-interactive class="img-wrapper">
+							<div class="glitch"></div>
+					</div>
 				</div>
 			</div>
-		</div>
-	</aside>
+		</aside>
+		<main id='about-main'>
+			<h1>hi it's me</h1>
+		</main>
+	</div>
 	<footer>
 		<small><span id="copyright">&copy;</span> 2019 kuba sulkowski</small>
 		<div data-interactive id="menu-media">

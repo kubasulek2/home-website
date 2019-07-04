@@ -73,8 +73,7 @@ $(document).ready(function () {
 
 		
 
-	const mouseInteract = (e) => {
-		e.stopPropagation();
+	const mouseInteract = () => {
 		cursor.toggleClass('interact');
 		
 	};
@@ -336,8 +335,8 @@ $(document).ready(function () {
 				const marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
 
 				tlPanel
-					.to($panel, .4, { width: '100%', left: '0' })
-					.to($panel.parent(), 1, { marginLeft: marginLeft, marginRight: 'auto', ease: Power3.easeInOut })
+					.to($panel, .4, { width: '100%'})
+					.to($panel.parent(), .4, { marginLeft: marginLeft, ease: Power3.easeInOut })
 					.add(appendImage)
 					.set($image, { opacity: 0.05 })
 					.from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2')
@@ -400,11 +399,13 @@ $(document).ready(function () {
 
 			const onMouseEnterHandler = (event) => {
 				update(event);
+				
 			};
 
 			/* Reset rotation */
 
 			const onMouseLeaveHandler = () => {
+				
 				TweenMax.to(inner, .5, { rotationX: 0, rotationY: 0 });
 			};
 
