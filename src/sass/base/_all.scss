@@ -271,7 +271,6 @@ footer #menu-media .bar {
   background: $base-yellow;
 	top: 50%;
 	left: 50%;
-  transition: all 0.5s;
   transform: translate(-50%, -50%);
 	
 	&:first-of-type{
@@ -292,7 +291,6 @@ svg#media-circle{
 	fill: transparent;
 	stroke: $darker-white;
 	stroke-width: 2px;
-	//transition: all 1s ease-out;
 	stroke-dasharray: 247;
 	stroke-dashoffset: 247;
 	

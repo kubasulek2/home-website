@@ -924,8 +924,6 @@ footer #menu-media .bar {
   background: #f1bd00;
   top: 50%;
   left: 50%;
-  -webkit-transition: all .5s;
-  transition: all .5s;
   -webkit-transform: translate(-50%,-50%);
   transform: translate(-50%,-50%);
 }

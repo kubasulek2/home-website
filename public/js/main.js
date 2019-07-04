@@ -186,17 +186,20 @@ $(document).ready(function () {
 
 	/* Media-menu open */
 
-	const openMediaMenu = () => {
+	const handleMediaMenu = (() => {
+		const tlMediaMenu = new TimelineMax({ paused: true });
 
-		const tlMediaMenu = new TimelineMax();
+		tlMediaMenu.add(() => console.time('anim')).set(mediaMenuIcon, { borderStyle: 'none' }).to(mediaMenuBars, .2, { left: '50%', width: '50%', ease: Power1.easeOut }).to(mediaMenuIconPath, 1, { strokeDashoffset: 0, ease: Power1.easeOut }, '+=.5').add(() => console.timeEnd('anim'));
 
-		tlMediaMenu.set(mediaMenuIcon, { borderStyle: 'none' }).to(mediaMenuBars, .2, { left: '50%', width: '50%', ease: Power1.easeOut }).to(mediaMenuIconPath, 1, { strokeDashoffset: 0, ease: Power1.easeOut }, '+=.5');
-	};
-
+		return tlMediaMenu;
+	})();
 	/* Create menu icons events  */
 
 	menuIcon.one('click', openMenu);
-	mediaMenuIcon.one('click', openMediaMenu);
+	mediaMenuIcon.on('click', () => {
+		handleMediaMenu.play();
+		console.log(handleMediaMenu.isActive());
+	});
 
 	/* glimpse animation then change page */
 
