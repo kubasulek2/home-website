@@ -134,16 +134,16 @@ $(document).ready(function () {
 
 
 
-	/* Menu items to manipulate */
+	/* Main-menu items to manipulate */
 
 	const
-		menuIcon = $('#menu'),
+		menuIcon = $('#menu-main'),
 		menuContainer = $('.menu-container'),
-		menuBar = $('#menu .bar'),
+		menuBar = $('#menu-main .bar'),
 		menuBg = $('.menu-bg'),
 		logoNav = $('#logo-nav');
 
-	/* Open menu sequence */
+	/* Open main-menu sequence */
 
 	const openMenu = () => {
 		const tlOpenMenu = new TimelineMax();
@@ -177,7 +177,7 @@ $(document).ready(function () {
 
 	};
 
-	/* Close menu sequence */
+	/* Close main-menu sequence */
 
 	const closeMenu = () => {
 		const tmCloseMenu = new TimelineMax();
@@ -194,10 +194,13 @@ $(document).ready(function () {
 			.set(logoNav, { visibility: 'visible' }, 'hide+=.1')
 			.to(menuIcon, 0.2, { borderColor: $baseYellow }, '-=.4')
 			.set([menuBar, menuBg, menuIcon, menuContainer, logoNav], { clearProps: 'all' })
+			.set(menuIcon, { cursor: 'none' })
 			.add(() => {
 				menuIcon.one('click', openMenu);
 			});
 	};
+
+	/* Full page main-menu items handler */
 
 	const showMenuItems = (boolean) => {
 
@@ -219,8 +222,28 @@ $(document).ready(function () {
 		}
 	};
 
+	/* Media menu items to manipulate */
+	const
+		mediaMenuIcon = $('#menu-media'),
+		mediaMenuBars = $('#menu-media .bar'),
+		mediaMenuIconPath = $('#media-circle circle');
+
+	/* Media-menu open */
+
+	const openMediaMenu = () => {
+		
+		const tlMediaMenu = new TimelineMax;
+
+		tlMediaMenu
+			.set(mediaMenuIcon, {borderStyle: 'none'})
+			.to(mediaMenuBars, .2, {left:'50%', width: '50%', ease: Power1.easeOut})
+			.to(mediaMenuIconPath, 1, {strokeDashoffset: 0, ease: Power1.easeOut},'+=.5')
+	};
+
+	/* Create menu icons events  */
 
 	menuIcon.one('click', openMenu);
+	mediaMenuIcon.one('click', openMediaMenu);
 
 	/* glimpse animation then change page */
 

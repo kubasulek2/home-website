@@ -601,6 +601,10 @@ template {
   padding: 0;
 }
 
+html {
+  overflow: hidden;
+}
+
 body,
 html {
   width: 100%;
@@ -672,7 +676,7 @@ ul {
 
 #cursor div:after,
 #cursor div:before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   border-radius: 50%;
@@ -790,7 +794,7 @@ header #logo-nav:hover {
   text-shadow: 0 0 2px rgba(241,189,0,.9),0 0 20px rgba(241,189,0,.7);
 }
 
-header #menu {
+header #menu-main {
   width: 1em;
   height: 1em;
   border-radius: 50%;
@@ -806,13 +810,13 @@ header #menu {
   transition: all .5s;
 }
 
-header #menu:hover {
+header #menu-main:hover {
   -webkit-transform: scale(1.1);
   transform: scale(1.1);
   border-color: #fafafa;
 }
 
-#menu .bar {
+#menu-main .bar {
   width: 50%;
   height: 5%;
   background: #fafafa;
@@ -824,11 +828,11 @@ header #menu:hover {
   transform: translate(-50%,-50%);
 }
 
-#menu .bar:first-child {
+#menu-main .bar:first-child {
   top: 67%;
 }
 
-#menu .bar:last-child {
+#menu-main .bar:last-child {
   top: 33%;
 }
 
@@ -880,6 +884,9 @@ footer {
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  -webkit-box-align: end;
+  -ms-flex-align: end;
+  align-items: flex-end;
   font-size: 4em;
   font-family: Questrial,sans-serif;
 }
@@ -887,6 +894,64 @@ footer {
 small {
   text-transform: uppercase;
   font-size: 1rem;
+}
+
+footer #menu-media {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  border: dashed .025em #a6a6a6;
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  z-index: 1;
+  cursor: pointer;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+}
+
+footer #menu-media:hover {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
+
+footer #menu-media .bar {
+  position: absolute;
+  width: 5%;
+  height: 5%;
+  background: #f1bd00;
+  top: 50%;
+  left: 50%;
+  -webkit-transition: all .5s;
+  transition: all .5s;
+  -webkit-transform: translate(-50%,-50%);
+  transform: translate(-50%,-50%);
+}
+
+footer #menu-media .bar:first-of-type {
+  left: 40%;
+}
+
+footer #menu-media .bar:last-of-type {
+  left: 60%;
+}
+
+svg#media-circle {
+  position: absolute;
+  width: 105%;
+  height: 105%;
+  top: -2.5%;
+  left: -2.5%;
+}
+
+#media-circle circle {
+  fill: transparent;
+  stroke: #a6a6a6;
+  stroke-width: 2px;
+  stroke-dasharray: 247;
+  stroke-dashoffset: 247;
 }
 
 .glimpse .loader {
