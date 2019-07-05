@@ -656,6 +656,10 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   position: relative;
   background: #2d2d2d;
@@ -1287,6 +1291,16 @@ nav#media-items ul li.codePen {
 
 .main-title.copy span {
   opacity: 0;
+}
+
+.read-more {
+  font-family: Questrial;
+  text-transform: uppercase;
+  -ms-flex-item-align: center;
+  align-self: center;
+  color: #a6a6a6;
+  font-size: 2rem;
+  padding: 1rem;
 }
 
 .panel-container {

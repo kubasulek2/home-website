@@ -342,7 +342,7 @@ $(document).ready(function () {
 					tlAbout = new TimelineMax();
 
 				tlAbout
-					.set('body', { overflowX: 'hidden' })
+					//.set('body', { overflowX: 'hidden' })
 					.to($letterVeilsTop, .5, { x: '-100%' }, 'synch')
 					.to($lettersTop, 2, { opacity: 1 }, 'synch')
 					.staggerFrom($lettersTop.parent(), .8, {
@@ -363,11 +363,11 @@ $(document).ready(function () {
 							ease: Power2.easeIn
 						}
 					}, 0, 'synch')
-					.set('body', { overflowX: 'initial' })
+					//.set('body', { overflowX: 'initial' })
 					.set(('.copy span'), { opacity: 1 }, '-=1.2')
 					.add(() => {
-						//call this when browser support css clip path
-						if (Modernizr.cssclippathpolygon) titleClipping();
+						//call this when browser support css clip path and not mobile
+						if (Modernizr.cssclippathpolygon && !isMobileDevice()) titleClipping();
 					})
 					.to($panel, .6, { width: '100%' }, '-=1.3')
 					.add(appendImage)

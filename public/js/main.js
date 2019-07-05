@@ -267,7 +267,9 @@ $(document).ready(function () {
 				      $letterVeilsBottom = $('.main-title:not(.copy)>.bottom .after'),
 				      tlAbout = new TimelineMax();
 
-				tlAbout.set('body', { overflowX: 'hidden' }).to($letterVeilsTop, .5, { x: '-100%' }, 'synch').to($lettersTop, 2, { opacity: 1 }, 'synch').staggerFrom($lettersTop.parent(), .8, {
+				tlAbout
+				//.set('body', { overflowX: 'hidden' })
+				.to($letterVeilsTop, .5, { x: '-100%' }, 'synch').to($lettersTop, 2, { opacity: 1 }, 'synch').staggerFrom($lettersTop.parent(), .8, {
 					cycle: {
 						x: function (index) {
 							return (index + 1) * 10 * (index + 1);
@@ -281,9 +283,11 @@ $(document).ready(function () {
 						},
 						ease: Power2.easeIn
 					}
-				}, 0, 'synch').set('body', { overflowX: 'initial' }).set('.copy span', { opacity: 1 }, '-=1.2').add(() => {
-					//call this when browser support css clip path
-					if (Modernizr.cssclippathpolygon) titleClipping();
+				}, 0, 'synch')
+				//.set('body', { overflowX: 'initial' })
+				.set('.copy span', { opacity: 1 }, '-=1.2').add(() => {
+					//call this when browser support css clip path and not mobile
+					if (Modernizr.cssclippathpolygon && !isMobileDevice()) titleClipping();
 				}).to($panel, .6, { width: '100%' }, '-=1.3').add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2').from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image').addCallback(() => {
 
 					// call this function only if  not on mobile and with 3d support
