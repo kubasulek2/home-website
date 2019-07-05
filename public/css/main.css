@@ -1218,7 +1218,7 @@ nav#media-items ul li.codePen {
 #about-main .main-title-wrapper {
   position: relative;
   margin-top: 4rem;
-  font-family: 'Rubik Mono One',sans-serif;
+  font-family: "Rubik Mono One",sans-serif;
   font-size: 6vw;
   text-transform: uppercase;
 }
@@ -1271,16 +1271,18 @@ nav#media-items ul li.codePen {
 }
 
 .main-title.copy {
-  --maskX: 0;
-  --maskY: 50;
+  --maskX: 0%;
+  --maskY: 0%;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   color: #f1bd00;
-  -webkit-clip-path: polygon(0 0,calc(var(--maskX) * 1%) 0,calc(var(--maskY) * 1%) 100%,0 100%);
-  clip-path: polygon(0 0,calc(var(--maskX) * 1%) 0,calc(var(--maskY) * 1%) 100%,0 100%);
+  -webkit-clip-path: polygon(0 0,var(--maskX) 0,var(--maskY) 100%,0 100%);
+  clip-path: polygon(0 0,var(--maskX) 0,var(--maskY) 100%,0 100%);
+  -webkit-transition: all 1s cubic-bezier(.165,.84,.44,1);
+  transition: all 1s cubic-bezier(.165,.84,.44,1);
 }
 
 .main-title.copy span {
@@ -1337,7 +1339,7 @@ nav#media-items ul li.codePen {
 }
 
 .panel-container .img-wrapper:after {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 100%;
@@ -1360,7 +1362,7 @@ nav#media-items ul li.codePen {
 
 .panel-container .glitch:after,
 .panel-container .glitch:before {
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   width: 100%;

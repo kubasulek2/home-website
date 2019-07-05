@@ -326,6 +326,8 @@ $(document).ready(function () {
 
 	if ($('body#about').length) {
 
+		/* about.html main function */
+
 		const showAbout = () => {
 
 			if (bgTransitionEnd) {
@@ -338,13 +340,9 @@ $(document).ready(function () {
 					$lettersBottom = $('.main-title:not(.copy)>.line.bottom span'),
 					$letterVeilsBottom = $('.main-title:not(.copy)>.bottom .after'),
 					tlAbout = new TimelineMax();
-				
-				console.log($letterVeilsBottom);
-				
-				
 
 				tlAbout
-					.set('body', {overflowX: 'hidden'})
+					.set('body', { overflowX: 'hidden' })
 					.to($letterVeilsTop, .5, { x: '-100%' }, 'synch')
 					.to($lettersTop, 2, { opacity: 1 }, 'synch')
 					.staggerFrom($lettersTop.parent(), .8, {
@@ -365,8 +363,12 @@ $(document).ready(function () {
 							ease: Power2.easeIn
 						}
 					}, 0, 'synch')
-					.set('body', {overflowX: 'initial'})
-					.set(('.copy span'), {opacity: 1},'-=1.2')
+					.set('body', { overflowX: 'initial' })
+					.set(('.copy span'), { opacity: 1 }, '-=1.2')
+					.add(() => {
+						//call this when browser support css clip path
+						if (Modernizr.cssclippathpolygon) titleClipping();
+					})
 					.to($panel, .6, { width: '100%' }, '-=1.3')
 					.add(appendImage)
 					.set($image, { opacity: 0.05 })
@@ -382,6 +384,34 @@ $(document).ready(function () {
 
 			} else setTimeout(showAbout, 200);
 
+		};
+
+		const titleClipping = () => {
+			const $titleWrapper = $('.main-title-wrapper'),
+				$titleClip = $('.main-title.copy');
+
+
+
+			const mouseMoveHandler = (e) => {
+
+				const
+					rect = e.currentTarget.getBoundingClientRect(),
+					offsetX = Math.ceil((e.clientX - rect.left) / $titleWrapper.outerWidth() * 100),
+					offsetY = Math.ceil((e.clientY - rect.top) / $titleWrapper.outerHeight() * 100);
+
+				$titleClip.css({
+					'--maskX': `${offsetX}%`,
+					'--maskY': `${offsetY}%`
+				});
+
+			};
+			$titleWrapper.mousemove(mouseMoveHandler);
+			$titleWrapper.mouseleave(() => {
+				$titleClip.css({
+					'--maskX': 0,
+					'--maskY': 0
+				});
+			});
 		};
 
 		/* load right image version after is loaded */

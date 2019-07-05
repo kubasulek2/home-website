@@ -1,170 +1,158 @@
-.row{
-	height: calc(100% - 10rem);
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
+.row {
+  height: calc(100% - 10rem);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
 }
 /* Main element style */
-#about-main{
-	text-align: center;
-	width: 50%;
-	margin-right: 0;
-	display: flex;
-	flex-direction: column;
-	align-items: flex-start;
-	
+#about-main {
+  text-align: center;
+  width: 50%;
+  margin-right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 /* Main element title styles*/
 
-#about-main .main-title-wrapper{
-	position: relative;
-	margin-top: 4rem;
-	font-family: 'Rubik Mono One', sans-serif;
-	font-size: 6vw;
-	text-transform: uppercase;
-	
+#about-main .main-title-wrapper {
+  position: relative;
+  margin-top: 4rem;
+  font-family: "Rubik Mono One", sans-serif;
+  font-size: 6vw;
+  text-transform: uppercase;
 }
-.main-title-wrapper .line{
-	display: flex;
+.main-title-wrapper .line {
+  display: flex;
 }
-.line:first-child{
-	 justify-content: flex-end
+.line:first-child {
+  justify-content: flex-end;
 }
-.line.bottom{
-	margin-right: 3rem;
+.line.bottom {
+  margin-right: 3rem;
 }
-.line .space-wrapper{
-	width: .6em
+.line .space-wrapper {
+  width: 0.6em;
 }
-.line .apostrophe{
-	color: $base-yellow;
-	width: 2rem;
-	span{
-		margin-left: -1.5vw;
-	}
+.line .apostrophe {
+  color: $base-yellow;
+  width: 2rem;
+  span {
+    margin-left: -1.5vw;
+  }
 }
-.letter-wrapper{
-	overflow: hidden;
-	position: relative;
-	span{
-		opacity:0;
-	}
-	
+.letter-wrapper {
+  overflow: hidden;
+  position: relative;
+  span {
+    opacity: 0;
+  }
 
-	.after{
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-		background: $base-background;
-	}
+  .after {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: $base-background;
+  }
 }
 
 /*  Coppied Title serving as mask */
 
-.main-title.copy{
-	--maskX :0;
-  --maskY: 50;
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-	color: $base-yellow;
-	clip-path: polygon(0 0, calc(var(--maskX) * 1%) 0, calc(var(--maskY) * 1%) 100%, 0% 100%); 
-
-
-	span{
-		opacity: 0;
-	}
+.main-title.copy {
+  --maskX: 0%;
+  --maskY: 0%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: $base-yellow;
+  clip-path: polygon(0 0, var(--maskX) 0, var(--maskY) 100%, 0% 100%);
+	transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1); 
+	span {
+    opacity: 0;
+  }
 }
 
 /* aside right panel with photo inside */
 
-.panel-container{
-	position: relative;
-	width: 40%;
-	height: 100%;
-	margin-left: 5%;
-	
-	#about-right-panel{
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 0;
-		height: 100%;
-		background: $lighter-background;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		
-	}
-	.img-wrapper-outer{
-		width: auto;
-		height: 80%;
-		margin-right: -10%;
-		perspective: 40px;
-		transform-style: preserve-3d;
-		
-		
-	}
-	.img-wrapper{
-		cursor: pointer;
-		position: relative;
-		overflow: hidden;	
-		width: 100%;
-		height: 100%;
-		border-radius: 2rem 0 2rem 0;		
-		
-		}
-	.img-wrapper img{
-		height: 100%;
-		display: block;	
-		
-	}
-	.img-wrapper:after{
-		content: '';
-		display: block;
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		opacity: 0.3;
-		top:0;
-		left: 0;
-		background: url('../../images/about.jpg') center/cover;
-		animation: glitch-effect 1.2s steps(10, end) infinite alternate;
-		
-	}
-	.glitch{
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		left: 0;
-	}
-	.glitch:before, .glitch:after{
-		content: '';
-		display: block;
-		position: absolute;
-		width: 100%;
-		height: 100%;  
-		top:0;
-		left: 0;
-		overflow: hidden;
-		background: url('../../images/about.jpg') center/contain;
-		
-	 }
-	.glitch:after{
-		left:8px;
-		clip-path: polygon(0 9%, 100% 16%, 100% 22%, 0 9%);
-		animation: glitch-effect-2 2s infinite linear
-	}
-	.glitch:before{
-		left: 4px;
-		animation: glitch-effect-2 3s infinite linear
+.panel-container {
+  position: relative;
+  width: 40%;
+  height: 100%;
+  margin-left: 5%;
 
-	}
-
+  #about-right-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: $lighter-background;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  .img-wrapper-outer {
+    width: auto;
+    height: 80%;
+    margin-right: -10%;
+    perspective: 40px;
+    transform-style: preserve-3d;
+  }
+  .img-wrapper {
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    border-radius: 2rem 0 2rem 0;
+  }
+  .img-wrapper img {
+    height: 100%;
+    display: block;
+  }
+  .img-wrapper:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    background: url("../../images/about.jpg") center/cover;
+    animation: glitch-effect 1.2s steps(10, end) infinite alternate;
+  }
+  .glitch {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+  }
+  .glitch:before,
+  .glitch:after {
+    content: "";
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    background: url("../../images/about.jpg") center/contain;
+  }
+  .glitch:after {
+    left: 8px;
+    clip-path: polygon(0 9%, 100% 16%, 100% 22%, 0 9%);
+    animation: glitch-effect-2 2s infinite linear;
+  }
+  .glitch:before {
+    left: 4px;
+    animation: glitch-effect-2 3s infinite linear;
+  }
 }
