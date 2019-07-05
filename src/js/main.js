@@ -333,17 +333,25 @@ $(document).ready(function () {
 			if (bgTransitionEnd) {
 
 				const
-					$panel = $('#about-right-panel'),
+					$row = $('#about .row'),
 					$image = $('.img-wrapper'),
 					$lettersTop = $('.main-title:not(.copy)>.line.top span'),
 					$letterVeilsTop = $('.main-title:not(.copy)>.top .after'),
 					$lettersBottom = $('.main-title:not(.copy)>.line.bottom span'),
 					$letterVeilsBottom = $('.main-title:not(.copy)>.bottom .after'),
+					$readMoreButton = $('.show-more'),
 					tlAbout = new TimelineMax();
 
+				const showReadMoreSection = () => {
+					const $readMoreSection = $('.read-more'),
+						tlShowMore = new TimelineMax();
+
+					tlShowMore.to($readMoreButton, 1, { autoAlpha: 0, x:50 , ease: Power1.easeOut });
+
+				};
+
 				tlAbout
-					//.set('body', { overflowX: 'hidden' })
-					.to($letterVeilsTop, .5, { x: '-100%' }, 'synch')
+					.to($letterVeilsTop, 2, { x: '-100%' }, 'synch')
 					.to($lettersTop, 2, { opacity: 1 }, 'synch')
 					.staggerFrom($lettersTop.parent(), .8, {
 						cycle: {
@@ -353,7 +361,7 @@ $(document).ready(function () {
 							ease: Power2.easeIn
 						}
 					}, 0, 'synch')
-					.to($letterVeilsBottom, .5, { x: '100%' }, 'synch')
+					.to($letterVeilsBottom, 2, { x: '100%' }, 'synch')
 					.to($lettersBottom, 2, { opacity: 1 }, 'synch')
 					.staggerFrom($lettersBottom.parent(), .8, {
 						cycle: {
@@ -363,17 +371,20 @@ $(document).ready(function () {
 							ease: Power2.easeIn
 						}
 					}, 0, 'synch')
-					//.set('body', { overflowX: 'initial' })
 					.set(('.copy span'), { opacity: 1 }, '-=1.2')
 					.add(() => {
 						//call this when browser support css clip path and not mobile
 						if (Modernizr.cssclippathpolygon && !isMobileDevice()) titleClipping();
 					})
-					.to($panel, .6, { width: '100%' }, '-=1.3')
+					.to($row, .6, { width: '95%' }, '-=1.3')
 					.add(appendImage)
 					.set($image, { opacity: 0.05 })
-					.from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2')
-					.from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image')
+					.from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image')
+					.from($image, 1, { x: '-50%', ease: Power1.easeOut }, 'image')
+					.fromTo($readMoreButton, 1, { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: Bounce.easeOut }, 'image+=.3')
+					.add(() => {
+						$readMoreButton.one('click',showReadMoreSection);
+					})
 					.addCallback(() => {
 
 						// call this function only if  not on mobile and with 3d support
@@ -383,8 +394,8 @@ $(document).ready(function () {
 				if (!Modernizr.cssclippathpolygon) $('.glitch').hide();
 
 			} else setTimeout(showAbout, 200);
-
 		};
+
 
 		const titleClipping = () => {
 			const $titleWrapper = $('.main-title-wrapper'),

@@ -1194,13 +1194,14 @@ nav#media-items ul li.codePen {
 
 .row {
   height: calc(100% - 10rem);
-  width: 100%;
+  width: 0;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-pack: justify;
   -ms-flex-pack: justify;
   justify-content: space-between;
+  background: #333;
 }
 
 #about-main {
@@ -1271,7 +1272,7 @@ nav#media-items ul li.codePen {
   height: 100%;
   top: 0;
   left: 0;
-  background: #2d2d2d;
+  background: 0 0;
 }
 
 .main-title.copy {
@@ -1293,28 +1294,35 @@ nav#media-items ul li.codePen {
   opacity: 0;
 }
 
-.read-more {
+.show-more {
   font-family: Questrial;
-  text-transform: uppercase;
   -ms-flex-item-align: center;
   align-self: center;
   color: #a6a6a6;
-  font-size: 2rem;
-  padding: 1rem;
+  margin-top: 1rem;
+  font-size: 1rem;
+  padding: 1.2rem;
+  border-radius: .4rem;
+  background: #2d2d2d;
+  opacity: 0;
+}
+
+.show-more:hover {
+  -webkit-transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .panel-container {
   position: relative;
   width: 40%;
   height: 100%;
-  margin-left: 5%;
 }
 
 .panel-container #about-right-panel {
   position: absolute;
   top: 0;
   left: 0;
-  width: 0;
+  width: 100%;
   height: 100%;
   background: #333;
   display: -webkit-box;
