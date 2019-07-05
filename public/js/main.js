@@ -259,18 +259,29 @@ $(document).ready(function () {
 
 				const $panel = $('#about-right-panel'),
 				      $image = $('.img-wrapper'),
-				      $letters = $('.letter-wrapper span'),
-				      $letterVeils = $('.letter-wrapper .after'),
+				      $lettersTop = $('.main-title:not(.copy)>.line.top span'),
+				      $letterVeilsTop = $('.main-title:not(.copy)>.top .after'),
+				      $lettersBottom = $('.main-title:not(.copy)>.line.bottom span'),
+				      $letterVeilsBottom = $('.main-title:not(.copy)>.bottom .after'),
 				      tlAbout = new TimelineMax();
-				//marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
 
+				console.log($letterVeilsBottom);
 
-				tlAbout.to($letterVeils, .5, { x: '-100%' }, 'synch').to($letters, 2, { opacity: 1 }, 'synch').staggerFrom($letters.parent(), .8, { cycle: {
+				tlAbout.set('body', { overflowX: 'hidden' }).to($letterVeilsTop, .5, { x: '-100%' }, 'synch').to($lettersTop, 2, { opacity: 1 }, 'synch').staggerFrom($lettersTop.parent(), .8, {
+					cycle: {
 						x: function (index) {
-							return index * 10;
+							return (index + 1) * 10 * (index + 1);
 						},
 						ease: Power2.easeIn
-					} }, 0, 'synch').to($panel, .6, { width: '100%' }, '-=1.3').add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2').from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image').addCallback(() => {
+					}
+				}, 0, 'synch').to($letterVeilsBottom, .5, { x: '100%' }, 'synch').to($lettersBottom, 2, { opacity: 1 }, 'synch').staggerFrom($lettersBottom.parent(), .8, {
+					cycle: {
+						x: function (index) {
+							return ($lettersBottom.length - index) * -10 * ($lettersBottom.length - index);
+						},
+						ease: Power2.easeIn
+					}
+				}, 0, 'synch').set('body', { overflowX: 'initial' }).set('.copy span', { opacity: 1 }, '-=1.2').to($panel, .6, { width: '100%' }, '-=1.3').add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2').from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image').addCallback(() => {
 
 					// call this function only if  not on mobile and with 3d support
 					if (Modernizr.preserve3d && Modernizr.csstransforms3d && !isMobileDevice()) mouseOver3dEffect();
