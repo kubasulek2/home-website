@@ -18,8 +18,9 @@
 /* Main element title styles*/
 
 #about-main .main-title{
+	margin-top: 4rem;
 	font-family: 'Rubik Mono One', sans-serif;
-	font-size: 6rem;
+	font-size: 6vw;
 	text-transform: uppercase;
 	
 }
@@ -29,8 +30,35 @@
 .line:first-child{
 	 justify-content: flex-end
 }
+.line:last-child{
+	margin-right: 3rem;
+}
 .line .space-wrapper{
 	width: .6em
+}
+.line .apostrophe{
+	color: $base-yellow;
+	width: 2rem;
+	span{
+		margin-left: -1.5vw;
+	}
+}
+.letter-wrapper{
+	overflow: hidden;
+	position: relative;
+	span{
+		opacity:0;
+	}
+	
+
+	.after{
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: $base-background;
+	}
 }
 
 /* aside right panel with photo inside */

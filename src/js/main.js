@@ -56,6 +56,7 @@ const viewPortWidth = () => {
 
 })(Modernizr);
 
+
 $(document).ready(function () {
 
 	/* Colors to use on the page */
@@ -71,11 +72,11 @@ $(document).ready(function () {
 	const interactElems = $('[data-interactive]'),
 		cursor = $('#cursor');
 
-		
+
 
 	const mouseInteract = () => {
 		cursor.toggleClass('interact');
-		
+
 	};
 
 	/* Move cursor element to mouse position  */
@@ -245,9 +246,9 @@ $(document).ready(function () {
 
 			.set(mediaMenuIcon, { borderStyle: 'none' })
 			.to(mediaMenuBars, .2, { left: '50%', width: '50%', ease: Power1.easeOut })
-			.to(mediaMenuIconPath, .4, { strokeDashoffset: 0, ease: Power1.easeOut },'arrow')
-			.to(mediaMenuBars.find('.before'), .4, { rotation: -50, x: '-10%', height: '100%', ease: Power0.easeNone },'arrow')
-			.to(mediaMenuBars.find('.after'), .4, { rotation: 50, x: '-10%', height: '100%', ease: Power0.easeNone },'arrow')
+			.to(mediaMenuIconPath, .4, { strokeDashoffset: 0, ease: Power1.easeOut }, 'arrow')
+			.to(mediaMenuBars.find('.before'), .4, { rotation: -50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow')
+			.to(mediaMenuBars.find('.after'), .4, { rotation: 50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow')
 			.to(barWrapper, .8, { rotation: 50, x: '0', ease: Power2.easeIn }, 'items+=.3')
 			.to(mediaItemsWrap, .8, { rotation: 60, y: '0', ease: Power2.easeIn }, 'items+=.3')
 			.staggerTo(mediaItems, .5, { opacity: 1, ease: Power2.easeIn }, .1, 'items+=.3');
@@ -325,17 +326,24 @@ $(document).ready(function () {
 
 	if ($('body#about').length) {
 
-		const showAside = () => {
+		const showAbout = () => {
 
 			if (bgTransitionEnd) {
 
-				const $panel = $('#about-right-panel');
-				const $image = $('.img-wrapper');
-				const tlPanel = new TimelineMax();
-				const marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
-
-				tlPanel
-					.to($panel, .4, { width: '100%'})
+				const
+					$panel = $('#about-right-panel'),
+					$image = $('.img-wrapper'),
+					$letters = $('.letter-wrapper span'),
+					$letterVeils = $('.letter-wrapper .after'),
+					tlAbout = new TimelineMax(),
+					marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
+					
+					
+				tlAbout
+					.staggerTo($letterVeils, .25, { x: '-100%' }, .1,'synch')
+					.staggerTo($letters, 2, { opacity: 1 }, .1,'synch')
+					.staggerFromTo($letters.parent(), .5, {x: 20 },{ x: 0 }, .1,'synch')
+					.to($panel, .4, { width: '100%' })
 					.to($panel.parent(), .4, { marginLeft: marginLeft, ease: Power3.easeInOut })
 					.add(appendImage)
 					.set($image, { opacity: 0.05 })
@@ -349,7 +357,7 @@ $(document).ready(function () {
 
 				if (!Modernizr.cssclippathpolygon) $('.glitch').hide();
 
-			} else setTimeout(showAside, 200);
+			} else setTimeout(showAbout, 200);
 
 		};
 
@@ -399,13 +407,13 @@ $(document).ready(function () {
 
 			const onMouseEnterHandler = (event) => {
 				update(event);
-				
+
 			};
 
 			/* Reset rotation */
 
 			const onMouseLeaveHandler = () => {
-				
+
 				TweenMax.to(inner, .5, { rotationX: 0, rotationY: 0 });
 			};
 
@@ -451,7 +459,7 @@ $(document).ready(function () {
 		};
 
 		/* Init functions */
-		showAside();
+		showAbout();
 	}
 
 

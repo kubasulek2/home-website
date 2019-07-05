@@ -253,23 +253,25 @@ $(document).ready(function () {
 
 	if ($('body#about').length) {
 
-		const showAside = () => {
+		const showAbout = () => {
 
 			if (bgTransitionEnd) {
 
-				const $panel = $('#about-right-panel');
-				const $image = $('.img-wrapper');
-				const tlPanel = new TimelineMax();
-				const marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
+				const $panel = $('#about-right-panel'),
+				      $image = $('.img-wrapper'),
+				      $letters = $('.letter-wrapper span'),
+				      $letterVeils = $('.letter-wrapper .after'),
+				      tlAbout = new TimelineMax(),
+				      marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
 
-				tlPanel.to($panel, .4, { width: '100%' }).to($panel.parent(), .4, { marginLeft: marginLeft, ease: Power3.easeInOut }).add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2').from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image').addCallback(() => {
+				tlAbout.staggerTo($letterVeils, .25, { x: '-100%' }, .1, 'synch').staggerTo($letters, 2, { opacity: 1 }, .1, 'synch').staggerFromTo($letters.parent(), .5, { x: 20 }, { x: 0 }, .1, 'synch').to($panel, .4, { width: '100%' }).to($panel.parent(), .4, { marginLeft: marginLeft, ease: Power3.easeInOut }).add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2').from($image, 1, { x: '-100%', ease: Power3.easeOut }, 'image').addCallback(() => {
 
 					// call this function only if  not on mobile and with 3d support
 					if (Modernizr.preserve3d && Modernizr.csstransforms3d && !isMobileDevice()) mouseOver3dEffect();
 				}, 'image+=1');
 
 				if (!Modernizr.cssclippathpolygon) $('.glitch').hide();
-			} else setTimeout(showAside, 200);
+			} else setTimeout(showAbout, 200);
 		};
 
 		/* load right image version after is loaded */
@@ -365,7 +367,7 @@ $(document).ready(function () {
 		};
 
 		/* Init functions */
-		showAside();
+		showAbout();
 	}
 });
 //# sourceMappingURL=main.js.map
