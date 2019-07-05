@@ -234,7 +234,9 @@ header #menu-main {
 
 /* Footer Styles */
 footer {
-  display: flex;
+	display: flex;
+	position: fixed;
+	bottom: 0;
 	width: 100%;
 	min-height: 4rem;
   padding: 1rem 2rem;

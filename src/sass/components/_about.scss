@@ -9,11 +9,28 @@
 	text-align: center;
 	width: 50%;
 	margin-right: 0;
-	h1{
-		font-family: 'Rubik Mono One', sans-serif;
-		font-size: 6rem;
-		text-transform: uppercase;
-	}
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	
+}
+
+/* Main element title styles*/
+
+#about-main .main-title{
+	font-family: 'Rubik Mono One', sans-serif;
+	font-size: 6rem;
+	text-transform: uppercase;
+	
+}
+.main-title .line{
+	display: flex;
+}
+.line:first-child{
+	 justify-content: flex-end
+}
+.line .space-wrapper{
+	width: .6em
 }
 
 /* aside right panel with photo inside */
@@ -42,6 +59,7 @@
 		perspective: 40px;
 		transform-style: preserve-3d;
 		
+		
 	}
 	.img-wrapper{
 		cursor: pointer;
@@ -49,8 +67,7 @@
 		overflow: hidden;	
 		width: 100%;
 		height: 100%;
-		//border-radius: .5em;
-		
+		border-radius: 2rem 0 2rem 0;		
 		
 		}
 	.img-wrapper img{
