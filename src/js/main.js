@@ -335,16 +335,20 @@ $(document).ready(function () {
 					$image = $('.img-wrapper'),
 					$letters = $('.letter-wrapper span'),
 					$letterVeils = $('.letter-wrapper .after'),
-					tlAbout = new TimelineMax(),
-					marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
+					tlAbout = new TimelineMax();
+					//marginLeft = viewPortWidth() > 1024 ? '5%' : 0;
 					
 					
 				tlAbout
-					.staggerTo($letterVeils, .25, { x: '-100%' }, .1,'synch')
-					.staggerTo($letters, 2, { opacity: 1 }, .1,'synch')
-					.staggerFromTo($letters.parent(), .5, {x: 20 },{ x: 0 }, .1,'synch')
-					.to($panel, .4, { width: '100%' })
-					.to($panel.parent(), .4, { marginLeft: marginLeft, ease: Power3.easeInOut })
+					.to($letterVeils, .5, { x: '-100%' },'synch')
+					.to($letters, 2, { opacity: 1 }, 'synch')
+					.staggerFrom($letters.parent(), .8, { cycle:{
+						x: function (index) {
+							return index * 10;
+						},
+						ease: Power2.easeIn
+					} },0,'synch')
+					.to($panel, .6, { width: '100%' },'-=1.3')
 					.add(appendImage)
 					.set($image, { opacity: 0.05 })
 					.from($image, 3, { opacity: 0, ease: Power3.easeOut }, 'image+=0.2')

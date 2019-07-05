@@ -1215,23 +1215,17 @@ nav#media-items ul li.codePen {
   align-items: flex-start;
 }
 
-#about-main .main-title {
+#about-main .main-title-wrapper {
   margin-top: 4rem;
   font-family: 'Rubik Mono One',sans-serif;
   font-size: 6vw;
   text-transform: uppercase;
 }
 
-.main-title .line {
+.main-title-wrapper .line {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-}
-
-.line:first-child {
-  -webkit-box-pack: end;
-  -ms-flex-pack: end;
-  justify-content: flex-end;
 }
 
 .line:last-child {
@@ -1273,6 +1267,7 @@ nav#media-items ul li.codePen {
   position: relative;
   width: 40%;
   height: 100%;
+  margin-left: 5%;
 }
 
 .panel-container #about-right-panel {
