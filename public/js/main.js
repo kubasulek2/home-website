@@ -1,3 +1,4 @@
+'use strict';
 /* utility functions */
 
 const isMobileDevice = () => {
@@ -63,7 +64,8 @@ $(document).ready(function () {
 	const $darkerBackground = '#242424',
 	      $baseBackground = '#2d2d2d',
 	      $baseWhite = '#fafafa',
-	      $baseYellow = '#f1bd00';
+	      $baseYellow = '#f1bd00',
+	      $lighterBackground = '#333';
 
 	/* Custom mouse */
 
@@ -269,20 +271,20 @@ $(document).ready(function () {
 				      tlAbout = new TimelineMax();
 
 				const showReadMoreSection = () => {
-					const $readMoreSection = $('.read-more'),
+					const $readMoreSection = $('#read-more'),
 					      tlShowMore = new TimelineMax();
 
-					tlShowMore.to($readMoreButton, 1, { autoAlpha: 0, x: 50, ease: Power1.easeOut });
+					tlShowMore.to($readMoreButton, .5, { autoAlpha: 0, ease: Power1.easeOut }, 'synch').to($readMoreSection, 1, { autoAlpha: 1, ease: Power3.easeIn }, 'synch');
 				};
 
-				tlAbout.to($letterVeilsTop, 2, { x: '-100%' }, 'synch').to($lettersTop, 2, { opacity: 1 }, 'synch').staggerFrom($lettersTop.parent(), .8, {
+				tlAbout.to($row, .6, { width: '95%' }).set([$letterVeilsBottom, $letterVeilsTop], { background: $lighterBackground }).to($letterVeilsTop, .5, { x: '-100%' }, 'synch').to($lettersTop, 2, { opacity: 1 }, 'synch').staggerFrom($lettersTop.parent(), .8, {
 					cycle: {
 						x: function (index) {
 							return (index + 1) * 10 * (index + 1);
 						},
 						ease: Power2.easeIn
 					}
-				}, 0, 'synch').to($letterVeilsBottom, 2, { x: '100%' }, 'synch').to($lettersBottom, 2, { opacity: 1 }, 'synch').staggerFrom($lettersBottom.parent(), .8, {
+				}, 0, 'synch').to($letterVeilsBottom, .5, { x: '100%' }, 'synch').to($lettersBottom, 2, { opacity: 1 }, 'synch').staggerFrom($lettersBottom.parent(), .8, {
 					cycle: {
 						x: function (index) {
 							return ($lettersBottom.length - index) * -10 * ($lettersBottom.length - index);
@@ -292,7 +294,7 @@ $(document).ready(function () {
 				}, 0, 'synch').set('.copy span', { opacity: 1 }, '-=1.2').add(() => {
 					//call this when browser support css clip path and not mobile
 					if (Modernizr.cssclippathpolygon && !isMobileDevice()) titleClipping();
-				}).to($row, .6, { width: '95%' }, '-=1.3').add(appendImage).set($image, { opacity: 0.05 }).from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image').from($image, 1, { x: '-50%', ease: Power1.easeOut }, 'image').fromTo($readMoreButton, 1, { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: Bounce.easeOut }, 'image+=.3').add(() => {
+				}).add(appendImage, '-=1.2').set($image, { opacity: 0.05 }, '-=1.2').from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image-=1.2').from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2').fromTo($readMoreButton, 1, { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: Bounce.easeOut }, 'image+=.3').add(() => {
 					$readMoreButton.one('click', showReadMoreSection);
 				}).addCallback(() => {
 
@@ -319,6 +321,7 @@ $(document).ready(function () {
 					'--maskY': `${offsetY}%`
 				});
 			};
+
 			$titleWrapper.mousemove(mouseMoveHandler);
 			$titleWrapper.mouseleave(() => {
 				$titleClip.css({
