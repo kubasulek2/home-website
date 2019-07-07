@@ -651,6 +651,7 @@ body,
 html {
   width: 100%;
   height: 100%;
+  font-family: "Open sans",sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
@@ -933,14 +934,12 @@ footer {
   -ms-flex-align: end;
   align-items: flex-end;
   font-size: 4em;
-  font-family: Questrial,sans-serif;
 }
 
 small {
   word-spacing: .4em;
   text-transform: capitalize;
   font-size: .8rem;
-  font-family: Lato;
   color: #b1b1b1;
 }
 
@@ -1235,6 +1234,7 @@ nav#media-items ul li.codePen {
   margin-top: 4rem;
   font-family: "Archivo Black",sans-serif;
   font-size: 6vw;
+  letter-spacing: .3rem;
   text-transform: uppercase;
 }
 
@@ -1302,7 +1302,6 @@ nav#media-items ul li.codePen {
 
 .show-more {
   margin: 2rem 0 0 8rem;
-  font-family: Questrial;
   -ms-flex-item-align: center;
   align-self: center;
   color: #b1b1b1;
@@ -1316,12 +1315,9 @@ nav#media-items ul li.codePen {
 
 #read-more {
   text-align: right;
-  padding-top: 1rem;
   font-size: 1rem;
   color: #ededed;
-  font-family: Questrial;
-  -webkit-transition: .5s width ease-in-out;
-  transition: .5s width ease-in-out;
+  font-weight: 300;
   -webkit-perspective: 200px;
   perspective: 200px;
 }
@@ -1333,17 +1329,13 @@ nav#media-items ul li.codePen {
   text-align: right;
   letter-spacing: .1rem;
   word-spacing: .2rem;
-  margin-top: .8rem;
+  margin-top: 1rem;
 }
 
+#mail-adress,
 #my-name {
   color: #f1bd00;
   font-weight: 600;
-}
-
-#mail-adress {
-  color: #fafafa;
-  font-size: 1.1em;
 }
 
 .panel-container {

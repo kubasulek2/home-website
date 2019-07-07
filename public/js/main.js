@@ -287,9 +287,9 @@ $(document).ready(function () {
 				}, 0, 'synch').set('.copy span', { opacity: 1 }, '-=1.2').add(() => {
 					//call this when browser support css clip path and not mobile
 					if (Modernizr.cssclippathpolygon && !isMobileDevice()) titleClipping();
-				}).add(appendImage, '-=1.2').set($image, { opacity: 0.05 }, '-=1.2').from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image-=1.2').from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2').fromTo($readMoreButton, 1, { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: Bounce.easeOut }, 'image-=.3').add(() => {
+				}).add(appendImage, '-=1.2').set($image, { opacity: 0.05 }, '-=1.2').from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image-=1.2').from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2').fromTo($readMoreButton, .7, { opacity: 0, y: 150 }, { opacity: 1, y: 0, ease: Power3.easeOut }, 'image-=.3').addCallback(() => {
 					$readMoreButton.one('click', showReadMoreSection);
-				}).addCallback(() => {
+				}, '-=0.4').addCallback(() => {
 
 					// call this function only if  not on mobile and with 3d support
 					if (Modernizr.preserve3d && Modernizr.csstransforms3d && !isMobileDevice()) mouseOver3dEffect();
@@ -306,12 +306,12 @@ $(document).ready(function () {
 			      $readMoreButton = $('.show-more'),
 			      $lineWrapper = $('.line-wrapper');
 
-			tlShowMore.to($readMoreButton, .5, { autoAlpha: 0, ease: Power3.easeIn });
+			tlShowMore.to($readMoreButton, .5, { x: 200, autoAlpha: 0, ease: Power2.easeIn }, 'synch');
 
-			if (Modernizr.csstransforms3d && isMobileDevice()) {
+			if (Modernizr.csstransforms3d && !isMobileDevice()) {
 
-				tlShowMore.staggerTo($lineWrapper, .7, { opacity: 1, ease: Power3.easeIn }, .2, 'synch').staggerFrom($lineWrapper, 1.2, { z: -250, ease: Power2.easeOut }, .2, 'synch');
-			} else tlShowMore.fromTo($lineWrapper, 1, { y: 200 }, { y: 0, opacity: 1, ease: Power2.easeOut });
+				tlShowMore.staggerTo($lineWrapper, 1.2, { opacity: 1, ease: Power3.easeIn }, .1, 'synch+=.3').staggerFrom($lineWrapper, 1.2, { y: 400, z: -200, ease: Power2.easeOut }, .1, 'synch+=.3');
+			} else tlShowMore.fromTo($lineWrapper, .6, { y: 300 }, { y: 0, opacity: 1, ease: Power2.easeOut }, 'synch+=.3');
 		};
 
 		/* title css clip-path on mouse over */

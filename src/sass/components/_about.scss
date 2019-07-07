@@ -28,7 +28,8 @@
   position: relative;
   margin-top: 4rem;
   font-family: "Archivo Black", sans-serif;
-  font-size: 6vw;
+	font-size: 6vw;
+	letter-spacing: .3rem;
   text-transform: uppercase;
 }
 .main-title-wrapper .line {
@@ -87,7 +88,6 @@
 
 .show-more{
 	margin: 2rem 0 0 8rem;
-	font-family: 'Questrial';
 	align-self: center;
 	color: $darker-white;
 	font-size: 1rem;
@@ -103,11 +103,11 @@
 
 #read-more{
 	text-align: right;
-	padding-top: 1rem;
 	font-size: 1rem;
 	color: darken($base-white, 5%);
-	font-family: 'Questrial';
-	transition: .5s width ease-in-out;
+	font-weight: 300;
+	
+
 	perspective: 200px;
 	
 	.line-wrapper{
@@ -117,18 +117,15 @@
 		text-align: right;
 		letter-spacing: .1rem;
 		word-spacing: .2rem;
-		margin-top: .8rem;
+		margin-top: 1rem;
 	
 	}
 
 }
-#my-name{
+#my-name,
+#mail-adress{
 	color: $base-yellow;
 	font-weight: 600
-}
-#mail-adress{
-	color: $base-white;
-	font-size: 1.1em;
 }
 
 /* aside right panel with photo inside */
