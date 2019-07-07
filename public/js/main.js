@@ -270,25 +270,6 @@ $(document).ready(function () {
 				      $readMoreButton = $('.show-more'),
 				      tlAbout = new TimelineMax();
 
-				/* const calculateReadMoreWidth = () => {
-    	const 
-    		$readMoreSection = $('#read-more'),
-    		$titleSection = $('.main-title-wrapper');
-    	
-    	$readMoreSection.css(
-    		'width',
-    		$titleSection.width() + 'px'
-    	);
-    };	 */
-
-				const showReadMoreSection = () => {
-					const $readMoreSection = $('#read-more'),
-					      $titleSection = $('.main-title-wrapper'),
-					      tlShowMore = new TimelineMax();
-
-					tlShowMore.to($readMoreButton, .5, { autoAlpha: 0, ease: Power1.easeOut }, 'synch').to($readMoreSection, 1, { autoAlpha: 1, ease: Power3.easeIn }, 'synch');
-				};
-
 				tlAbout.to($row, .6, { width: '95%' }).set([$letterVeilsBottom, $letterVeilsTop], { background: $lighterBackground }).to($letterVeilsTop, .5, { x: '-100%' }, 'synch').to($lettersTop, 2, { opacity: 1 }, 'synch').staggerFrom($lettersTop.parent(), .8, {
 					cycle: {
 						x: function (index) {
@@ -317,6 +298,24 @@ $(document).ready(function () {
 				if (!Modernizr.cssclippathpolygon) $('.glitch').hide();
 			} else setTimeout(showAbout, 200);
 		};
+
+		/* #read-more section animation on .show-more button click */
+
+		const showReadMoreSection = () => {
+			const tlShowMore = new TimelineMax(),
+			      $readMoreSection = $('#read-more'),
+			      $readMoreButton = $('.show-more');
+
+			tlShowMore.to($readMoreButton, .5, { autoAlpha: 0, ease: Power1.easeOut }, 'synch').to($readMoreSection, 1.5, { autoAlpha: 1, ease: Power3.easeIn }, 'synch');
+
+			if (Modernizr.csstransforms3d) {
+				tlShowMore.fromTo(elem, 1, { vars });
+			} else {
+				null;
+			}
+		};
+
+		/* title css clip-path on mouse over */
 
 		const titleClipping = () => {
 			const $titleWrapper = $('.main-title-wrapper'),
@@ -392,10 +391,9 @@ $(document).ready(function () {
 
 			/* Reset rotation */
 
-			const onMouseLeaveHandler = () => {
-
-				TweenMax.to(inner, .5, { rotationX: 0, rotationY: 0 });
-			};
+			/* const onMouseLeaveHandler = () => {
+   		TweenMax.to(inner, .5, { rotationX: 0, rotationY: 0 });
+   }; */
 
 			/* Update rotation every once a while on mousemove */
 
@@ -431,7 +429,7 @@ $(document).ready(function () {
 			/* Event Listeners */
 
 			outer.on('mouseenter', onMouseEnterHandler);
-			outer.on('mouseleave', onMouseLeaveHandler);
+			//outer.on('mouseleave', onMouseLeaveHandler);
 			outer.on('mousemove', onMouseMoveHandler);
 		};
 

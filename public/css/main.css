@@ -1301,6 +1301,7 @@ nav#media-items ul li.codePen {
 }
 
 .show-more {
+  margin: 2rem 0 0 8rem;
   font-family: Questrial;
   -ms-flex-item-align: center;
   align-self: center;
@@ -1322,6 +1323,8 @@ nav#media-items ul li.codePen {
   opacity: 0;
   -webkit-transition: .5s width ease-in-out;
   transition: .5s width ease-in-out;
+  -webkit-perspective: 200px;
+  perspective: 200px;
 }
 
 #read-more .line-wrapper {
@@ -1378,7 +1381,6 @@ nav#media-items ul li.codePen {
 .panel-container .img-wrapper-outer {
   width: auto;
   height: 80%;
-  margin-right: -10%;
   -webkit-perspective: 40px;
   perspective: 40px;
   -webkit-transform-style: preserve-3d;
