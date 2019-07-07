@@ -287,7 +287,7 @@ $(document).ready(function () {
 				}, 0, 'synch').set('.copy span', { opacity: 1 }, '-=1.2').add(() => {
 					//call this when browser support css clip path and not mobile
 					if (Modernizr.cssclippathpolygon && !isMobileDevice()) titleClipping();
-				}).add(appendImage, '-=1.2').set($image, { opacity: 0.05 }, '-=1.2').from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image-=1.2').from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2').fromTo($readMoreButton, 1, { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: Bounce.easeOut }, 'image+=.3').add(() => {
+				}).add(appendImage, '-=1.2').set($image, { opacity: 0.05 }, '-=1.2').from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image-=1.2').from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2').fromTo($readMoreButton, 1, { opacity: 0, y: 50 }, { opacity: 1, y: 0, ease: Bounce.easeOut }, 'image-=.3').add(() => {
 					$readMoreButton.one('click', showReadMoreSection);
 				}).addCallback(() => {
 
@@ -306,8 +306,12 @@ $(document).ready(function () {
 			      $readMoreButton = $('.show-more'),
 			      $lineWrapper = $('.line-wrapper');
 
-			tlShowMore.to($readMoreButton, .5, { autoAlpha: 0, ease: Power1.easeOut }, 'synch').staggerTo($lineWrapper, .7, { opacity: 1 }, .2, 'synch').staggerFrom($lineWrapper, .7, { x: -100, y: 50, z: -200, ease: Back.easeOut }, .2, 'synch');
-			if (Modernizr.csstransforms3d) null;
+			tlShowMore.to($readMoreButton, .5, { autoAlpha: 0, ease: Power3.easeIn });
+
+			if (Modernizr.csstransforms3d && isMobileDevice()) {
+
+				tlShowMore.staggerTo($lineWrapper, .7, { opacity: 1, ease: Power3.easeIn }, .2, 'synch').staggerFrom($lineWrapper, 1.2, { z: -250, ease: Power2.easeOut }, .2, 'synch');
+			} else tlShowMore.fromTo($lineWrapper, 1, { y: 200 }, { y: 0, opacity: 1, ease: Power2.easeOut });
 		};
 
 		/* title css clip-path on mouse over */
