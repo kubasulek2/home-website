@@ -303,16 +303,11 @@ $(document).ready(function () {
 
 		const showReadMoreSection = () => {
 			const tlShowMore = new TimelineMax(),
-			      $readMoreSection = $('#read-more'),
-			      $readMoreButton = $('.show-more');
+			      $readMoreButton = $('.show-more'),
+			      $lineWrapper = $('.line-wrapper');
 
-			tlShowMore.to($readMoreButton, .5, { autoAlpha: 0, ease: Power1.easeOut }, 'synch').to($readMoreSection, 1.5, { autoAlpha: 1, ease: Power3.easeIn }, 'synch');
-
-			if (Modernizr.csstransforms3d) {
-				tlShowMore.fromTo(elem, 1, { vars });
-			} else {
-				null;
-			}
+			tlShowMore.to($readMoreButton, .5, { autoAlpha: 0, ease: Power1.easeOut }, 'synch').staggerTo($lineWrapper, .7, { opacity: 1 }, .2, 'synch').staggerFrom($lineWrapper, .7, { x: -100, y: 50, z: -200, ease: Back.easeOut }, .2, 'synch');
+			if (Modernizr.csstransforms3d) null;
 		};
 
 		/* title css clip-path on mouse over */
