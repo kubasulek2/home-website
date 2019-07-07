@@ -270,8 +270,20 @@ $(document).ready(function () {
 				      $readMoreButton = $('.show-more'),
 				      tlAbout = new TimelineMax();
 
+				/* const calculateReadMoreWidth = () => {
+    	const 
+    		$readMoreSection = $('#read-more'),
+    		$titleSection = $('.main-title-wrapper');
+    	
+    	$readMoreSection.css(
+    		'width',
+    		$titleSection.width() + 'px'
+    	);
+    };	 */
+
 				const showReadMoreSection = () => {
 					const $readMoreSection = $('#read-more'),
+					      $titleSection = $('.main-title-wrapper'),
 					      tlShowMore = new TimelineMax();
 
 					tlShowMore.to($readMoreButton, .5, { autoAlpha: 0, ease: Power1.easeOut }, 'synch').to($readMoreSection, 1, { autoAlpha: 1, ease: Power3.easeIn }, 'synch');
