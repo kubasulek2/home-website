@@ -1,6 +1,6 @@
 .row {
-  height: calc(100% - 10rem);
-  width: 100%;
+	min-height: calc(100vh - 10rem);
+  width: 0;
   display: flex;
   flex-direction: column;
   background: $lighter-background;
@@ -99,7 +99,7 @@
 
 #read-more {
   text-align: right;
-  font-size: 1rem;
+  font-size: .8rem;
   color: darken($base-white, 5%);
   font-weight: 300;
 
@@ -125,24 +125,23 @@
 
 .panel-container {
   position: relative;
-  width: 40%;
-  height: 100%;
-  //margin-left: 5%;
+	width: 40%;
+	height: 100%;
 
   #about-right-panel {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    
     background: $lighter-background;
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
   .img-wrapper-outer {
-    width: auto;
-    height: 80%;
+    width: 60%;
+    height: auto;
     perspective: 40px;
     transform-style: preserve-3d;
   }
@@ -151,11 +150,10 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    height: 100%;
     border-radius: 2rem 0 2rem 0;
   }
   .img-wrapper img {
-    height: 100%;
+    width: 100%;
     display: block;
   }
   .img-wrapper:after {
@@ -201,15 +199,29 @@
 }
 
 /* responsive styles */
+
 body#about {
-	@media (min-width: 1025px) {
+	@media (min-width: 640px){
+
+	}
+
+	@media (min-width: 1024px) {
 		.row {
       flex-direction: row;
       justify-content: space-between;
     }
 	}
 	
-	@media (min-width: 1201px){
+	@media (min-width: 1200px){
 		
+	}
+	@media (min-width: 1366px){
+
+	}
+
+	@media (min-width: 1501px){
+		#about-main{
+			font-size: 1rem;
+		}
 	}
 }
