@@ -235,7 +235,6 @@ $(document).ready(function () {
 
 	let bgTransitionEnd = false;
 	const bgTransition = () => {
-
 		const columnEven = $('.column:nth-child(even)'),
 		      columnOdd = $('.column:nth-child(odd)'),
 		      columnWrapper = $('.glimpse .column-wrap'),
@@ -244,8 +243,6 @@ $(document).ready(function () {
 
 		tm.set([background, columnWrapper], { background: 'transparent' }).to(columnWrapper, .6, { rotationZ: 0 }, 'synchro').to(columnEven, .6, { width: 0 }, 'synchro').to(columnOdd, .6, { width: '12.5%' }, 'synchro').set(background, { y: '100%', opacity: 0 }).set([background, columnWrapper], { background: $darkerBackground }).add(() => bgTransitionEnd = true);
 	};
-
-	bgTransition();
 
 	/* Set default link behaviour */
 
@@ -261,7 +258,7 @@ $(document).ready(function () {
 
 			if (bgTransitionEnd) {
 
-				const $row = $('#about .row'),
+				const $row = $('#about .row-bg'),
 				      $image = $('.img-wrapper'),
 				      $lettersTop = $('.main-title:not(.copy)>.line.top span'),
 				      $letterVeilsTop = $('.main-title:not(.copy)>.top .after'),
@@ -270,7 +267,9 @@ $(document).ready(function () {
 				      $readMoreButton = $('.show-more'),
 				      tlAbout = new TimelineMax();
 
-				tlAbout.to($row, .6, { width: '95%' }).set([$letterVeilsBottom, $letterVeilsTop], { background: $lighterBackground }).to($letterVeilsTop, .5, { x: '-100%' }, 'synch').to($lettersTop, 2, { opacity: 1 }, 'synch').staggerFrom($lettersTop.parent(), .8, {
+				if (viewPortWidth() >= 1024) tlAbout.to($row, .6, { width: '100%' });
+
+				tlAbout.set([$letterVeilsBottom, $letterVeilsTop], { background: $lighterBackground }).to($letterVeilsTop, .5, { x: '-100%' }, 'synch').to($lettersTop, 2, { opacity: 1 }, 'synch').staggerFrom($lettersTop.parent(), .8, {
 					cycle: {
 						x: function (index) {
 							return (index + 1) * 10 * (index + 1);
@@ -287,9 +286,7 @@ $(document).ready(function () {
 				}, 0, 'synch').set('.copy span', { opacity: 1 }, '-=1.2').add(() => {
 					//call this when browser support css clip path and not mobile
 					if (Modernizr.cssclippathpolygon && !isMobileDevice()) titleClipping();
-				})
-				//.add(appendImage, '-=1.2')
-				.set($image, { opacity: 0.05 }, '-=1.2').from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image-=1.2').from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2').fromTo($readMoreButton, .7, { opacity: 0, y: 150 }, { opacity: 1, y: 0, ease: Power3.easeOut }, 'image-=.3').addCallback(() => {
+				}).to($image, 1, { opacity: 1, ease: Power2.easeIn }, 'image-=1.2').from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2').fromTo($readMoreButton, .7, { opacity: 0, y: 150 }, { opacity: 1, y: 0, ease: Power3.easeOut }, 'image-=.3').addCallback(() => {
 					$readMoreButton.one('click', showReadMoreSection);
 				}, '-=0.4').addCallback(() => {
 
@@ -341,16 +338,6 @@ $(document).ready(function () {
 					'--maskY': 0
 				});
 			});
-		};
-
-		/* load right image version after is loaded */
-
-		const appendImage = () => {
-
-			const imageUrl = viewPortWidth() > 1024 ? 'about.jpg' : 'about-mobile.jpg';
-			const image = new Image();
-			image.src = '../images/' + imageUrl; // ./images/ if open from public html
-			image.onload = () => $('.img-wrapper').append(image);
 		};
 
 		/* 3d rotation of image on mouse over */
@@ -435,7 +422,8 @@ $(document).ready(function () {
 		};
 
 		/* Init functions */
-		appendImage();
+
+		bgTransition();
 		showAbout();
 	}
 });

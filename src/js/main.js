@@ -299,7 +299,6 @@ $(document).ready(function () {
 
 	let bgTransitionEnd = false;
 	const bgTransition = () => {
-
 		const
 			columnEven = $('.column:nth-child(even)'),
 			columnOdd = $('.column:nth-child(odd)'),
@@ -317,7 +316,7 @@ $(document).ready(function () {
 			.add(() => bgTransitionEnd = true);
 	};
 
-	bgTransition();
+	
 
 
 	/* Set default link behaviour */
@@ -336,7 +335,7 @@ $(document).ready(function () {
 			if (bgTransitionEnd) {
 
 				const
-					$row = $('#about .row'),
+					$row = $('#about .row-bg'),
 					$image = $('.img-wrapper'),
 					$lettersTop = $('.main-title:not(.copy)>.line.top span'),
 					$letterVeilsTop = $('.main-title:not(.copy)>.top .after'),
@@ -345,8 +344,9 @@ $(document).ready(function () {
 					$readMoreButton = $('.show-more'),
 					tlAbout = new TimelineMax();
 
+				if (viewPortWidth() >= 1024)  tlAbout.to($row, .6, { width: '100%' });
+				
 				tlAbout
-					.to($row, .6, { width: '95%' })
 					.set([$letterVeilsBottom, $letterVeilsTop], { background: $lighterBackground })
 					.to($letterVeilsTop, .5, { x: '-100%' }, 'synch')
 					.to($lettersTop, 2, { opacity: 1 }, 'synch')
@@ -373,9 +373,7 @@ $(document).ready(function () {
 						//call this when browser support css clip path and not mobile
 						if (Modernizr.cssclippathpolygon && !isMobileDevice()) titleClipping();
 					})
-					//.add(appendImage, '-=1.2')
-					.set($image, { opacity: 0.05 }, '-=1.2')
-					.from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image-=1.2')
+					.to($image, 1, { opacity: 1, ease: Power2.easeIn }, 'image-=1.2')
 					.from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2')
 					.fromTo($readMoreButton, .7, { opacity: 0, y: 150 }, { opacity: 1, y: 0, ease: Power3.easeOut }, 'image-=.3')
 					.addCallback(() => {
@@ -441,17 +439,7 @@ $(document).ready(function () {
 			});
 		};
 
-		/* load right image version after is loaded */
-
-		const appendImage = () => {
-
-			const imageUrl = viewPortWidth() > 1024 ? 'about.jpg' : 'about-mobile.jpg';
-			const image = new Image();
-			image.src = '../images/' + imageUrl; // ./images/ if open from public html
-			image.onload = () => $('.img-wrapper').append(image);
-
-		};
-
+		
 		/* 3d rotation of image on mouse over */
 
 		const mouseOver3dEffect = () => {
@@ -539,7 +527,8 @@ $(document).ready(function () {
 		};
 
 		/* Init functions */
-		appendImage();
+		
+		bgTransition();
 		showAbout();
 	}
 

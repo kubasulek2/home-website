@@ -1,16 +1,24 @@
 .row {
+	position: relative;
 	min-height: calc(100vh - 10rem);
-  width: 0;
+  width: 100%;
   display: flex;
   flex-direction: column;
-  background: $lighter-background;
+}
+.row-bg{
+	background: $lighter-background;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
 }
 /* Main element style */
 #about-main {
   text-align: center;
   width: 100%;
   margin-right: 0;
-  display: flex;
+	display: flex;
 }
 
 /* Main element title styles*/
@@ -26,7 +34,7 @@
   position: relative;
   margin-top: 4rem;
   font-family: "Archivo Black", sans-serif;
-  font-size: 6vw;
+  font-size: 12vw;
   letter-spacing: 0.3rem;
   text-transform: uppercase;
 }
@@ -110,9 +118,10 @@
     position: relative;
     text-align: right;
     letter-spacing: 0.1rem;
-    word-spacing: 0.2rem;
-		margin-top: 1rem;
-		max-height: 2rem;
+		word-spacing: 0.2rem;
+		line-height: 1.2rem;
+		margin-top: 1.2rem;
+		max-height: 3rem;
 		overflow: hidden; 
   }
 }
@@ -130,7 +139,6 @@
   #about-right-panel {
     width: 100%;
 		min-height: 100%;
-    background: $lighter-background;
     display: flex;
     justify-content: center;
   }
@@ -146,11 +154,15 @@
     position: relative;
     overflow: hidden;
     width: 100%;
-    border-radius: 2rem 0 2rem 0;
+		border-radius: 2rem 0 2rem 0;
+		opacity: 0;
   }
   .img-wrapper img {
-    width: 100%;
-    display: block;
+		width: 100%;
+		display: none;
+		&.mobile{
+			display: block;
+		}
   }
   .img-wrapper:after {
     content: "";
@@ -160,16 +172,16 @@
     height: 100%;
     opacity: 0.3;
     top: 0;
-    left: 0;
-    background: url("../../images/about.jpg") center/cover;
-    animation: glitch-effect 1.2s steps(10, end) infinite alternate;
+    left: 3px;
+		background: url("../../images/about.jpg") center/cover;
+    //animation: glitch-effect 1.2s steps(10, end) infinite alternate;
   }
   .glitch {
     position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
-    left: 0;
+		left: 0;
   }
   .glitch:before,
   .glitch:after {
@@ -203,20 +215,33 @@ body#about {
 
 	@media (min-width: 1024px) {
 		.row {
+			width: 95%;
       flex-direction: row;
       justify-content: space-between;
 		}
+		.row-bg{
+			width: 0;
+		}
 		#about-main{
 			width: 55%;
-			align-items: flex-end;
+			align-items: flex-start;
 
+		}
+		#about-main .main-title-wrapper {
+			font-size: 6vh;
 		}
 		#about-right-panel {
 			width: 45%;
 			justify-content: flex-end;
 		}
 		.img-wrapper-outer{
-			width: 100%;
+			width: 60%;
+		}
+		.img-wrapper img {
+			display: block;
+			&.mobile{
+				display: none;
+			}
 		}
 	}
 	
