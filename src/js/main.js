@@ -331,7 +331,6 @@ $(document).ready(function () {
 		/* about.html main function */
 
 		const showAbout = () => {
-
 			if (bgTransitionEnd) {
 
 				const
@@ -529,6 +528,7 @@ $(document).ready(function () {
 		/* Init functions */
 		
 		bgTransition();
+		
 		showAbout();
 	}
 

@@ -255,7 +255,6 @@ $(document).ready(function () {
 		/* about.html main function */
 
 		const showAbout = () => {
-
 			if (bgTransitionEnd) {
 
 				const $row = $('#about .row-bg'),
@@ -424,6 +423,7 @@ $(document).ready(function () {
 		/* Init functions */
 
 		bgTransition();
+
 		showAbout();
 	}
 });

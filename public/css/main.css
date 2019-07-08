@@ -607,8 +607,6 @@ html {
 
 body,
 html {
-  min-height: 100vh;
-  width: 100%;
   font-family: "Open sans",sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -620,18 +618,7 @@ body::-webkit-scrollbar {
 }
 
 body {
-  position: relative;
   background: #2d2d2d;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  -webkit-box-align: center;
-  -ms-flex-align: center;
-  align-items: center;
   color: #fafafa;
 }
 
@@ -719,10 +706,8 @@ ul {
 .glimpse {
   z-index: 5;
   position: fixed;
-  min-width: 100vw;
-  min-height: 100vh;
-  max-width: 100%;
-  max-height: 100%;
+  width: 100vw;
+  height: 100vh;
   left: 0;
   top: 0;
   background: #242424;
@@ -892,11 +877,11 @@ footer {
   -ms-flex-align: end;
   align-items: flex-end;
   position: relative;
+  bottom: 0;
   font-size: 4em;
 }
 
 small {
-  position: relative;
   word-spacing: .4em;
   text-transform: capitalize;
   font-size: .8rem;
@@ -908,8 +893,6 @@ small #copyright {
 }
 
 footer #menu-media {
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
   width: 4rem;
   height: 4rem;
   border-radius: 50%;
@@ -987,6 +970,13 @@ svg#media-circle {
   stroke-dashoffset: 247;
 }
 
+nav#media-items {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+}
+
 nav#media-items ul {
   position: absolute;
   font-size: 1rem;
@@ -1005,7 +995,7 @@ nav#media-items ul li {
   line-height: 1rem;
   -webkit-transform-origin: 100% 50%;
   transform-origin: 100% 50%;
-  opacity: 0;
+  opacity: 1;
 }
 
 nav#media-items ul li a {
@@ -1023,16 +1013,6 @@ nav#media-items ul li.gitHub {
 nav#media-items ul li.codePen {
   -webkit-transform: rotate(-60deg);
   transform: rotate(-60deg);
-}
-
-@media (min-width:1024) {
-  header #logo-nav {
-    position: fixed;
-  }
-
-  header #menu-main {
-    position: fixed;
-  }
 }
 
 .glimpse .loader {
@@ -1163,15 +1143,9 @@ nav#media-items ul li.codePen {
 
 .row {
   position: relative;
+  margin: 0 auto;
   min-height: calc(100vh - 10rem);
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
 }
 
 .row-bg {
@@ -1410,13 +1384,13 @@ nav#media-items ul li.codePen {
 @media (min-width:1024px) {
   body#about .row {
     width: 95%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
     -webkit-box-orient: horizontal;
     -webkit-box-direction: normal;
     -ms-flex-direction: row;
     flex-direction: row;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
   }
 
   body#about .row-bg {
