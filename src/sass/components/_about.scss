@@ -101,8 +101,7 @@
   text-align: right;
   font-size: .8rem;
   color: darken($base-white, 5%);
-  font-weight: 300;
-
+	font-weight: 300;
   perspective: 200px;
 
   .line-wrapper {
@@ -112,7 +111,9 @@
     text-align: right;
     letter-spacing: 0.1rem;
     word-spacing: 0.2rem;
-    margin-top: 1rem;
+		margin-top: 1rem;
+		max-height: 2rem;
+		overflow: hidden; 
   }
 }
 #my-name,
@@ -127,15 +128,15 @@
 	
 
   #about-right-panel {
-    width: 40%;
+    width: 45%;
 		min-height: 100%;
     background: $lighter-background;
     display: flex;
     justify-content: flex-end;
-    align-items: center;
   }
   .img-wrapper-outer {
-    width: 70%;
+		margin-top: 4rem;
+    width: 60%;
     height: auto;
     perspective: 40px;
     transform-style: preserve-3d;
