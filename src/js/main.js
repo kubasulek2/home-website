@@ -251,9 +251,9 @@ $(document).ready(function () {
 			.to(mediaMenuBars.find('.before'), .4, { rotation: -50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow')
 			.to(mediaMenuBars.find('.after'), .4, { rotation: 50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow')
 			.to(mediaItems,.4, { opacity: 1, }, 'items+=.3')
-			.to(barWrapper, .8, { rotation: 60, ease: Power0.easeNone }, 'items+=.3')
-			.to(mediaItems[0], .8,{ rotation: 60, ease: Power0.easeNone }, 'items+=.3')
-			.to(mediaItems[1], .8,{ rotation: 30, ease: Power0.easeNone }, 'items+=.3');
+			.to(barWrapper, .5, { rotation: 60, ease: Power0.easeNone }, 'items+=.3')
+			.to(mediaItems[0], .5,{ rotation: 60, ease: Power0.easeNone }, 'items+=.3')
+			.to(mediaItems[1], .5,{ rotation: 30, ease: Power0.easeNone }, 'items+=.3');
 
 
 

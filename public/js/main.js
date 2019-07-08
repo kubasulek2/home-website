@@ -196,7 +196,7 @@ $(document).ready(function () {
 
 		const tlMediaMenu = new TimelineMax({ paused: true });
 
-		tlMediaMenu.set(mediaMenuIcon, { borderStyle: 'none' }).to(mediaMenuBars, .2, { left: '50%', width: '50%', ease: Power1.easeOut }).to(mediaMenuIconPath, .4, { strokeDashoffset: 0, ease: Power1.easeOut }, 'arrow').to(mediaMenuBars.find('.before'), .4, { rotation: -50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow').to(mediaMenuBars.find('.after'), .4, { rotation: 50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow').to(mediaItems, .4, { opacity: 1 }, 'items+=.3').to(barWrapper, .8, { rotation: 60, ease: Power0.easeNone }, 'items+=.3').to(mediaItems[0], .8, { rotation: 60, ease: Power0.easeNone }, 'items+=.3').to(mediaItems[1], .8, { rotation: 30, ease: Power0.easeNone }, 'items+=.3');
+		tlMediaMenu.set(mediaMenuIcon, { borderStyle: 'none' }).to(mediaMenuBars, .2, { left: '50%', width: '50%', ease: Power1.easeOut }).to(mediaMenuIconPath, .4, { strokeDashoffset: 0, ease: Power1.easeOut }, 'arrow').to(mediaMenuBars.find('.before'), .4, { rotation: -50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow').to(mediaMenuBars.find('.after'), .4, { rotation: 50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow').to(mediaItems, .4, { opacity: 1 }, 'items+=.3').to(barWrapper, .5, { rotation: 60, ease: Power0.easeNone }, 'items+=.3').to(mediaItems[0], .5, { rotation: 60, ease: Power0.easeNone }, 'items+=.3').to(mediaItems[1], .5, { rotation: 30, ease: Power0.easeNone }, 'items+=.3');
 
 		return tlMediaMenu;
 	})();
