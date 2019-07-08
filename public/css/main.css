@@ -1337,17 +1337,9 @@ nav#media-items ul li.codePen {
   font-weight: 600;
 }
 
-.panel-container {
-  position: relative;
+#about-right-panel {
   width: 40%;
-  height: 100%;
-}
-
-.panel-container #about-right-panel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  min-height: 100%;
   background: #333;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -1360,8 +1352,8 @@ nav#media-items ul li.codePen {
   align-items: center;
 }
 
-.panel-container .img-wrapper-outer {
-  width: 60%;
+.img-wrapper-outer {
+  width: 70%;
   height: auto;
   -webkit-perspective: 40px;
   perspective: 40px;
@@ -1369,7 +1361,7 @@ nav#media-items ul li.codePen {
   transform-style: preserve-3d;
 }
 
-.panel-container .img-wrapper {
+.img-wrapper {
   cursor: pointer;
   position: relative;
   overflow: hidden;
@@ -1377,12 +1369,12 @@ nav#media-items ul li.codePen {
   border-radius: 2rem 0 2rem 0;
 }
 
-.panel-container .img-wrapper img {
+.img-wrapper img {
   width: 100%;
   display: block;
 }
 
-.panel-container .img-wrapper:after {
+.img-wrapper:after {
   content: "";
   display: block;
   position: absolute;
@@ -1396,7 +1388,7 @@ nav#media-items ul li.codePen {
   animation: glitch-effect 1.2s steps(10,end) infinite alternate;
 }
 
-.panel-container .glitch {
+.glitch {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -1404,8 +1396,8 @@ nav#media-items ul li.codePen {
   left: 0;
 }
 
-.panel-container .glitch:after,
-.panel-container .glitch:before {
+.glitch:after,
+.glitch:before {
   content: "";
   display: block;
   position: absolute;
@@ -1417,7 +1409,7 @@ nav#media-items ul li.codePen {
   background: url(../images/about.jpg) center/contain;
 }
 
-.panel-container .glitch:after {
+.glitch:after {
   left: 8px;
   -webkit-clip-path: polygon(0 9%,100% 16%,100% 22%,0 9%);
   clip-path: polygon(0 9%,100% 16%,100% 22%,0 9%);
@@ -1425,7 +1417,7 @@ nav#media-items ul li.codePen {
   animation: glitch-effect-2 2s infinite linear;
 }
 
-.panel-container .glitch:before {
+.glitch:before {
   left: 4px;
   -webkit-animation: glitch-effect-2 3s infinite linear;
   animation: glitch-effect-2 3s infinite linear;

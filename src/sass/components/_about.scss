@@ -123,24 +123,19 @@
 
 /* aside right panel with photo inside */
 
-.panel-container {
-  position: relative;
-	width: 40%;
-	height: 100%;
+
+	
 
   #about-right-panel {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    
+    width: 40%;
+		min-height: 100%;
     background: $lighter-background;
     display: flex;
     justify-content: flex-end;
     align-items: center;
   }
   .img-wrapper-outer {
-    width: 60%;
+    width: 70%;
     height: auto;
     perspective: 40px;
     transform-style: preserve-3d;
@@ -196,7 +191,7 @@
     left: 4px;
     animation: glitch-effect-2 3s infinite linear;
   }
-}
+
 
 /* responsive styles */
 
