@@ -287,7 +287,9 @@ $(document).ready(function () {
 				}, 0, 'synch').set('.copy span', { opacity: 1 }, '-=1.2').add(() => {
 					//call this when browser support css clip path and not mobile
 					if (Modernizr.cssclippathpolygon && !isMobileDevice()) titleClipping();
-				}).add(appendImage, '-=1.2').set($image, { opacity: 0.05 }, '-=1.2').from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image-=1.2').from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2').fromTo($readMoreButton, .7, { opacity: 0, y: 150 }, { opacity: 1, y: 0, ease: Power3.easeOut }, 'image-=.3').addCallback(() => {
+				})
+				//.add(appendImage, '-=1.2')
+				.set($image, { opacity: 0.05 }, '-=1.2').from($image, 3, { opacity: 0, ease: Power2.easeIn }, 'image-=1.2').from($image, 1, { x: '-100%', ease: Power1.easeOut }, 'image-=1.2').fromTo($readMoreButton, .7, { opacity: 0, y: 150 }, { opacity: 1, y: 0, ease: Power3.easeOut }, 'image-=.3').addCallback(() => {
 					$readMoreButton.one('click', showReadMoreSection);
 				}, '-=0.4').addCallback(() => {
 
@@ -433,6 +435,7 @@ $(document).ready(function () {
 		};
 
 		/* Init functions */
+		appendImage();
 		showAbout();
 	}
 });
