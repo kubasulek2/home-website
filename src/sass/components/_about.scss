@@ -120,7 +120,7 @@
     letter-spacing: 0.1rem;
 		word-spacing: 0.2rem;
 		line-height: 2.6rem;
-		//margin-top: 1.2re85m;
+		//margin-top: 1.2rem;
 		//max-height: 3rem;
 		overflow: hidden; 
   }
@@ -239,9 +239,10 @@ body#about {
 		#about-main .main-content-wrapper {
 			width: 85%;
 			justify-content: flex-start;
+			align-items: flex-end
 		}
 		#about-main .main-title-wrapper {
-			font-size: 6vh;
+			font-size: 8vh;
 		}
 		.main-title.line{
 			justify-content: initial;
@@ -256,9 +257,10 @@ body#about {
 			width: 100%;
 		}
 
-		.line-wrapper{ 
+		#read-more .line-wrapper{ 
 			text-align: right;
-			line-height: 1.5rem
+			margin-right: 0.2rem;
+
 		}
 		#about-right-panel {
 			width: 45%;
@@ -288,6 +290,9 @@ body#about {
 	}
 
 	@media (min-width: 1501px){
+		#about-main .main-title-wrapper {
+			font-size: 12vh;
+		}
 		#about-main{
 			font-size: 1rem;
 		}
