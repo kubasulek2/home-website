@@ -616,6 +616,7 @@ html {
 body {
   background: #2d2d2d;
   color: #fafafa;
+  width: 100%;
 }
 
 a {
@@ -1032,7 +1033,6 @@ nav#media-items ul li a {
 
 #logo-top {
   width: 100%;
-  margin-left: 20%;
   font-family: "Rubik Mono One",sans-serif;
 }
 
