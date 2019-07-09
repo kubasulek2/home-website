@@ -40,9 +40,9 @@ body {
 	text-rendering: optimizeLegibility;
 	
 }
-/* body::-webkit-scrollbar { 
+body::-webkit-scrollbar { 
 	display: none; 
-} */
+}
 body {
   background: $base-background;
 	color: $base-white;

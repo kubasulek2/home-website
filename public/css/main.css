@@ -613,6 +613,10 @@ html {
   text-rendering: optimizeLegibility;
 }
 
+body::-webkit-scrollbar {
+  display: none;
+}
+
 body {
   background: #2d2d2d;
   color: #fafafa;
@@ -1428,14 +1432,14 @@ nav#media-items ul li a {
   }
 
   body#about #about-main {
-    width: 65%;
+    width: 70%;
     -webkit-box-align: start;
     -ms-flex-align: start;
     align-items: flex-start;
   }
 
   body#about #about-main .main-content-wrapper {
-    width: 85%;
+    width: 90%;
     -webkit-box-pack: start;
     -ms-flex-pack: start;
     justify-content: flex-start;
@@ -1445,7 +1449,7 @@ nav#media-items ul li a {
   }
 
   body#about #about-main .main-title-wrapper {
-    font-size: 8vh;
+    font-size: 10vh;
   }
 
   body#about .main-title.line {
@@ -1466,6 +1470,7 @@ nav#media-items ul li a {
 
   body#about #read-more {
     width: 100%;
+    font-size: .75rem;
   }
 
   body#about #read-more .line-wrapper {
@@ -1474,14 +1479,14 @@ nav#media-items ul li a {
   }
 
   body#about #about-right-panel {
-    width: 35%;
+    width: 30%;
     -webkit-box-pack: end;
     -ms-flex-pack: end;
     justify-content: flex-end;
   }
 
   body#about .img-wrapper-outer {
-    width: 80%;
+    width: 90%;
   }
 
   body#about .img-wrapper {
@@ -1497,19 +1502,43 @@ nav#media-items ul li a {
   }
 }
 
+@media (min-width:1120px) and (orientation:landscape) {
+  body#about #about-main {
+    width: 65%;
+  }
+
+  body#about #about-right-panel {
+    width: 35%;
+  }
+}
+
 @media (min-width:1200px) {
   body#about #about-main .main-title-wrapper {
     font-size: 10vh;
+  }
+
+  body#about #read-more {
+    font-size: .8rem;
+  }
+}
+
+@media (min-width:1366px) {
+  body#about #about-main .main-content-wrapper {
+    width: 85%;
+  }
+
+  body#about #about-main .main-title-wrapper {
+    font-size: 12vh;
+  }
+
+  body#about .img-wrapper-outer {
+    width: 80%;
   }
 }
 
 @media (min-width:1501px) {
   body#about #about-main {
     width: 55%;
-  }
-
-  body#about #about-main .main-title-wrapper {
-    font-size: 12vh;
   }
 
   body#about #about-main {

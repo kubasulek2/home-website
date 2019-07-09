@@ -238,17 +238,17 @@ body#about {
 			width: 0;
 		}
 		#about-main{
-			width: 65%;
+			width: 70%;
 			align-items: flex-start;
 
 		}
 		#about-main .main-content-wrapper {
-			width: 85%;
+			width: 90%;
 			justify-content: flex-start;
 			align-items: flex-end
 		}
 		#about-main .main-title-wrapper {
-			font-size: 8vh;
+			font-size: 10vh;
 		}
 		.main-title.line{
 			justify-content: initial;
@@ -261,6 +261,7 @@ body#about {
 
 		#read-more{
 			width: 100%;
+			font-size: .75rem;
 		}
 
 		#read-more .line-wrapper{ 
@@ -269,11 +270,11 @@ body#about {
 
 		}
 		#about-right-panel {
-			width: 35%;
+			width: 30%;
 			justify-content: flex-end;
 		}
 		.img-wrapper-outer{
-			width: 80%;
+			width: 90%;
 		}
 		.img-wrapper {
 			border-radius: 2rem 0 2rem 0;
@@ -285,14 +286,37 @@ body#about {
 			}
 		}
 	}
+	@media 
+	(min-width: 1120px) and( orientation:landscape){
+		#about-main{
+			width: 65%;
+		}
+		#about-right-panel {
+			width: 35%;
+		}
+	}
+
 	
 	@media (min-width: 1200px){
+		
 		#about-main .main-title-wrapper {
 			font-size: 10vh;
 		}
+		#read-more{
+			font-size: .8rem;
+		}
+
 	}
 	@media (min-width: 1366px){
-
+		#about-main .main-content-wrapper {
+			width: 85%
+		}
+		#about-main .main-title-wrapper {
+			font-size: 12vh;
+		}
+		.img-wrapper-outer{
+			width: 80%;
+		}
 	}
 
 	@media (min-width: 1501px){
@@ -300,9 +324,7 @@ body#about {
 		#about-main{
 			width: 55%;
 		}
-		#about-main .main-title-wrapper {
-			font-size: 12vh;
-		}
+	
 		#about-main{
 			font-size: 1rem;
 		}
