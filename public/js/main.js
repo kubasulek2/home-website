@@ -266,7 +266,7 @@ $(document).ready(function () {
 				      $readMoreButton = $('.show-more'),
 				      tlAbout = new TimelineMax();
 
-				if (viewPortWidth() >= 1024) tlAbout.to($row, .6, { width: '100%' });
+				viewPortWidth() >= 1024 ? tlAbout.to($row, .6, { width: '100%' }) : tlAbout.set($row, { width: '100%' });
 
 				tlAbout.set([$letterVeilsBottom, $letterVeilsTop], { background: $lighterBackground }).to($letterVeilsTop, .5, { x: '-100%' }, 'synch').to($lettersTop, 2, { opacity: 1 }, 'synch').staggerFrom($lettersTop.parent(), .8, {
 					cycle: {
@@ -304,7 +304,7 @@ $(document).ready(function () {
 			      $readMoreButton = $('.show-more'),
 			      $lineWrapper = $('.line-wrapper');
 
-			tlShowMore.to($readMoreButton, .5, { x: 200, autoAlpha: 0, ease: Power2.easeIn }, 'synch');
+			tlShowMore.to($readMoreButton, .5, { x: 200, autoAlpha: 0, ease: Power2.easeIn }, 'synch').set($readMoreButton, { display: 'none' });
 
 			if (Modernizr.csstransforms3d && !isMobileDevice()) {
 
