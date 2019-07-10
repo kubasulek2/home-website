@@ -735,7 +735,7 @@ ul {
   height: 100vh;
   left: 0;
   top: 0;
-  background: #242424;
+  background: #222;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -757,7 +757,7 @@ ul {
   display: flex;
   -webkit-transform: rotateZ(25deg);
   transform: rotateZ(25deg);
-  background: #242424;
+  background: #222;
 }
 
 @media (orientation:portrait) {
@@ -771,7 +771,7 @@ ul {
   width: 12.5%;
   height: 100%;
   overflow: hidden;
-  background: #242424;
+  background: #222;
 }
 
 .glimpse .column-wrap .column:nth-child(odd) {
@@ -884,7 +884,7 @@ header #menu-main:hover {
   border-radius: 50%;
   top: -50%;
   right: -50%;
-  background: #242424;
+  background: #222;
   z-index: -1;
 }
 
@@ -1101,7 +1101,7 @@ nav#media-items ul li a {
 #logo-top g#svg-text-bg rect {
   width: 100%;
   height: 100%;
-  fill: #242424;
+  fill: #222;
 }
 
 #logo-top g#svg-animation {
@@ -1583,6 +1583,63 @@ nav#media-items ul li a {
   body#about .img-wrapper-outer {
     width: 60%;
   }
+}
+
+#skills-content {
+  position: relative;
+  margin: 0 auto;
+  min-height: calc(100vh - 10rem);
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.swiper-container {
+  width: 100vw;
+  height: 100vw;
+  overflow: hidden;
+}
+
+.swiper-wrapper {
+  width: 90%;
+  height: 90%;
+}
+
+.swiper-slide {
+  font-size: 2rem;
+  font-family: Archivo,sans-serif;
+  background: #222;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#skills-content .swiper-button-next,
+#skills-content .swiper-button-prev,
+#skills-content .swiper-container-rtl #skills-content .swiper-button-prev,
+#skills-content .swiper-container-rtl .swiper-button-next {
+  background-image: none;
+}
+
+#skills-content .swiper-button-next,
+#skills-content .swiper-button-prev,
+#skills-content .swiper-container-rtl .swiper-button-next,
+#skills-content .swiper-container-rtl .swiper-button-prev {
+  fill: #f1bd00;
+  width: 1.5rem;
 }
 
 

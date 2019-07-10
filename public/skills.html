@@ -8,14 +8,15 @@
 	<title> | SKILLS</title> 
 	<link rel="icon" href="images/logo.png">
 	<link rel="stylesheet" href="css/main.css">
-	<link href="https://fonts.googleapis.com/css?family=Lato|Roboto&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+	<script src="https://kit.fontawesome.com/1d926b9546.js"></script>
 	<script src="js/vendor/modernizr.js"></script>
 </head>
 <body id="skills">
-		<div id="cursor">
-				<div class="vertical"></div>
-				<div class="horizontal"></div>
-			</div>
+	<div id="cursor">
+		<div class="vertical"></div>
+		<div class="horizontal"></div>
+	</div>
   <div class="glimpse">
 		<div class="column-wrap">
 				<div class="column"></div>
@@ -36,36 +37,70 @@
 				<div class="column"></div>
 			</div>
 	</div>
-	<header>
+	<header> <span class="not-visible">.</span> <!-- for some reasons empty header doesnt take height -->
 			<div class="menu-container">
 					<div class="menu-bg">
 					</div>
 					<nav aria-label="site">
 							<ul>
-								<li data-interactive><a href="about.html">about</a></li>
-								<li data-interactive class="active"><a href="skills.html">skills</a></li>
+								<li data-interactive class="active"><a href="about.html">about</a></li>
+								<li data-interactive><a href="skills.html">skills</a></li>
 								<li data-interactive><a href="projects.html">projects</a></li>
 							</ul>
 						</nav>
 				</div>
-		<div data-interactive id="logo-nav"><a href="index.html">KS</a></div>
+		<div id="logo-nav"><a data-interactive href="index.html">KS</a></div>
 		<div data-interactive id="menu-main" aria-label="nav-icon">
 			<div class="bar"></div>
 			<div class="bar"></div>
 			<div class="bar"></div>
 		</div>
 	</header>
-	<main>
-		<h1></h1>
+	<main id="skills-content">
+	 <div class="swiper-container">
+		 <div class="swiper-wrapper">
+			 <div class="swiper-slide slide-1"><i class="fab fa-js-square"></i></div>
+			 <div class="swiper-slide slide-2"><i class="fab fa-css3-alt"></i></div>
+			 <div class="swiper-slide slide-3"><i class="fab fa-html5"></i></div>
+			 <div class="swiper-slide slide-4"><i class="fab fa-react"></i></div>
+			 <div class="swiper-slide slide-5"><i class="fab fa-node"></i></div>
+			 <div class="swiper-slide slide-6"><i class="fas fa-tools"></i></div>
+			 <div class="swiper-slide slide-7"><i class="fas fa-server"></i></div>
+			</div>
+	 </div>
+	 <div class="swiper-button-prev">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44"><path d="M0,22L22,0l2.1,2.1L4.2,22l19.9,19.9L22,44L0,22L0,22L0,22z"></svg>
+	 </div>	
+	 <div class="swiper-button-next">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 27 44"><path d="M27,22L27,22L5,44l-2.1-2.1L22.8,22L2.9,2.1L5,0L27,22L27,22z"></svg>
+	</div>
 	</main>
-	<aside>
-	</aside>
 	<footer>
-		<small></small>
-		<div id="menu-media"></div>
+		<small><span id="copyright">&copy;</span> 2019 kuba sulkowski</small>
+		<div data-interactive id="menu-media">
+			<nav id="media-items" aria-label="links">
+					<ul>
+						<li class="linkedIn"><a target="_blank" href="https://www.linkedin.com/in/kubasulkowski">linkedIN</a></li>
+						<li class="gitHub"><a target="_blank" href="https://github.com/kubasulek2">gitHub</a></li>
+						<li class="codePen"><a target="_blank" href="https://codepen.io/kubasulek2/">codePen</a></li>
+					</ul>
+			</nav>
+			<div class="bar-wrapper">
+				<div class="bar">
+					<div class="before"></div>
+					<div class="after"></div>
+				</div>
+				<div class="bar"></div>
+				<div class="bar"></div>
+			</div>
+			<svg id='media-circle' viewBox="0 0 80 80">
+				<circle transform="rotate(180 40 40)" cx="40" cy="40" r="39" />
+			</svg>
+		</div>		
 	</footer>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js"></script>
-	<script src="js/main.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" defer></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.2/TweenMax.min.js" defer></script>
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js' defer></script>
+	<script src="js/main.js" defer></script>
 </body>
 </html>

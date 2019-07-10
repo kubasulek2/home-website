@@ -1,0 +1,44 @@
+/* Main Element */
+
+#skills-content{
+	position: relative;
+	margin: 0 auto;
+	min-height: calc(100vh - 10rem);
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center
+}
+.swiper-container{
+	width: 100vw;
+	height: 100vw;
+	overflow: hidden;
+}
+.swiper-wrapper{
+	width: 90%;
+	height: 90%;
+}
+
+ .swiper-slide{
+	font-size: 2rem;
+	font-family: 'Archivo', sans-serif;
+	background: $darker-background;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+/* override swiper default button colors */
+#skills-content .swiper-button-next,
+#skills-content .swiper-container-rtl #skills-content .swiper-button-prev,
+#skills-content .swiper-button-prev, 
+#skills-content .swiper-container-rtl .swiper-button-next{
+    background-image: none;
+}
+
+#skills-content .swiper-button-next,
+#skills-content .swiper-button-prev, 
+#skills-content .swiper-container-rtl .swiper-button-prev,
+#skills-content .swiper-container-rtl .swiper-button-next{
+		fill: $base-yellow;
+		width: 1.5rem
+}

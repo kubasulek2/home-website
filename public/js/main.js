@@ -243,8 +243,6 @@ $(document).ready(function () {
 		tm.set([background, columnWrapper], { background: 'transparent' }).to(columnWrapper, .6, { rotationZ: 0 }, 'synchro').to(columnEven, .6, { width: 0 }, 'synchro').to(columnOdd, .6, { width: '12.5%' }, 'synchro').set(background, { y: '100%', opacity: 0 }).set([background, columnWrapper], { background: $darkerBackground }).add(() => bgTransitionEnd = true);
 	};
 
-	bgTransition();
-
 	/* Set default link behaviour */
 
 	$('a:not([target])').on('click', redirect);
@@ -426,6 +424,16 @@ $(document).ready(function () {
 
 		showAbout();
 	}
+	if ($('body#skills').length) {
+
+		const swiper = new Swiper('.swiper-container', {
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev'
+			}
+		});
+	}
 	/* init common functions */
+	bgTransition();
 });
 //# sourceMappingURL=main.js.map
