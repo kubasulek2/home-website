@@ -410,6 +410,30 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Open Sans';
+  src: url(../font/OpenSans-Light.eot);
+  src: url(../font/OpenSans-Light.eot) format("embedded-opentype"),url(../font/OpenSans-Light.woff2) format("woff2"),url(../font/OpenSans-Light.woff) format("woff"),url(../font/OpenSans-Light.ttf) format("truetype"),url(../font/OpenSans-Light.svg) format("svg");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: url(../font/OpenSans-Regular.eot);
+  src: url(../font/OpenSans-Regular.eot) format("embedded-opentype"),url(../font/OpenSans-Regular.woff2) format("woff2"),url(../font/OpenSans-Regular.woff) format("woff"),url(../font/OpenSans-Regular.ttf) format("truetype"),url(../font/OpenSans-Regular.svg) format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: Archivo;
+  src: url(../font/ArchivoBlack-Regular.eot);
+  src: url(../font/ArchivoBlack-Regular.eot) format("embedded-opentype"),url(../font/ArchivoBlack-Regular.woff2) format("woff2"),url(../font/ArchivoBlack-Regular.woff) format("woff"),url(../font/ArchivoBlack-Regular.ttf) format("truetype"),url(../font/ArchivoBlack-Regular.svg) format("svg");
+  font-weight: 900;
+  font-style: normal;
+}
+
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -1206,7 +1230,7 @@ nav#media-items ul li a {
   position: relative;
   margin-top: 4rem;
   margin-bottom: 2rem;
-  font-family: "Archivo Black",sans-serif;
+  font-family: Archivo,sans-serif;
   font-size: 13vw;
   letter-spacing: .3rem;
   text-transform: uppercase;

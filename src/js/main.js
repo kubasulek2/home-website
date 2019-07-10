@@ -314,7 +314,8 @@ $(document).ready(function () {
 			.set([background, columnWrapper], { background: $darkerBackground })
 			.add(() => bgTransitionEnd = true);
 	};
-
+	
+	bgTransition();
 	
 
 
@@ -526,14 +527,11 @@ $(document).ready(function () {
 			outer.on('mousemove', onMouseMoveHandler);
 		};
 
-		/* Init functions */
-		
-		bgTransition();
+		/* Init about functions */
 		
 		showAbout();
 	}
-
-
-
+	/* init common functions */
+	
 });
 
