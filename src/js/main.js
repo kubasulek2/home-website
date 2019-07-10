@@ -239,7 +239,6 @@ $(document).ready(function () {
 			mediaMenuBars = $('#menu-media .bar'),
 			barWrapper = $('#menu-media .bar-wrapper'),
 			mediaMenuIconPath = $('#media-circle circle'),
-			mediaItemsWrap = $('#media-items ul'),
 			mediaItems = $('#media-items li');
 
 		const tlMediaMenu = new TimelineMax({ paused: true });
@@ -481,10 +480,10 @@ $(document).ready(function () {
 
 			/* Reset rotation */
 
-			/* const onMouseLeaveHandler = () => {
+			const onMouseLeaveHandler = () => {
 
 				TweenMax.to(inner, .5, { rotationX: 0, rotationY: 0 });
-			}; */
+			};
 
 			/* Update rotation every once a while on mousemove */
 
@@ -523,7 +522,7 @@ $(document).ready(function () {
 			/* Event Listeners */
 
 			outer.on('mouseenter', onMouseEnterHandler);
-			//outer.on('mouseleave', onMouseLeaveHandler);
+			outer.on('mouseleave', onMouseLeaveHandler);
 			outer.on('mousemove', onMouseMoveHandler);
 		};
 

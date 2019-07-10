@@ -1415,6 +1415,13 @@ nav#media-items ul li a {
   }
 }
 
+@media (min-width:768px) and (max-width:1024px) and (orientation:portrait) {
+  body#about #read-more,
+  body#about .show-more {
+    font-size: 1.5rem;
+  }
+}
+
 @media (min-width:1024px) and (orientation:landscape),(min-width:1199px) {
   body#about .row {
     width: 95%;
