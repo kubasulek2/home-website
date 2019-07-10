@@ -1585,17 +1585,6 @@ nav#media-items ul li a {
   }
 }
 
-h1#skills-title {
-  margin: 3rem auto 2rem;
-  font-family: 'Rubik Mono One';
-  line-height: 100%;
-  font-size: 1.5rem;
-  text-transform: capitalize;
-  color: #fafafa;
-  display: block;
-  text-align: center;
-}
-
 #skills-content {
   position: relative;
   margin: 0 auto 3rem;
@@ -1614,6 +1603,16 @@ h1#skills-title {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+h1#skills-title {
+  margin: 2rem auto;
+  font-family: 'Rubik Mono One';
+  line-height: 100%;
+  font-size: 1.7rem;
+  color: #fafafa;
+  display: block;
+  text-align: center;
 }
 
 .swiper-outer-wrapper {
@@ -1675,6 +1674,12 @@ h1#skills-title {
 #skills .icon-caption {
   text-transform: uppercase;
   margin-top: .2rem;
+}
+
+@media (min-width:360px) {
+  h1#skills-title {
+    font-size: 2.5rem;
+  }
 }
 
 @media (min-width:500px) and (orientation:landscape) {
