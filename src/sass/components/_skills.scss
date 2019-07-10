@@ -4,12 +4,12 @@
 
 #skills-content{
 	position: relative;
-	margin: 0 auto;
-	min-height: calc(100vh - 10rem);
+	margin: 0 auto 3rem; //to change
+	min-height: calc(100vh - 13rem);
 	width: 100%;
 	display: flex;
 	justify-content: center;
-	align-items: center
+	align-items: center //to change
 }
 
 /* swiper gallery for mobile */
@@ -18,10 +18,6 @@
 	height: 100vw;
 	overflow: hidden;
 	z-index: 1;
-}
-.swiper-wrapper{
-	width: 90%;
-	height: 90%;
 }
 
  .swiper-slide{
@@ -46,8 +42,8 @@
 #skills-content .swiper-button-prev, 
 #skills-content .swiper-container-rtl .swiper-button-prev,
 #skills-content .swiper-container-rtl .swiper-button-next{
-		fill: $base-yellow;
-		width: 1.5rem
+		fill: $darker-white;
+		width: 7vw;
 }
 
 /* font-awesome icons */
@@ -56,7 +52,7 @@
 	.icon-wrapper{
 		text-align: center;
 		font-size: 1rem;
-		color: $darker-white;
+		color: $base-white;
 	}
 	.fab,
 	.fas{
@@ -64,7 +60,45 @@
 		font-size: 4rem;
 	}
 	.icon-caption{
+		text-transform: uppercase;
 		margin-top: .2rem
 	}
 	
+}
+
+/* responsive styles */
+
+@media (min-width:500px) and (orientation: landscape){
+	#skills .swiper-container{
+		width: 70vw;
+		height: 70vw;
+	}
+	#skills-content .swiper-button-next,
+	#skills-content .swiper-container-rtl .swiper-button-next{
+		margin-right: 6vw;
+		width: 5vw;
+	}
+
+	#skills-content .swiper-button-prev, 
+	#skills-content .swiper-container-rtl .swiper-button-prev{
+		margin-left: 6vw;
+		width: 5vw;
+	}
+}
+@media (min-width:700px) and (orientation: landscape){
+	#skills .swiper-container{
+		width: 60vw;
+		height: 60vw;
+	}
+	#skills-content .swiper-button-next,
+	#skills-content .swiper-container-rtl .swiper-button-next{
+		margin-right: 12vw;
+		width: 4vw;
+	}
+
+	#skills-content .swiper-button-prev, 
+	#skills-content .swiper-container-rtl .swiper-button-prev{
+		margin-left: 12vw;
+		width: 4vw;
+	}
 }
