@@ -1,3 +1,5 @@
+/* Skills.html styles */
+
 /* Main Element */
 
 #skills-content{
@@ -9,10 +11,13 @@
 	justify-content: center;
 	align-items: center
 }
-.swiper-container{
+
+/* swiper gallery for mobile */
+#skills .swiper-container{
 	width: 100vw;
 	height: 100vw;
 	overflow: hidden;
+	z-index: 1;
 }
 .swiper-wrapper{
 	width: 90%;
@@ -26,12 +31,14 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
+	overflow: hidden;
 }
 /* override swiper default button colors */
 #skills-content .swiper-button-next,
 #skills-content .swiper-container-rtl #skills-content .swiper-button-prev,
 #skills-content .swiper-button-prev, 
 #skills-content .swiper-container-rtl .swiper-button-next{
+		z-index: 1;
     background-image: none;
 }
 
@@ -41,4 +48,23 @@
 #skills-content .swiper-container-rtl .swiper-button-next{
 		fill: $base-yellow;
 		width: 1.5rem
+}
+
+/* font-awesome icons */
+
+#skills{
+	.icon-wrapper{
+		text-align: center;
+		font-size: 1rem;
+		color: $darker-white;
+	}
+	.fab,
+	.fas{
+		color: $base-yellow;
+		font-size: 4rem;
+	}
+	.icon-caption{
+		margin-top: .2rem
+	}
+	
 }

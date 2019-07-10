@@ -874,7 +874,7 @@ header #menu-main:hover {
   height: 100vh;
   top: 0;
   right: 0;
-  z-index: 1;
+  z-index: 2;
 }
 
 .menu-bg {
@@ -1601,10 +1601,11 @@ nav#media-items ul li a {
   align-items: center;
 }
 
-.swiper-container {
+#skills .swiper-container {
   width: 100vw;
   height: 100vw;
   overflow: hidden;
+  z-index: 1;
 }
 
 .swiper-wrapper {
@@ -1625,12 +1626,14 @@ nav#media-items ul li a {
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+  overflow: hidden;
 }
 
 #skills-content .swiper-button-next,
 #skills-content .swiper-button-prev,
 #skills-content .swiper-container-rtl #skills-content .swiper-button-prev,
 #skills-content .swiper-container-rtl .swiper-button-next {
+  z-index: 1;
   background-image: none;
 }
 
@@ -1640,6 +1643,22 @@ nav#media-items ul li a {
 #skills-content .swiper-container-rtl .swiper-button-prev {
   fill: #f1bd00;
   width: 1.5rem;
+}
+
+#skills .icon-wrapper {
+  text-align: center;
+  font-size: 1rem;
+  color: #b1b1b1;
+}
+
+#skills .fab,
+#skills .fas {
+  color: #f1bd00;
+  font-size: 4rem;
+}
+
+#skills .icon-caption {
+  margin-top: .2rem;
 }
 
 
