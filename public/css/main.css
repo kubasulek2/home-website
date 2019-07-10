@@ -1585,6 +1585,17 @@ nav#media-items ul li a {
   }
 }
 
+h1#skills-title {
+  margin: 3rem auto 2rem;
+  font-family: 'Rubik Mono One';
+  line-height: 100%;
+  font-size: 1.5rem;
+  text-transform: capitalize;
+  color: #fafafa;
+  display: block;
+  text-align: center;
+}
+
 #skills-content {
   position: relative;
   margin: 0 auto 3rem;
@@ -1593,12 +1604,21 @@ nav#media-items ul li a {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
   -webkit-box-pack: center;
   -ms-flex-pack: center;
   justify-content: center;
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
+}
+
+.swiper-outer-wrapper {
+  position: relative;
+  width: 100vw;
 }
 
 #skills .swiper-container {

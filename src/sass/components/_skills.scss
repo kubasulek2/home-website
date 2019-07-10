@@ -1,6 +1,17 @@
 /* Skills.html styles */
 
 /* Main Element */
+h1#skills-title{
+	margin: 3rem auto 2rem;
+	font-family: 'Rubik Mono One';
+	line-height: 100%;
+	font-size: 1.5rem;
+	text-transform: capitalize;
+	//letter-spacing: .15rem;
+	color: $base-white;
+	display: block;
+	text-align: center;
+}
 
 #skills-content{
 	position: relative;
@@ -8,11 +19,17 @@
 	min-height: calc(100vh - 13rem);
 	width: 100%;
 	display: flex;
-	justify-content: center;
-	align-items: center //to change
+	flex-direction: column;
+	justify-content: center; //to change
+	align-items: center 
 }
 
+
 /* swiper gallery for mobile */
+.swiper-outer-wrapper{
+	position: relative;
+	width: 100vw;
+}
 #skills .swiper-container{
 	width: 100vw;
 	height: 100vw;
