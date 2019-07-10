@@ -1720,5 +1720,9 @@ h1#skills-title {
   }
 }
 
+#projects-content {
+  min-height: calc(100vh - 10rem);
+}
+
 
 /*# sourceMappingURL=main.css.map */
