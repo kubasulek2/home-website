@@ -129,40 +129,50 @@ $base-yellow: #f1bd00;
 	}
 }
 @keyframes fadeNeon {
-	0% , 25%, 71%, 100%{
+	0% , 20%, 91%, 100%{
 		color: $base-white;
 		opacity: 0.8;
 		text-shadow: 2px 2px 1px rgba(0,0,0,0.2)
 	}
-	33%,62%{
-		color: #f5d04c;
+	32%{
+		color: #f6d766;
 		opacity: 0.8;
-		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px #f6d766, 0 0 50px #f2c319;
+		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px $base-yellow, 0 0 50px #f2c319;
 	}
 	
 	36%, 45%, 52% {
-		color: #f5d04c;
+		color: #f6d766;
 		opacity: 0.8;
-		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px #f6d766, 0 0 50px #f2c319;
+		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px $base-yellow, 0 0 50px $base-yellow;
   }
   36.4%, 45.4%, 52.4% {
-		color: #f5d04c;
+		color: #f6d766;
 		opacity: 0.1;
-		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px #f6d766, 0 0 50px #f2c319;
+		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px $base-yellow, 0 0 50px $base-yellow;
   }
   36.5%, 45.5%, 52.5% {
-		color: #f5d04c;
+		color: #f6d766;
 		opacity: 0.8;
-		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px #f6d766, 0 0 50px #f2c319;
+		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px $base-yellow, 0 0 50px $base-yellow;
   }
   36.9%, 45.9%, 52.9% {
-		color: #f5d04c;
+		color: #f6d766;
 		opacity: 0.1;
-		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px #f6d766, 0 0 50px #f2c319;
+		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px $base-yellow, 0 0 50px $base-yellow;
   }
-  37%, 46%, 53% {
-		color: #f5d04c;
+  37%, 46%, 53%, 60% {
+		color: #f6d766;
 		opacity: 0.8;
-		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px #f6d766, 0 0 50px #f2c319;
-  }
+		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px $base-yellow, 0 0 50px $base-yellow;
+	}
+	65%, 65.4%, 70%{
+		color: #f6d766;
+		opacity: 0.7;
+		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px $base-yellow, 0 0 50px $base-yellow;
+	}
+	65.2%{
+		color: #f6d766;
+		opacity: 0.2;
+		text-shadow: 2px 2px 1px rgba(0,0,0,0.2), 0 0px 15px #faebb2, 0 0 10px $base-yellow, 0 0 50px $base-yellow;
+	}
 }

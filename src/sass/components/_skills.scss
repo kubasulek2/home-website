@@ -18,15 +18,14 @@
 
 h1#skills-title{
 	margin: 2rem auto;
-	font-family: 'Archivo';
+	font-family: 'Rubik Mono One';
 	line-height: 100%;
 	text-transform: uppercase;	
 	font-size: 1.7rem;
 	opacity: .8;
 	display: block;
 	text-align: center;
-	
-	animation: fadeNeon 15s infinite alternate;
+	animation: fadeNeon 12s infinite;
 }
 
 
@@ -128,5 +127,108 @@ h1#skills-title{
 	#skills-content .swiper-container-rtl .swiper-button-prev{
 		margin-left: 12vw;
 		width: 4vw;
+	}
+}
+@media (min-width:500px){
+	h1#skills-title{
+		margin: 2rem auto 2rem;
+		font-size: 4rem;
+	}
+}
+
+@media (min-width:768px){
+	#skills .swiper-container{
+		width: 60vw;
+		height: 60vw;
+	}
+	#skills-content .swiper-button-prev, 
+	#skills-content .swiper-container-rtl .swiper-button-prev{
+		margin-left: 12vw;
+		width: 4vw;
+	}
+	#skills-content .swiper-button-next,
+	#skills-content .swiper-container-rtl .swiper-button-next{
+		margin-right: 12vw;
+		width: 4vw;
+	}
+}
+@media (min-width:1024px) and (orientation:landscape),
+(min-width:1025px){
+	#skills .swiper-container{
+		width: 50vw;
+		height: 50vw;
+	}
+	#skills-content .swiper-button-prev, 
+	#skills-content .swiper-container-rtl .swiper-button-prev{
+		margin-left: 19vw;
+		width: 3vw;
+	}
+	#skills-content .swiper-button-next,
+	#skills-content .swiper-container-rtl .swiper-button-next{
+		margin-right: 19vw;
+		width: 3vw;
+	}
+}
+@media (min-width:1200px){
+	#skills .swiper-container{
+		width: 45vw;
+		height: 45vw;
+	}
+	#skills-content .swiper-button-prev, 
+	#skills-content .swiper-container-rtl .swiper-button-prev{
+		margin-left: 23vw;
+		width: 2.5vw;
+	}
+	#skills-content .swiper-button-next,
+	#skills-content .swiper-container-rtl .swiper-button-next{
+		margin-right: 23vw;
+		width: 2.5vw;
+	}
+	#skills{
+			.icon-wrapper{
+			//opacity: .1;
+			text-align: center;
+			font-size: 1.4rem;
+			color: $base-white;
+		}
+		.fab,
+		.fas{
+			color: $base-yellow;
+			font-size: 5rem;
+		}
+	}
+}
+
+@media (min-width:1366px){
+	#skills .swiper-container{
+		width: 40vw;
+		height: 40vw;
+	}
+	#skills-content .swiper-button-prev, 
+	#skills-content .swiper-container-rtl .swiper-button-prev{
+		margin-left: 25vw;
+		width: 2.5vw;
+	}
+	#skills-content .swiper-button-next,
+	#skills-content .swiper-container-rtl .swiper-button-next{
+		margin-right: 25vw;
+		width: 2.5vw;
+	}
+}
+
+@media (min-width:1500px){
+	#skills .swiper-container{
+		width: 32vw;
+		height: 32vw;
+	}
+	#skills-content .swiper-button-prev, 
+	#skills-content .swiper-container-rtl .swiper-button-prev{
+		margin-left: 29.8vw;
+		width: 2.2vw;
+	}
+	#skills-content .swiper-button-next,
+	#skills-content .swiper-container-rtl .swiper-button-next{
+		margin-right: 29.8vw;
+		width: 2.2vw;
 	}
 }
