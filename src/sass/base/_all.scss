@@ -29,7 +29,12 @@ body {
 a {
   color: inherit;
   text-decoration: inherit;
-  cursor: inherit;
+	cursor: inherit;
+	&:active, &:focus {
+		outline: 0;
+		border: none;
+	
+	}
 }
 ul {
   list-style: none;

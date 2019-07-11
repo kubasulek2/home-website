@@ -539,6 +539,7 @@ $(document).ready(function () {
 				prevEl: '.swiper-button-prev',
 			},
 		});	
+				
 	}
 	/* init common functions */
 	bgTransition();
