@@ -394,6 +394,94 @@
   }
 }
 
+@-webkit-keyframes fadeNeon {
+  0%, 100%, 25%, 71% {
+    color: #fafafa;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2);
+  }
+
+  33%, 62% {
+    color: #f5d04c;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  36%, 45%, 52% {
+    color: #f5d04c;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  36.4%, 45.4%, 52.4% {
+    color: #f5d04c;
+    opacity: .1;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  36.5%, 45.5%, 52.5% {
+    color: #f5d04c;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  36.9%, 45.9%, 52.9% {
+    color: #f5d04c;
+    opacity: .1;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  37%, 46%, 53% {
+    color: #f5d04c;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+}
+
+@keyframes fadeNeon {
+  0%, 100%, 25%, 71% {
+    color: #fafafa;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2);
+  }
+
+  33%, 62% {
+    color: #f5d04c;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  36%, 45%, 52% {
+    color: #f5d04c;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  36.4%, 45.4%, 52.4% {
+    color: #f5d04c;
+    opacity: .1;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  36.5%, 45.5%, 52.5% {
+    color: #f5d04c;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  36.9%, 45.9%, 52.9% {
+    color: #f5d04c;
+    opacity: .1;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+
+  37%, 46%, 53% {
+    color: #f5d04c;
+    opacity: .8;
+    text-shadow: 2px 2px 1px rgba(0,0,0,.2),0 0 15px #faebb2,0 0 10px #f6d766,0 0 50px #f2c319;
+  }
+}
+
 @font-face {
   font-family: 'Rubik Mono One';
   src: url(../font/RubikMonoOne-Regular.eot);
@@ -1607,12 +1695,15 @@ nav#media-items ul li a {
 
 h1#skills-title {
   margin: 2rem auto;
-  font-family: 'Rubik Mono One';
+  font-family: Archivo;
   line-height: 100%;
+  text-transform: uppercase;
   font-size: 1.7rem;
-  color: #fafafa;
+  opacity: .8;
   display: block;
   text-align: center;
+  -webkit-animation: fadeNeon 15s infinite alternate;
+  animation: fadeNeon 15s infinite alternate;
 }
 
 .swiper-outer-wrapper {

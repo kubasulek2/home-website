@@ -18,12 +18,15 @@
 
 h1#skills-title{
 	margin: 2rem auto;
-	font-family: 'Rubik Mono One';
+	font-family: 'Archivo';
 	line-height: 100%;
+	text-transform: uppercase;	
 	font-size: 1.7rem;
-	color: $base-white;
+	opacity: .8;
 	display: block;
 	text-align: center;
+	
+	animation: fadeNeon 15s infinite alternate;
 }
 
 
@@ -69,6 +72,7 @@ h1#skills-title{
 
 #skills{
 	.icon-wrapper{
+		//opacity: .1;
 		text-align: center;
 		font-size: 1rem;
 		color: $base-white;
