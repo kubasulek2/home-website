@@ -57,7 +57,7 @@ h1#skills-title{
 #skills-content .swiper-container-rtl #skills-content .swiper-button-prev,
 #skills-content .swiper-button-prev, 
 #skills-content .swiper-container-rtl .swiper-button-next{
-		display: none;
+		//display: none;
 		z-index: 1;
 		background-image: none;
 		&:active, &:focus {
@@ -86,12 +86,14 @@ h1#skills-title{
 		z-index: 0;
 		font-size: 1rem;
 		opacity: .05;
+		filter: grayscale(90%);
 		color: $base-white;
-	}
-	.fab,
-	.fas{
-		color: $base-yellow;
-		font-size: 4rem;
+	
+		.fab,
+		.fas{
+			color: $base-yellow;
+			font-size: 4rem;
+		}
 	}
 	.icon-caption{
 		text-transform: uppercase;
@@ -110,7 +112,8 @@ ul.skill-level{
 	li{
 		margin-top: 1.9rem;
 	}
-	.far{
+	.far,
+	.fas{
 		color: $base-yellow;
 	}
 }
@@ -128,6 +131,20 @@ ul.skill-level{
 		fill: $base-yellow
 	}
 }
+/* placeholder for not learned yet skills */
+
+ul.skill-level li.inProgress{
+	display: flex;
+
+	.loader{
+	width: 1em;
+	height: 1em;
+	border-radius: 50%;
+	background: lighten($base-background, 10%);
+	margin: .2em;
+	opacity: 0.5;
+	}
+}
 /* svg clip path support */
 
 html.svgclippaths{
@@ -137,10 +154,10 @@ html.svgclippaths{
 	}
 	
 	ul.skill-level li.svg-fallback{
-		display: none;
+		display: block;
 	}
 	ul.skill-level li.svg-clipped{
-		display: block;
+		display: none;
 	}
 }
 /* no svg clip path support */
@@ -254,16 +271,16 @@ html.no-svgclippaths{
 	}
 	#skills{
 			.icon-wrapper{
-			//opacity: .1;
 			text-align: center;
 			font-size: 1.4rem;
 			color: $base-white;
-		}
-		.fab,
-		.fas{
-			color: $base-yellow;
-			font-size: 5rem;
-		}
+		
+			.fab,
+			.fas{
+				color: $base-yellow;
+				font-size: 5rem;
+			}
+		}	
 	}
 }
 

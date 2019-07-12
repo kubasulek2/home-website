@@ -1769,7 +1769,6 @@ h1#skills-title {
 #skills-content .swiper-button-prev,
 #skills-content .swiper-container-rtl #skills-content .swiper-button-prev,
 #skills-content .swiper-container-rtl .swiper-button-next {
-  display: none;
   z-index: 1;
   background-image: none;
 }
@@ -1804,11 +1803,13 @@ h1#skills-title {
   z-index: 0;
   font-size: 1rem;
   opacity: .05;
+  -webkit-filter: grayscale(90%);
+  filter: grayscale(90%);
   color: #fafafa;
 }
 
-#skills .fab,
-#skills .fas {
+#skills .icon-wrapper .fab,
+#skills .icon-wrapper .fas {
   color: #f1bd00;
   font-size: 4rem;
 }
@@ -1832,7 +1833,9 @@ ul.techs li {
 }
 
 ul.skill-level .far,
-ul.techs .far {
+ul.skill-level .fas,
+ul.techs .far,
+ul.techs .fas {
   color: #f1bd00;
 }
 
@@ -1851,17 +1854,32 @@ ul.skill-level #stars-background {
   fill: #f1bd00;
 }
 
+ul.skill-level li.inProgress {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+ul.skill-level li.inProgress .loader {
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background: #474747;
+  margin: .2em;
+  opacity: .5;
+}
+
 html.svgclippaths svg.stars-clipped {
   height: 1em;
   width: auto;
 }
 
 html.svgclippaths ul.skill-level li.svg-fallback {
-  display: none;
+  display: block;
 }
 
 html.svgclippaths ul.skill-level li.svg-clipped {
-  display: block;
+  display: none;
 }
 
 html.no-svgclippaths ul.skill-level li.svg-fallback {
@@ -1985,8 +2003,8 @@ html.no-svgclippaths ul.skill-level li.svg-clipped {
     color: #fafafa;
   }
 
-  #skills .fab,
-  #skills .fas {
+  #skills .icon-wrapper .fab,
+  #skills .icon-wrapper .fas {
     color: #f1bd00;
     font-size: 5rem;
   }
