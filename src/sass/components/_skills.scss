@@ -126,9 +126,15 @@ ul.skill-level{
 		height: 100%;;
 	}
 	#stars-background{
-		width: 50%;
+		width: 0;
 		height: 100%;
-		fill: $base-yellow
+		fill: $base-yellow;
+		transition: 2s width;
+	}
+	li.active{
+		#stars-background{
+			width: 80%
+		}
 	}
 }
 /* placeholder for not learned yet skills */
@@ -154,10 +160,10 @@ html.svgclippaths{
 	}
 	
 	ul.skill-level li.svg-fallback{
-		display: block;
+		display: none;
 	}
 	ul.skill-level li.svg-clipped{
-		display: none;
+		display: block;
 	}
 }
 /* no svg clip path support */

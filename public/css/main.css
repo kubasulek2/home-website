@@ -1849,9 +1849,15 @@ ul.skill-level .star {
 }
 
 ul.skill-level #stars-background {
-  width: 50%;
+  width: 0;
   height: 100%;
   fill: #f1bd00;
+  -webkit-transition: 2s width;
+  transition: 2s width;
+}
+
+ul.skill-level li.active #stars-background {
+  width: 80%;
 }
 
 ul.skill-level li.inProgress {
@@ -1875,11 +1881,11 @@ html.svgclippaths svg.stars-clipped {
 }
 
 html.svgclippaths ul.skill-level li.svg-fallback {
-  display: block;
+  display: none;
 }
 
 html.svgclippaths ul.skill-level li.svg-clipped {
-  display: none;
+  display: block;
 }
 
 html.no-svgclippaths ul.skill-level li.svg-fallback {
