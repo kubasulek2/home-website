@@ -48,7 +48,7 @@ h1#skills-title{
 	padding: 1rem;
 	position: relative;
 	display: flex;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 	overflow: hidden;
 }
@@ -117,8 +117,46 @@ ul.skill-level{
 ul.skill-level li{
 	overflow: hidden;
 }
+ul.skill-level{
+	.star{
+		width: 20%;
+		height: 100%;;
+	}
+	#stars-background{
+		width: 50%;
+		height: 100%;
+		fill: $base-yellow
+	}
+}
+/* svg clip path support */
+
+html.svgclippaths{
+	svg.stars-clipped{
+		height: 1em;
+		width: auto;
+	}
+	
+	ul.skill-level li.svg-fallback{
+		display: none;
+	}
+	ul.skill-level li.svg-clipped{
+		display: block;
+	}
+}
+/* no svg clip path support */
+
+html.no-svgclippaths{
+	
+	ul.skill-level li.svg-fallback{
+		display: block;
+	}
+	ul.skill-level li.svg-clipped{
+		display: none;
+	}
+}
 
 /* responsive styles */
+
 @media (min-width:360px){
 	h1#skills-title{
 		font-size: 2.5rem

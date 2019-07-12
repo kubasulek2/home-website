@@ -13,7 +13,11 @@
 	<script src="https://kit.fontawesome.com/1d926b9546.js"></script>
 	<script src="js/vendor/modernizr.js"></script>
 </head>
-
+<svg style="display: none" >
+	<defs>
+			<path stroke='#f1bd00' stroke-width="14" fill="none" id="ratingStar" d="M50,152 C50,152 45,152 45,147 L57,100.5 L27,65 C23,61 27,58 30,58 L75,52 L95,10 C98,5 102,5 105,10 L125,52 L170,58 C174,58 177,61 173,65 L143,100.5 L155,147 C155,152 150,152 150,152 L100,135Z"/>
+		</defs>
+</svg>
 <body id="skills">
 	<div id="cursor">
 		<div class="vertical"></div>
@@ -76,40 +80,140 @@
 							<li>ajax:</li>
 						</ul>
 						<ul class="skill-level">
-							<li>
+							<li class="svg-fallback">
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 							</li>
-							<li>
+							<li class="svg-fallback">
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 							</li>
-							<li>
+							<li class="svg-fallback">
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 							</li>
-							<li>
+							<li class="svg-fallback">
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 							</li>
-							<li>
+							<li class="svg-fallback">
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
 								<i class="far fa-star"></i>
+							</li>
+							<li class="svg-clipped">
+								<svg class="stars-clipped" 
+		viewBox="0 0 1000 160">
+									<defs>
+										<clipPath id="stars">
+												<use xlink:href="#ratingStar" width='200' height='160' x="0" y="0" />
+												<use xlink:href="#ratingStar" width='200' height='160' x="200" y="0" />
+												<use xlink:href="#ratingStar" width='200' height='160' x="400" y="0" />
+												<use xlink:href="#ratingStar" width='200' height='160' x="600" y="0" />
+												<use xlink:href="#ratingStar" width='200' height='160' x="800" y="0" />
+										</clipPath>
+									</defs>
+									<use class="star" xlink:href="#ratingStar" x="0" y="0"  />
+									<use class="star" xlink:href="#ratingStar" x="20%" y="0"  />
+									<use class="star" xlink:href="#ratingStar" x="40%" y="0"  />
+									<use class="star" xlink:href="#ratingStar" x="60%" y="0"  />
+									<use class="star" xlink:href="#ratingStar" x="80%" y="0"  />
+									<rect id="stars-background" x="0" y="3" clip-path="url(#stars)"/>
+ 								</svg>
+							</li>
+							<li class="svg-clipped">
+								<svg class="stars-clipped" 
+		viewBox="0 0 1000 160">
+									<defs>
+										<clipPath id="stars">
+												<use xlink:href="#ratingStar" width='200' height='160' x="0" y="0" />
+												<use xlink:href="#ratingStar" width='200' height='160' x="200" y="0" />
+												<use xlink:href="#ratingStar" width='200' height='160' x="400" y="0" />
+												<use xlink:href="#ratingStar" width='200' height='160' x="600" y="0" />
+												<use xlink:href="#ratingStar" width='200' height='160' x="800" y="0" />
+										</clipPath>
+									</defs>
+									<use class="star" xlink:href="#ratingStar" x="0" y="0"  />
+									<use class="star" xlink:href="#ratingStar" x="20%" y="0"  />
+									<use class="star" xlink:href="#ratingStar" x="40%" y="0"  />
+									<use class="star" xlink:href="#ratingStar" x="60%" y="0"  />
+									<use class="star" xlink:href="#ratingStar" x="80%" y="0"  />
+									<rect id="stars-background" x="0" y="3" clip-path="url(#stars)"/>
+ 								</svg>
+							</li>
+							<li class="svg-clipped">
+								<svg class="stars-clipped" 
+		viewBox="0 0 1000 160">
+		<defs>
+			 <clipPath id="stars">
+					 <use xlink:href="#ratingStar" width='200' height='160' x="0" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="200" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="400" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="600" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="800" y="0" />
+			 </clipPath>
+		</defs>
+		<use class="star" xlink:href="#ratingStar" x="0" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="20%" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="40%" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="60%" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="80%" y="0"  />
+		<rect id="stars-background" x="0" y="3" clip-path="url(#stars)"/>
+ 								</svg>
+							</li>
+							<li class="svg-clipped">
+								<svg class="stars-clipped" 
+		viewBox="0 0 1000 160">
+		<defs>
+			 <clipPath id="stars">
+					 <use xlink:href="#ratingStar" width='200' height='160' x="0" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="200" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="400" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="600" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="800" y="0" />
+			 </clipPath>
+		</defs>
+		<use class="star" xlink:href="#ratingStar" x="0" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="20%" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="40%" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="60%" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="80%" y="0"  />
+		<rect id="stars-background" x="0" y="3" clip-path="url(#stars)"/>
+ 								</svg>
+							</li>
+							<li class="svg-clipped">
+								<svg class="stars-clipped" 
+		viewBox="0 0 1000 160">
+		<defs>
+			 <clipPath id="stars">
+					 <use xlink:href="#ratingStar" width='200' height='160' x="0" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="200" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="400" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="600" y="0" />
+					 <use xlink:href="#ratingStar" width='200' height='160' x="800" y="0" />
+			 </clipPath>
+		</defs>
+		<use class="star" xlink:href="#ratingStar" x="0" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="20%" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="40%" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="60%" y="0"  />
+		<use class="star" xlink:href="#ratingStar" x="80%" y="0"  />
+		<rect id="stars-background" x="0" y="3" clip-path="url(#stars)"/>
+ 								</svg>
 							</li>
 						</ul>
 					</div>
@@ -162,6 +266,7 @@
 				</svg>
 			</div>
 		</div>
+		
 	</main>
 	<footer>
 		<small><span id="copyright">&copy;</span> 2019 kuba sulkowski</small>
