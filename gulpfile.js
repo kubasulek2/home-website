@@ -6,7 +6,6 @@ const
 	cssmin = require('gulp-cssmin'),
 	sourcemaps = require('gulp-sourcemaps'),
 	gulpResolveUrl = require('gulp-resolve-url');
-browserify = require('gulp-browserify');
 
 gulp.task( 'styles', function () {
 	return gulp
