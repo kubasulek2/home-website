@@ -25,5 +25,11 @@ $(() => {
 			console.log(this);
 		});
 	}
+
+	/* reload page on matchmedia to change site logic */
+
+	mqMobile.addListener(() => {
+		window.location.reload();
+	});
 });
 //# sourceMappingURL=skills.js.map
