@@ -92,8 +92,8 @@ h1#skills-title{
 		text-align: center;
 		z-index: 0;
 		font-size: 1rem;
-		//opacity: 1;
-		//filter: grayscale(90%);
+		opacity: .05;
+		filter: grayscale(90%);
 		color: $base-white;
 	
 		.fab,
@@ -113,7 +113,7 @@ h1#skills-title{
 
 ul.techs,
 ul.skill-level{
-	display: none;
+	//display: none;
 	color: $darker-white;
 	text-transform: uppercase;
 	font-family: 'Archivo',sans-serif;
@@ -284,13 +284,15 @@ html.no-svgclippaths{
 			color: $base-yellow;
 			font-size: 6rem;
 		}
+	}
+	ul.techs,
+	ul.skill-level{
+		font-size: 1.5rem;
 	}	
 }
 }
 @media (min-width:1200px){
-	h1#skills-title{
-		margin-bottom: 4rem;
-	}
+
 	#skills .swiper-container{
 		width: 45vw;
 		height: 45vw;

@@ -25,11 +25,11 @@ $(() => {
 		$('.swiper-slide').click(function () {
 			console.log(this);
 		})
+
+		/* If in 3d mode reload page on matchmedia to change on flat */
+
+		mqMobile.addListener(() => {
+			window.location.reload();
+		})
 	}
-
-	/* reload page on matchmedia to change site logic */
-
-	mqMobile.addListener(() => {
-		window.location.reload();
-	})
 });
