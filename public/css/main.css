@@ -1751,7 +1751,7 @@ h1#skills-title {
 .swiper-slide {
   font-size: 2rem;
   font-family: Archivo,sans-serif;
-  background: #222;
+  background: url(../images/slide.jpg) center center/cover no-repeat #222;
   padding: 1rem;
   position: relative;
   display: -webkit-box;
@@ -1802,9 +1802,6 @@ h1#skills-title {
   text-align: center;
   z-index: 0;
   font-size: 1rem;
-  opacity: 1;
-  -webkit-filter: grayscale(90%);
-  filter: grayscale(90%);
   color: #fafafa;
 }
 
@@ -1821,6 +1818,7 @@ h1#skills-title {
 
 ul.skill-level,
 ul.techs {
+  display: none;
   color: #b1b1b1;
   text-transform: uppercase;
   font-family: Archivo,sans-serif;
@@ -1908,6 +1906,10 @@ html.no-svgclippaths ul.skill-level li.svg-clipped {
     height: 70vw;
   }
 
+  #skills .swiper-slide {
+    border-radius: 1.2rem;
+  }
+
   #skills-content .swiper-button-next,
   #skills-content .swiper-container-rtl .swiper-button-next {
     margin-right: 6vw;
@@ -1986,6 +1988,10 @@ html.no-svgclippaths ul.skill-level li.svg-clipped {
 }
 
 @media (min-width:1200px) {
+  h1#skills-title {
+    margin-bottom: 4rem;
+  }
+
   #skills .swiper-container {
     width: 45vw;
     height: 45vw;
@@ -2052,6 +2058,23 @@ html.no-svgclippaths ul.skill-level li.svg-clipped {
     margin-right: 29.8vw;
     width: 2.2vw;
   }
+}
+
+#skills-content._3d .swiper-container {
+  overflow: initial;
+  -webkit-perspective: 400px;
+  perspective: 400px;
+  position: relative;
+}
+
+#skills-content._3d .swiper-button-next,
+#skills-content._3d .swiper-button-prev {
+  display: none;
+}
+
+#skills-content._3d .swiper-slide {
+  position: absolute;
+  top: 0;
 }
 
 #projects-content {

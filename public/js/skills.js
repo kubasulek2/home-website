@@ -19,6 +19,8 @@ $(() => {
 	} else {
 
 		/* 3d-slider */
+
+		$('#skills-content').addClass('_3d');
 	}
 });
 //# sourceMappingURL=skills.js.map
