@@ -63,19 +63,28 @@ class Slider extends HtmlElement {
 }
 
 $(() => {
+
+	/* Create outside object to store and update click data */
+	const clickData = {};
+
+
+	/* Skills Animation IFFE */
+
+	
+
 	/* Skills animation event handler IIFE */
 
 	const skillsHandler = (() => {
 		let counter = 0;
+		const tlSkills = new TimelineMax({ paused: true });
 
 		return (e) => {
 			// check if e exist
 			e = e || window.event;
 
 			// variables
-
+			
 			const
-				tlSkills = new TimelineMax({ paused: true }),
 				slide = $(e.currentTarget),
 				techList = slide.find('.techs'),
 				skillsList = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
@@ -85,12 +94,12 @@ $(() => {
 			/* only for 3d layout */
 
 			if ($('#skills-content._3d').length > 0) {
-				tlSkills
-					.fromTo(slide, 1, { scale: .8 }, { scale: 1 }, 'firstStage');
+				tlSkills.to(slide, 1, { scale: 1 }, 'firstStage');
 			}
 
 			tlSkills
-				.fromTo(icon, 1, { '-webkit-filter': 'grayscale(0%)', opacity: 1 }, { '-webkit-filter': 'grayscale(90%)', opacity: .05 }, 'firstStage');
+				.to(icon, 1,  {  opacity: .05 }, 'firstStage')
+				.set(icon, {'filter': 'grayscale(90%)'});
 
 			// animiation play from current time if active
 
