@@ -3,6 +3,7 @@ const
 	browserSync = require( 'browser-sync' ),
 	$ = require( 'gulp-load-plugins' )( {lazy: true} ),
 	uglify = require('gulp-uglify-es').default,
+	cssmin = require('gulp-cssmin'),
 	sourcemaps = require('gulp-sourcemaps'),
 	gulpResolveUrl = require('gulp-resolve-url');
 browserify = require('gulp-browserify');
@@ -13,8 +14,8 @@ gulp.task( 'styles', function () {
 		.pipe(sourcemaps.init())
 		.pipe( $.sass({outputStyle: 'compressed'}).on( 'error', $.sass.logError ) )
 		.pipe( $.autoprefixer( 'last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4' ) )
-		.pipe( $.cleanCss() )
 		.pipe(gulpResolveUrl())
+		.pipe(cssmin() )
 		.pipe(sourcemaps.write(''))
 		.pipe( gulp.dest( 'public/css' ) )
 		.pipe( browserSync.reload( {stream: true} ) );
