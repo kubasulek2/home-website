@@ -21,6 +21,9 @@ $(() => {
 		/* 3d-slider */
 
 		$('#skills-content').addClass('_3d');
+		$('.swiper-slide').click(function () {
+			console.log(this);
+		});
 	}
 });
 //# sourceMappingURL=skills.js.map

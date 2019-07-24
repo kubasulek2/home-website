@@ -27,7 +27,11 @@ h1#skills-title{
 	text-align: center;
 	animation: fadeNeon 12s infinite;
 }
+/* hide 3d back-faces */
 
+.back-face{
+	display: none;
+}
 /* swiper gallery for mobile */
 
 .swiper-outer-wrapper{
@@ -41,7 +45,8 @@ h1#skills-title{
 	z-index: 1;
 }
 
- .swiper-slide{
+
+.swiper-slide{
 	font-size: 2rem;
 	font-family: 'Archivo', sans-serif;
 	background: url(../../images/slide.jpg) center center/ cover no-repeat $darker-background;
@@ -337,7 +342,13 @@ html.no-svgclippaths{
 /* !!!! 3d slider layout  !!!! */
 
 #skills-content._3d{
+		
+	/* Hide buttons */
 	
+		.swiper-button-next,
+		.swiper-button-prev{
+			display: none;
+		}
 	/* 3d parent */
 
 	.swiper-outer-wrapper{
@@ -347,6 +358,8 @@ html.no-svgclippaths{
 	.swiper-container{
 		overflow: initial;
 		position: relative;
+		transform: translateZ(-25vw);
+		transform-style: preserve-3d;
 	}	
 	
 	/* 3d main rotating plain */
@@ -354,18 +367,64 @@ html.no-svgclippaths{
 	.swiper-wrapper{
 		position: absolute;
 		top: 0;
-		transform: translateZ(10px);
-	}
-	/* Hide buttons */
-	
-	.swiper-button-next,
-	.swiper-button-prev{
-		display: none;
+		
+		transform-style: preserve-3d;
+		transform: rotateY(0deg);
 	}
 	/* 3d slides */
 
 	.swiper-slide{
 		position: absolute;
 		top: 0;
+		transform-origin: center center;
+		backface-visibility: hidden;
+	}
+
+	/* 3d slides positioning */
+	.front,
+	.front-2{
+		transform: translateZ(24vw) scale(.8);
+	}
+	.right,
+	.right-2{
+		transform: translateX(24vw) rotateY(90deg) scale(.8);
+	}
+	.back,
+	.back-2{
+		transform: translateZ(-24vw) rotateY(180deg) scale(.8);
+	}
+	.left,
+	.left-2{
+		transform: translateX(-24vw) rotateY(-90deg) scale(.8);
+	}
+
+	/* Hide additional faces */
+	.front-2,
+	.right-2,
+	.back-2,
+	.left-2{
+		display: none;
+	}
+	/* Back-faces positioning */
+	
+	.back-face{
+		display: block;
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: $darker-background;
+		backface-visibility: hidden;
+	}
+	.back-face-front{
+		transform: translateZ(24vw) rotateY(180deg) scale(.8);
+	}
+	.back-face-right{
+		transform: translateX(24vw) rotateY(-90deg) scale(.8);
+	}
+	.back-face-back{
+		transform: translateZ(-24vw) rotateY(0deg) scale(.8);
+	}
+	.back-face-left{
+		transform: translateX(-24vw) rotateY(90deg) scale(.8);
 	}
 }
