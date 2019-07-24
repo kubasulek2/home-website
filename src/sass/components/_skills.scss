@@ -339,12 +339,23 @@ html.no-svgclippaths{
 #skills-content._3d{
 	
 	/* 3d parent */
+
+	.swiper-outer-wrapper{
+		perspective: 100vw;
+		}
 	
 	.swiper-container{
 		overflow: initial;
-		perspective: 400px;
 		position: relative;
 	}	
+	
+	/* 3d main rotating plain */
+	
+	.swiper-wrapper{
+		position: absolute;
+		top: 0;
+		transform: translateZ(10px);
+	}
 	/* Hide buttons */
 	
 	.swiper-button-next,
@@ -352,6 +363,7 @@ html.no-svgclippaths{
 		display: none;
 	}
 	/* 3d slides */
+
 	.swiper-slide{
 		position: absolute;
 		top: 0;
