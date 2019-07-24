@@ -92,8 +92,8 @@ h1#skills-title{
 		text-align: center;
 		z-index: 0;
 		font-size: 1rem;
-		opacity: .05;
-		filter: grayscale(90%);
+		//opacity: .05;
+		//filter: grayscale(90%);
 		color: $base-white;
 	
 		.fab,
@@ -113,7 +113,7 @@ h1#skills-title{
 
 ul.techs,
 ul.skill-level{
-	//display: none;
+	display: none;
 	color: $darker-white;
 	text-transform: uppercase;
 	font-family: 'Archivo',sans-serif;
@@ -200,7 +200,7 @@ html.no-svgclippaths{
 		width: 70vw;
 		height: 70vw;
 	}
-	#skills .swiper-slide{
+	#skills .swiper-container{
 		border-radius: 1.2rem;
 	}
 	#skills-content .swiper-button-next,
@@ -378,6 +378,7 @@ html.no-svgclippaths{
 	/* 3d slides */
 
 	.swiper-slide{
+		border-radius: 1.2rem;
 		position: absolute;
 		top: 0;
 		transform-origin: center center;

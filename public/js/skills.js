@@ -1,3 +1,68 @@
+'use strict';
+
+/* Create symbols for emulate private class members */
+
+const _rotationSpeed = Symbol('rotationSpeed'),
+      _clickedId = Symbol('clickedId'),
+      _easing = Symbol('easing'),
+      _speedMeasure = Symbol('speedMeasure'),
+      _motionData = Symbol('motionData'),
+      _dynamicContent = Symbol('dynamicContent'),
+      _calculateEntryValues = Symbol('calculateEntryValues'),
+      _computeEasing = Symbol('computeEasing'),
+      _computeRotatingTime = Symbol('_computeRotatingTime'),
+      _applyEasing = Symbol('applyEasing'),
+      _computeAvgSpeed = Symbol('computeAvgSpeed'),
+      _getTargetAngle = Symbol('getTargetAngle'),
+      _shouldChangeDirection = Symbol('shouldChangeDirection'),
+      _restoreAnimation = Symbol('restoreAnimation'),
+      _accelerate = Symbol('accelerate'),
+      _updateContent = Symbol('updateContent');
+
+/* Htlm element class */
+
+class HtmlElement {
+	constructor(element) {
+		this.element = element;
+	}
+	copy() {
+		return this.element.clone();
+	}
+	remove() {
+		this.element.remove();
+	}
+	append(parent) {
+		this.element.append(parent);
+	}
+}
+
+class Slider extends HtmlElement {
+	constructor(element, speed = .7) {
+		super(element);
+
+		this.baseSpeed = speed > 1 ? 1 : speed;
+		this.faces = this.element.children('.swiper-slide');
+
+		this[_rotationSpeed] = speed > 1 ? 1 : speed;
+		this[_clickedId] = '';
+		this[_easing] = [];
+		this[_speedMeasure] = {
+			start: undefined,
+			stop: undefined,
+			lastMeasuredAngle: undefined,
+			speedArr: [],
+			avgSpeed: undefined
+		};
+		this[_motionData] = {
+			isAboutToStop: false,
+			angleWhenClicked: undefined,
+			currentAngle: 0,
+			targetAngle: undefined,
+			move: true
+		};
+	}
+}
+
 $(() => {
 
 	/* Media query for smaller screens*/
