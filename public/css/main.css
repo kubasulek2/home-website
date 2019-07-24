@@ -1802,7 +1802,7 @@ h1#skills-title {
   text-align: center;
   z-index: 0;
   font-size: 1rem;
-  opacity: .05;
+  opacity: 1;
   -webkit-filter: grayscale(90%);
   filter: grayscale(90%);
   color: #fafafa;

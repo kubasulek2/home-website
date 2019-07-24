@@ -85,7 +85,7 @@ h1#skills-title{
 		text-align: center;
 		z-index: 0;
 		font-size: 1rem;
-		opacity: .05;
+		opacity: 1;
 		filter: grayscale(90%);
 		color: $base-white;
 	
@@ -105,6 +105,7 @@ h1#skills-title{
 /* Skills lists */
 ul.techs,
 ul.skill-level{
+	//display: none;
 	color: $darker-white;
 	text-transform: uppercase;
 	font-family: 'Archivo',sans-serif;

@@ -531,16 +531,7 @@ $(document).ready(function () {
 		
 		showAbout();
 	}
-	if($('body#skills').length){
-		
-		const swiper = new Swiper('.swiper-container', {
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-		});	
-				
-	}
+
 	/* init common functions */
 	bgTransition();
 });
