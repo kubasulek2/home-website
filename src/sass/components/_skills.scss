@@ -257,6 +257,7 @@ html.no-svgclippaths{
 }
 @media (min-width:1024px) and (orientation:landscape),
 (min-width:1025px){
+
 	#skills .swiper-container{
 		width: 50vw;
 		height: 50vw;
@@ -271,6 +272,20 @@ html.no-svgclippaths{
 		margin-right: 19vw;
 		width: 3vw;
 	}
+
+	#skills{
+		.icon-wrapper{
+		text-align: center;
+		font-size: 1.4rem;
+		color: $base-white;
+	
+		.fab,
+		.fas{
+			color: $base-yellow;
+			font-size: 6rem;
+		}
+	}	
+}
 }
 @media (min-width:1200px){
 	h1#skills-title{
@@ -289,19 +304,6 @@ html.no-svgclippaths{
 	#skills-content .swiper-container-rtl .swiper-button-next{
 		margin-right: 23vw;
 		width: 2.5vw;
-	}
-	#skills{
-			.icon-wrapper{
-			text-align: center;
-			font-size: 1.4rem;
-			color: $base-white;
-		
-			.fab,
-			.fas{
-				color: $base-yellow;
-				font-size: 5rem;
-			}
-		}	
 	}
 }
 
@@ -358,7 +360,7 @@ html.no-svgclippaths{
 	.swiper-container{
 		overflow: initial;
 		position: relative;
-		transform: translateZ(-25vw);
+		transform: translateZ( calc(#{-$sm-3d} + 1vw) );
 		transform-style: preserve-3d;
 	}	
 	
@@ -383,19 +385,19 @@ html.no-svgclippaths{
 	/* 3d slides positioning */
 	.front,
 	.front-2{
-		transform: translateZ(24vw) scale(.8);
+		transform: translateZ($sm-3d) scale(.8);
 	}
 	.right,
 	.right-2{
-		transform: translateX(24vw) rotateY(90deg) scale(.8);
+		transform: translateX($sm-3d) rotateY(90deg) scale(.8);
 	}
 	.back,
 	.back-2{
-		transform: translateZ(-24vw) rotateY(180deg) scale(.8);
+		transform: translateZ(-$sm-3d) rotateY(180deg) scale(.8);
 	}
 	.left,
 	.left-2{
-		transform: translateX(-24vw) rotateY(-90deg) scale(.8);
+		transform: translateX(-$sm-3d) rotateY(-90deg) scale(.8);
 	}
 
 	/* Hide additional faces */
@@ -414,17 +416,25 @@ html.no-svgclippaths{
 		height: 100%;
 		background: $darker-background;
 		backface-visibility: hidden;
+		border-radius: 1.2rem;
 	}
 	.back-face-front{
-		transform: translateZ(24vw) rotateY(180deg) scale(.8);
+		transform: translateZ($sm-3d) rotateY(180deg) scale(.8);
 	}
 	.back-face-right{
-		transform: translateX(24vw) rotateY(-90deg) scale(.8);
+		transform: translateX($sm-3d) rotateY(-90deg) scale(.8);
 	}
 	.back-face-back{
-		transform: translateZ(-24vw) rotateY(0deg) scale(.8);
+		transform: translateZ(-$sm-3d) rotateY(0deg) scale(.8);
 	}
 	.back-face-left{
-		transform: translateX(-24vw) rotateY(90deg) scale(.8);
+		transform: translateX(-$sm-3d) rotateY(90deg) scale(.8);
 	}
+}
+
+/* responsive styles for 3d layout */
+
+@media (min-width:1200px){
+	
+
 }
