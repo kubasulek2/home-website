@@ -66,18 +66,34 @@ $(() => {
 
 	const skillsHandler = (() => {
 		let counter = 0;
+
 		return e => {
 			// check if e exist
 			e = e || window.event;
 
-			const tlSkills = new TimelineMax({ paused: true });
-			tlSkills.add(() => {
-				console.log(e.currentTarget);
-			});
+			// variables
+
+			const tlSkills = new TimelineMax({ paused: true }),
+			      slide = $(e.currentTarget),
+			      techList = slide.find('.techs'),
+			      skillsList = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
+			      icon = slide.find('.icon-wrapper'),
+			      buttons = $('.swiper-button-prev,.swiper-button-next');
+
+			/* only for 3d layout */
+
+			if ($('#skills-content._3d').length > 0) {
+				tlSkills.fromTo(slide, 1, { scale: .8 }, { scale: 1 }, 'firstStage');
+			}
+
+			tlSkills.fromTo(icon, 1, { '-webkit-filter': 'grayscale(0%)', opacity: 1 }, { '-webkit-filter': 'grayscale(90%)', opacity: .05 }, 'firstStage');
 
 			// animiation play from current time if active
+
 			const startAnimFrom = tlSkills.isActive() ? Number(tlSkills.time().toFixed(1)) : 0;
+
 			// animation direction reversed each time
+
 			counter % 2 ? tlSkills.reverse(startAnimFrom) : tlSkills.play(startAnimFrom);
 			counter++;
 		};
