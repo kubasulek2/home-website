@@ -16,9 +16,7 @@ const _rotationSpeed = Symbol('rotationSpeed'),
       _getTargetAngle = Symbol('getTargetAngle'),
       _shouldChangeDirection = Symbol('shouldChangeDirection'),
       _restoreAnimation = Symbol('restoreAnimation'),
-      _accelerate = Symbol('accelerate'),
-      _updateContent = Symbol('updateContent');
-
+      _accelerate = Symbol('accelerate');
 /* Htlm element class */
 
 class HtmlElement {
@@ -64,6 +62,26 @@ class Slider extends HtmlElement {
 }
 
 $(() => {
+	/* Skills animation event handler IIFE */
+
+	const skillsHandler = (() => {
+		let counter = 0;
+		return e => {
+			// check if e exist
+			e = e || window.event;
+
+			const tlSkills = new TimelineMax({ paused: true });
+			tlSkills.add(() => {
+				console.log(e.currentTarget);
+			});
+
+			// animiation play from current time if active
+			const startAnimFrom = tlSkills.isActive() ? Number(tlSkills.time().toFixed(1)) : 0;
+			// animation direction reversed each time
+			counter % 2 ? tlSkills.reverse(startAnimFrom) : tlSkills.play(startAnimFrom);
+			counter++;
+		};
+	})();
 
 	/* Media query for smaller screens*/
 
@@ -86,8 +104,9 @@ $(() => {
 		/* 3d-slider */
 
 		$('#skills-content').addClass('_3d');
-		$('.swiper-slide').click(function () {
-			console.log(this);
+
+		$('.swiper-slide').on('click', e => {
+			skillsHandler(e);
 		});
 
 		/* If in 3d mode reload page on matchmedia to change on flat */
