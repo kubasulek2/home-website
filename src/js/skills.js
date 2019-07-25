@@ -70,7 +70,7 @@ $(() => {
 
 	/* Skills Animation IFFE */
 
-	
+
 
 	/* Skills animation event handler IIFE */
 
@@ -79,11 +79,12 @@ $(() => {
 		const tlSkills = new TimelineMax({ paused: true });
 
 		return (e) => {
+			
 			// check if e exist
 			e = e || window.event;
 
 			// variables
-			
+
 			const
 				slide = $(e.currentTarget),
 				techList = slide.find('.techs'),
@@ -98,8 +99,8 @@ $(() => {
 			}
 
 			tlSkills
-				.to(icon, 1,  {  opacity: .05 }, 'firstStage')
-				.set(icon, {'filter': 'grayscale(90%)'});
+				.to(icon, 1, { opacity: .05 }, 'firstStage')
+				.set(icon, { 'filter': 'grayscale(90%)' });
 
 			// animiation play from current time if active
 
@@ -135,9 +136,9 @@ $(() => {
 
 		$('#skills-content').addClass('_3d');
 
-		$('.swiper-slide').on('click', (e) => {
-			skillsHandler(e);
-		});
+		$('.swiper-slide')
+			.off()
+			.on('click', (e) => skillsHandler(e));
 
 
 

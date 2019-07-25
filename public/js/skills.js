@@ -75,6 +75,7 @@ $(() => {
 		const tlSkills = new TimelineMax({ paused: true });
 
 		return e => {
+
 			// check if e exist
 			e = e || window.event;
 
@@ -127,9 +128,7 @@ $(() => {
 
 		$('#skills-content').addClass('_3d');
 
-		$('.swiper-slide').on('click', e => {
-			skillsHandler(e);
-		});
+		$('.swiper-slide').off().on('click', e => skillsHandler(e));
 
 		/* If in 3d mode reload page on matchmedia to change on flat */
 
