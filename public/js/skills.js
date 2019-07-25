@@ -95,15 +95,22 @@ $(() => {
 				tlSkills.to(buttons, 1, { autoAlpha: 0 }, 'firstStage');
 			}
 
-			tlSkills.to(icon, 1, { opacity: .05 }, 'firstStage').set(icon, { 'filter': 'grayscale(90%)' }).staggerFromTo(techLists, .5, { scale: .3, opacity: 0 }, { scale: 1, opacity: 1,
+			tlSkills.to(icon, 1, { opacity: .05 }, 'firstStage').set(icon, { 'filter': 'grayscale(90%)' }).staggerFromTo(techLists, .5, { scale: .3, opacity: 0 }, {
+				scale: 1,
+				opacity: 1,
 				cycle: {
 					ease: i => Back.easeOut.config(i * 3)
 				}
 			}, .1, 'secondStage');
-			//.staggerTo(techList.find('li'), .5, { opacity: 1, ease: Power2.easeIn }, .1, 'secondStage');
-			//.from(skillsList.parent(), 1, { opacity: 1 },'secondSta//ge')
 
-			// animiation play from current time if active
+			/* Here looping through techlists to create stagger efect for any given list length */
+
+			skillsLists.each((i, e) => {
+
+				tlSkills.set(e, { opacity: 1 }).staggerFromTo($(e).find('.star'), 1, { rotationY: -90, opacity: 0 }, { rotationY: 0, opacity: 1, ease: Bounce.easeOut }, .1);
+			});
+
+			/* Determining current progress of animation */
 
 			const startAnimFrom = tlSkills.isActive() ? Number(tlSkills.time().toFixed(1)) : 0;
 

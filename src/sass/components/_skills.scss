@@ -126,10 +126,10 @@ ul.skill-level{
 }
 ul.skill-level li{
 	text-align: right;
-	overflow: hidden;
+	//overflow-x: hidden;
 }
 ul.skill-level{
-	.star{
+	.svg-clipped .star{
 		width: 20%;
 		height: 100%;;
 	}
