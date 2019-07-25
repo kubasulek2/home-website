@@ -62,11 +62,35 @@ class Slider extends HtmlElement {
 }
 
 $(() => {
+	/* Media query for smaller screens*/
 
-	/* Create outside object to store and update click data */
-	const clickData = {};
+	const mqMobile = window.matchMedia('(max-width: 1023px)');
+	let swiper;
 
-	/* Skills Animation IFFE */
+	/* Main condition: either swiper mode or 3d slider*/
+
+	if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || mqMobile.matches) {
+
+		/* Swiper */
+
+		swiper = new Swiper('.swiper-container', {
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev'
+			}
+		});
+		swiper.allowTouchMove = false;
+	} else {
+		/* 3d-slider */
+
+		$('#skills-content').addClass('_3d');
+
+		/* If in 3d mode reload page on matchmedia to change on flat */
+
+		mqMobile.addListener(() => {
+			window.location.reload();
+		});
+	}
 
 	/* Skills animation event handler IIFE */
 
@@ -105,51 +129,32 @@ $(() => {
 
 			/* Here looping through techlists to create stagger efect for any given list length */
 
-			skillsLists.each((ind, e) => {
+			$(skillsLists.get().reverse()).each((ind, e) => {
 
-				tlSkills.set(e, { opacity: 1 }, `synch+=${ind * .1}`).staggerFromTo($(e).find('.star'), .6, { cycle: {
-						y: i => (i + 1) * -70
-					}, opacity: 0 }, { y: 0, opacity: 1, ease: Bounce.easeOut }, .1, `synch+=${ind * .1}`);
+				const stars = $(e).find('.star'),
+				      cycle = ind % 2 ? -.1 : .1;
+
+				tlSkills.set(e, { opacity: 1 }, `synch+=${ind * .4}`).staggerFromTo(stars, .4, {
+					y: -800, opacity: 0
+				}, { y: 0, opacity: 1, ease: Bounce.easeOut }, cycle, `synch+=${ind * .4}`);
 			});
+
+			/* Last Part of animation only if svg-clipPath is supported */
+
+			if (Modernizr.svgclippaths) tlSkills.fromTo(skillsLists.find('#stars-background'), .8, { width: '0%' }, { width: '100%', ease: Power0.easeNone, delay: .2 });
 
 			/* Determining current progress of animation */
 
-			const startAnimFrom = tlSkills.isActive() ? Number(tlSkills.time().toFixed(1)) : 0;
+			let startAnimFrom = tlSkills.isActive() ? Number(tlSkills.time().toFixed(1)) : 0;
 
+			/* Skip part of animation  if reversed*/
+			counter % 2 && startAnimFrom > tlSkills.getLabelTime('synch') ? startAnimFrom = tlSkills.getLabelTime('synch') : null;
 			// animation direction reversed each time
 
 			counter % 2 ? tlSkills.reverse(startAnimFrom) : tlSkills.play(startAnimFrom);
 			counter++;
 		};
 	})();
-
-	/* Media query for smaller screens*/
-
-	const mqMobile = window.matchMedia('(max-width: 1023px)');
-
-	/* Main condition: either swiper mode or 3d slider*/
-
-	if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || mqMobile.matches) {
-
-		/* Swiper */
-
-		const swiper = new Swiper('.swiper-container', {
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev'
-			}
-		});
-	} else {
-		/* 3d-slider */
-
-		$('#skills-content').addClass('_3d');
-
-		/* If in 3d mode reload page on matchmedia to change on flat */
-
-		mqMobile.addListener(() => {
-			window.location.reload();
-		});
-	}
 
 	$('.swiper-slide').off().on('click', e => skillsHandler(e));
 });
