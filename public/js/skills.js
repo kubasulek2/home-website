@@ -95,7 +95,7 @@ $(() => {
 				tlSkills.to(buttons, 1, { autoAlpha: 0 }, 'firstStage');
 			}
 
-			tlSkills.to(icon, 1, { opacity: .05 }, 'firstStage').set(icon, { 'filter': 'grayscale(90%)' }).staggerFromTo(techLists, .5, { scale: .3, opacity: 0 }, {
+			tlSkills.fromTo(icon, 1, { opacity: 1, 'filter': 'grayscale(0%)' }, { opacity: .05, 'filter': 'grayscale(90%)' }, 'firstStage').staggerFromTo(techLists, .5, { scale: .3, opacity: 0 }, {
 				scale: 1,
 				opacity: 1,
 				cycle: {
@@ -105,9 +105,11 @@ $(() => {
 
 			/* Here looping through techlists to create stagger efect for any given list length */
 
-			skillsLists.each((i, e) => {
+			skillsLists.each((ind, e) => {
 
-				tlSkills.set(e, { opacity: 1 }).staggerFromTo($(e).find('.star'), 1, { opacity: 0 }, { opacity: 1, ease: Bounce.easeOut }, .1);
+				tlSkills.set(e, { opacity: 1 }, `synch+=${ind * .1}`).staggerFromTo($(e).find('.star'), .6, { cycle: {
+						y: i => (i + 1) * -70
+					}, opacity: 0 }, { y: 0, opacity: 1, ease: Bounce.easeOut }, .1, `synch+=${ind * .1}`);
 			});
 
 			/* Determining current progress of animation */

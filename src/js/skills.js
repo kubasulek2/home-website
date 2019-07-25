@@ -93,6 +93,7 @@ $(() => {
 				buttons = $('.swiper-button-prev,.swiper-button-next');
 
 
+
 			if ($('#skills-content._3d').length > 0) {
 				//3d layout
 				tlSkills.to(slide, 1, { scale: 1 }, 'firstStage');
@@ -102,8 +103,7 @@ $(() => {
 			}
 
 			tlSkills
-				.to(icon, 1, { opacity: .05 }, 'firstStage')
-				.set(icon, { 'filter': 'grayscale(90%)' })
+				.fromTo(icon, 1, { opacity: 1, 'filter': 'grayscale(0%)' },{opacity: .05, 'filter': 'grayscale(90%)'}, 'firstStage')
 				.staggerFromTo(techLists, .5, { scale: .3, opacity: 0 }, {
 					scale: 1,
 					opacity: 1,
@@ -111,14 +111,16 @@ $(() => {
 						ease: (i) => Back.easeOut.config(i * 3)
 					}
 				}, .1, 'secondStage');
-
+				
 			/* Here looping through techlists to create stagger efect for any given list length */
 
-			skillsLists.each((i, e) => {
+			skillsLists.each((ind, e) => {
 				
 				tlSkills
-					.set(e,{opacity: 1})
-					.staggerFromTo($(e).find('.star'), 1, { opacity: 0 }, { opacity: 1, ease: Bounce.easeOut }, .1);
+					.set(e,{opacity: 1},`synch+=${ind*.1}`)
+					.staggerFromTo($(e).find('.star'), .6, { cycle:{
+						y: i => (i+1)*-70
+					}, opacity: 0 }, { y:0, opacity: 1, ease: Bounce.easeOut }, .1,`synch+=${ind*.1}`);
 			});
 
 			/* Determining current progress of animation */
