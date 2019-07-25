@@ -49,7 +49,7 @@ h1#skills-title{
 .swiper-slide{
 	font-size: 2rem;
 	font-family: 'Archivo', sans-serif;
-	background: url(../../images/slide.jpg) center center/ cover no-repeat $darker-background;
+	background: $darker-background;
 	padding: 1rem;
 	position: relative;
 	display: flex;
@@ -111,12 +111,12 @@ h1#skills-title{
 
 ul.techs,
 ul.skill-level{
-	display: none;
 	color: $darker-white;
 	text-transform: uppercase;
 	font-family: 'Archivo',sans-serif;
 	font-size: 1.2rem;
 	li{
+		opacity: 0;
 		margin-top: 1.9rem;
 	}
 	.far,
@@ -125,6 +125,7 @@ ul.skill-level{
 	}
 }
 ul.skill-level li{
+	text-align: right;
 	overflow: hidden;
 }
 ul.skill-level{
@@ -253,6 +254,17 @@ html.no-svgclippaths{
 		width: 4vw;
 	}
 }
+
+/* Min 1024px and 3d support: change slide background to fabric*/
+
+html.preserve3d.csstransforms3d {
+  @media (min-width: 1024px) and (orientation: landscape), (min-width: 1025px) {
+		.swiper-slide{
+			background: url(../../images/slide.jpg) center center/ cover no-repeat $darker-background;
+		}
+	}
+}
+
 @media (min-width:1024px) and (orientation:landscape),
 (min-width:1025px){
 	

@@ -79,7 +79,7 @@ $(() => {
 		const tlSkills = new TimelineMax({ paused: true });
 
 		return (e) => {
-			
+
 			// check if e exist
 			e = e || window.event;
 
@@ -87,20 +87,30 @@ $(() => {
 
 			const
 				slide = $(e.currentTarget),
-				techList = slide.find('.techs'),
-				skillsList = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
+				techLists = slide.find('.techs li'),
+				skillsLists = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
 				icon = slide.find('.icon-wrapper'),
 				buttons = $('.swiper-button-prev,.swiper-button-next');
 
-			/* only for 3d layout */
 
 			if ($('#skills-content._3d').length > 0) {
+				//3d layout
 				tlSkills.to(slide, 1, { scale: 1 }, 'firstStage');
+			} else {
+				//swiper layout
+				tlSkills.to(buttons, 1, { autoAlpha: 0 }, 'firstStage');
 			}
 
 			tlSkills
 				.to(icon, 1, { opacity: .05 }, 'firstStage')
-				.set(icon, { 'filter': 'grayscale(90%)' });
+				.set(icon, { 'filter': 'grayscale(90%)' })
+				.staggerFromTo(techLists, .5, { scale: .3, opacity: 0 }, { scale: 1, opacity: 1,
+					cycle:{
+						ease: (i)=> Back.easeOut.config(i*3)
+					}
+				}, .1, 'secondStage');
+			//.staggerTo(techList.find('li'), .5, { opacity: 1, ease: Power2.easeIn }, .1, 'secondStage');
+			//.from(skillsList.parent(), 1, { opacity: 1 },'secondSta//ge')
 
 			// animiation play from current time if active
 
@@ -131,22 +141,20 @@ $(() => {
 		});
 
 	} else {
-
 		/* 3d-slider */
 
 		$('#skills-content').addClass('_3d');
-
-		$('.swiper-slide')
-			.off()
-			.on('click', (e) => skillsHandler(e));
-
-
 
 		/* If in 3d mode reload page on matchmedia to change on flat */
 
 		mqMobile.addListener(() => {
 			window.location.reload();
 		});
-
 	}
+
+	$('.swiper-slide')
+		.off()
+		.on('click', (e) => skillsHandler(e));
+
+
 });
