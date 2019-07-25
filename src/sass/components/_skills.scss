@@ -126,16 +126,15 @@ ul.skill-level{
 }
 ul.skill-level li{
 	text-align: right;
-	//overflow-x: hidden;
 }
 ul.skill-level{
 	.svg-clipped .star{
 		width: 20%;
-		height: 100%;;
+		height: 20%;;
 	}
 	#stars-background{
 		width: 0;
-		height: 100%;
+		height: 20%;
 		fill: $base-yellow;
 		transition: 2s width;
 	}
@@ -163,8 +162,11 @@ ul.skill-level li.inProgress{
 
 html.svgclippaths{
 	svg.stars-clipped{
-		height: 1em;
-		width: auto;
+		height: 5em;
+		width: 100%;
+		position: absolute;
+		bottom: 0.0625em;
+		left: 0;
 	}
 	
 	ul.skill-level li.svg-fallback{
@@ -172,6 +174,9 @@ html.svgclippaths{
 	}
 	ul.skill-level li.svg-clipped{
 		display: block;
+		position: relative;
+		width: 6.25em;
+		height: 1.125em;
 	}
 }
 /* no svg clip path support */

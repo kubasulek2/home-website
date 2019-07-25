@@ -107,7 +107,7 @@ $(() => {
 
 			skillsLists.each((i, e) => {
 
-				tlSkills.set(e, { opacity: 1 }).staggerFromTo($(e).find('.star'), 1, { rotationY: -90, opacity: 0 }, { rotationY: 0, opacity: 1, ease: Bounce.easeOut }, .1);
+				tlSkills.set(e, { opacity: 1 }).staggerFromTo($(e).find('.star'), 1, { opacity: 0 }, { opacity: 1, ease: Bounce.easeOut }, .1);
 			});
 
 			/* Determining current progress of animation */
