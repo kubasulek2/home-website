@@ -389,7 +389,7 @@ html.preserve3d.csstransforms3d {
 		top: 0;
 		
 		transform-style: preserve-3d;
-		transform: rotateY(0deg);
+		transform: rotateY(90deg);
 	}
 	/* 3d slides */
 
@@ -409,7 +409,7 @@ html.preserve3d.csstransforms3d {
 	}
 	.right,
 	.right-2{
-		transform: translateX($sm-3d) rotateY(90deg) scale(.8);
+		transform: translateX($sm-3d) scale(.8) rotateY(90deg);
 	}
 	.back,
 	.back-2{

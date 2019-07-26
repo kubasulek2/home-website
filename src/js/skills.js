@@ -101,8 +101,7 @@ $(() => {
 		const tlSkills = new TimelineMax({ paused: true });
 
 		return (e) => {
-			
-
+			console.log(counter);
 			// check if e exist
 			e = e || window.event;
 			// variables 1
@@ -135,7 +134,7 @@ $(() => {
 				}, .1, 'secondStage');
 
 			/* Here looping through techlists to create stagger efect for any given list length */
-
+				
 			$(skillsLists.get().reverse()).each((ind, e) => {
 				
 				const stars = $(e).find('.star'),
@@ -150,10 +149,12 @@ $(() => {
 			});
 				
 			/* Last Part of animation only if svg-clipPath is supported */
-
-			if (Modernizr.svgclippaths)
-				tlSkills.fromTo(skillsLists.find('#stars-background'), .8, { width: '0%' }, { width: '100%', ease: Power0.easeNone, delay: .2 });
-
+			if (Modernizr.svgclippaths){
+				
+				
+				tlSkills.fromTo(skillsLists.find('#stars-background'), .7, { width: '0%' }, { 
+					width: (i,e) => `${Number($(e).parent().parent().data('level')) * 20}%`, ease: Power0.easeNone });
+			}
 			/* Determining current progress of animation */
 
 			let startAnimFrom = tlSkills.isActive() ? Number((tlSkills.time()).toFixed(1)) : 0;
