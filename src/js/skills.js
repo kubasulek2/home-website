@@ -94,87 +94,120 @@ $(() => {
 		});
 	}
 
-	/* Skills animation event handler IIFE */
 
-	const skillsHandler = (() => {
+	const skillsHandler = (el) => {
+		
 		let counter = 0;
-		const tlSkills = new TimelineMax({ paused: true });
+		
+		// variables 1
 
-		return (e) => {
-			// check if e exist
-			e = e || window.event;
-			// variables 1
+		const 
+			tlSkills = new TimelineMax({ paused: true }),
+			slide = $(el),
+			techLists = slide.find('.techs li'),
+			skillsLists = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
+			icon = slide.find('.icon-wrapper'),
+			buttons = $('.swiper-button-prev,.swiper-button-next');
 
-			const
-				slide = $(e.currentTarget),
-				techLists = slide.find('.techs li'),
-				skillsLists = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
-				icon = slide.find('.icon-wrapper'),
-				buttons = $('.swiper-button-prev,.swiper-button-next');
+		if ($('#skills-content._3d').length > 0) {
+			//3d layout
+			tlSkills.fromTo(slide, 1,{scale: .8}, { scale: 1 }, 'firstStage');
+		} else {
+			//swiper layout
+			tlSkills.fromTo(buttons, 1, { autoAlpha: 1 },{ autoAlpha: 0 }, 'firstStage');
+		}
 
-
-			if ($('#skills-content._3d').length > 0) {
-				//3d layout
-				tlSkills.fromTo(slide, 1,{scale: .8}, { scale: 1 }, 'firstStage');
-			} else {
-				//swiper layout
-				tlSkills.fromTo(buttons, 1, { autoAlpha: 1 },{ autoAlpha: 0 }, 'firstStage');
-			}
-
-			tlSkills
-				.fromTo(icon, 1, { opacity: 1, 'filter': 'grayscale(0%)' }, { opacity: .05, 'filter': 'grayscale(90%)' }, 'firstStage')
-				.staggerFromTo(techLists, .5, { scale: .3, opacity: 0 }, {
-					scale: 1,
-					opacity: 1,
-					cycle: {
-						ease: (i) => Back.easeOut.config(i * 3)
-					}
-				}, .1, 'secondStage');
+		tlSkills
+			.fromTo(icon, 1, { opacity: 1, 'filter': 'grayscale(0%)' }, { opacity: .05, 'filter': 'grayscale(90%)' }, 'firstStage')
+			.staggerFromTo(techLists, .5, { scale: .3, opacity: 0 }, {
+				scale: 1,
+				opacity: 1,
+				cycle: {
+					ease: (i) => Back.easeOut.config(i * 3)
+				}
+			}, .1, 'secondStage');
 			
-			/* Here looping through techlists to create stagger efect for any given list length */
+		/* Here looping through techlists to create stagger efect for any given list length */
 
-			$(skillsLists.get().reverse()).each((ind, e) => {
-				const stars = $(e).find('.star'),
-					cycle = ind % 2 ? -.1 : .1;
+		$(skillsLists.get().reverse()).each((ind, e) => {
+			const stars = $(e).find('.star'),
+				cycle = ind % 2 ? -.1 : .1;
 				
-				tlSkills
-					.set(e, { opacity: 1 }, `synch+=${ind * .4}`)
-					.staggerFromTo(stars, .4, {
-						y: -800, opacity: 0
-					}, { y: 0, opacity: 1, ease: Bounce.easeOut }, cycle, `synch+=${ind * .4}`);
+			tlSkills
+				.set(e, { opacity: 1 }, `synch+=${ind * .4}`)
+				.staggerFromTo(stars, .4, {
+					y: -800, opacity: 0
+				}, { y: 0, opacity: 1, ease: Bounce.easeOut }, cycle, `synch+=${ind * .4}`);
 
-			});
+		});
 				
-			/* Last Part of animation only if svg-clipPath is supported */
-			if (Modernizr.svgclippaths){
+		/* Last Part of animation only if svg-clipPath is supported */
+		if (Modernizr.svgclippaths){
 				
 				
-				tlSkills.fromTo(skillsLists.find('#stars-background'), .7, { width: '0%' }, { 
-					width: (i,e) => `${Number($(e).parent().parent().data('level')) * 20}%`, ease: Power0.easeNone });
-			}
+			tlSkills.fromTo(skillsLists.find('#stars-background'), .7, { width: '0%' }, { 
+				width: (i,e) => `${Number($(e).parent().parent().data('level')) * 20}%`, ease: Power0.easeNone });
+		}
+
+		/* return an event handling function */
+
+		return () => {
+			
 			/* Determining current progress of animation */
 
 			let startAnimFrom = tlSkills.isActive() ? Number((tlSkills.time()).toFixed(1)) : 0;
 
-			/* Skip part of animation  if reversed*/
-			counter % 2 && startAnimFrom > tlSkills.getLabelTime('synch') ? startAnimFrom = tlSkills.getLabelTime('synch') : null; 
+			/* Skip part of animation  if reversed */
+
+			counter % 2 && (startAnimFrom > tlSkills.getLabelTime('synch') || startAnimFrom === 0) ? startAnimFrom = tlSkills.getLabelTime('synch') : null; 
 			
 			// animation direction reversed each time
 
 			counter % 2 ? tlSkills.reverse(startAnimFrom) : tlSkills.play();
 			counter++;
-			console.log(tlSkills.timeline);
 			
 		};
-	})();
+	};
 
-	
+	/* create right handlers for each slide */
+	const 
+		frontHandler = skillsHandler($('.swiper-slide.front')),
+		front2Handler = skillsHandler($('.swiper-slide.front-2')),
+		rightHandler = skillsHandler($('.swiper-slide.right')),
+		right2Handler = skillsHandler($('.swiper-slide.right-2')),
+		backHandler = skillsHandler($('.swiper-slide.back')),
+		back2Handler = skillsHandler($('.swiper-slide.back-2')),
+		leftHandler = skillsHandler($('.swiper-slide.left'));
 
+	/* attach handlers to slides */
 
-
-	$('.swiper-slide')
+	$('.swiper-slide.front')
 		.off()
-		.on('click', (e) => skillsHandler(e));
+		.on('click', () => frontHandler());
+
+	$('.swiper-slide.front-2')
+		.off()
+		.on('click', () => front2Handler());
+			
+	$('.swiper-slide.right')
+		.off()
+		.on('click', () => rightHandler());	
+	
+	$('.swiper-slide.right-2')
+		.off()
+		.on('click', () => right2Handler());	
+	
+	$('.swiper-slide.back')
+		.off()
+		.on('click', () => backHandler());	
+	
+	$('.swiper-slide.back-2')
+		.off()
+		.on('click', () => back2Handler());	
+	
+	$('.swiper-slide.left')
+		.off()
+		.on('click', () => leftHandler());	
 
 
 });
