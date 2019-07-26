@@ -107,7 +107,8 @@ $(() => {
 			techLists = slide.find('.techs li'),
 			skillsLists = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
 			icon = slide.find('.icon-wrapper'),
-			buttons = $('.swiper-button-prev,.swiper-button-next');
+			buttons = $('.swiper-button-prev,.swiper-button-next'),
+			inProgress = slide.find('.inProgress');
 
 		if ($('#skills-content._3d').length > 0) {
 			//3d layout
@@ -128,7 +129,7 @@ $(() => {
 			}, .1, 'secondStage');
 			
 		/* Here looping through techlists to create stagger efect for any given list length */
-
+		
 		$(skillsLists.get().reverse()).each((ind, e) => {
 			const stars = $(e).find('.star'),
 				cycle = ind % 2 ? -.1 : .1;
@@ -140,6 +141,27 @@ $(() => {
 				}, { y: 0, opacity: 1, ease: Bounce.easeOut }, cycle, `synch+=${ind * .4}`);
 
 		});
+
+		/* inProgress li's have separate animation */
+
+		if(inProgress.length > 0){
+			inProgress.each((ind, e) => {
+				const loaders = $(e).find('.loader');
+				
+				tlSkills
+					.set(e, { opacity: 1 }, 'synch')
+					.staggerFromTo(loaders, 1, {
+						cycle: {
+							opacity: [0,1]
+						}
+					}, { 
+						cycle:{
+							opacity: [1,0]
+						},
+						repeat: -1
+					}, .2,'synch');
+			});
+		}
 				
 		/* Last Part of animation only if svg-clipPath is supported */
 		if (Modernizr.svgclippaths){
