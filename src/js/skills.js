@@ -328,7 +328,7 @@ class Slider extends HtmlElement {
 
 	[_updateContent](){
 
-		if ( this[_motionData].currentAngle < -10 && this[_motionData].currentAngle > -20 && this[_dynamicContent].willUpdate){
+		if ( this[_motionData].currentAngle < -90 && this[_motionData].currentAngle > -100 && this[_dynamicContent].willUpdate){
 
 			this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content +2 : this[_dynamicContent].content;  //3/7/11...
 			this[_dynamicContent].willUpdate = false;
