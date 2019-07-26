@@ -5,8 +5,7 @@
 
 #skills-content{
 	position: relative;
-	margin: 0 auto 3rem; //to change
-	min-height: calc(100vh - 13rem);
+	min-height: calc(100vh - 10rem);
 	width: 100%;
 	display: flex;
 	flex-direction: column;
@@ -37,6 +36,7 @@ h1#skills-title{
 .swiper-outer-wrapper{
 	position: relative;
 	width: 100vw;
+	margin-bottom: 1rem;
 }
 #skills .swiper-container{
 	width: 100vw;

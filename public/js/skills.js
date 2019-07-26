@@ -16,7 +16,9 @@ const _rotationSpeed = Symbol('rotationSpeed'),
       _getTargetAngle = Symbol('getTargetAngle'),
       _shouldChangeDirection = Symbol('shouldChangeDirection'),
       _restoreAnimation = Symbol('restoreAnimation'),
+      _updateContent = Symbol('updateContent'),
       _accelerate = Symbol('accelerate');
+
 /* Htlm element class */
 
 class HtmlElement {
@@ -39,7 +41,7 @@ class Slider extends HtmlElement {
 		super(element);
 
 		this.baseSpeed = speed > 1 ? 1 : speed;
-		this.faces = this.element.children('.swiper-slide');
+		this.slides = this.element.children('.swiper-slide');
 
 		this[_rotationSpeed] = speed > 1 ? 1 : speed;
 		this[_clickedId] = '';
@@ -56,15 +58,288 @@ class Slider extends HtmlElement {
 			angleWhenClicked: undefined,
 			currentAngle: 0,
 			targetAngle: undefined,
-			move: true
+			move: true,
+			turnEvenOdd: 'odd'
 		};
+		this[_dynamicContent] = {
+			content: 1,
+			willUpdate: true
+		};
+	}
+	animateElement() {
+
+		if (!this[_speedMeasure].avgSpeed) this[_calculateEntryValues]();
+
+		if (this[_motionData].move) {
+
+			let rotationSpeed = this[_computeRotatingTime]();
+
+			this[_computeAvgSpeed](rotationSpeed);
+			this[_updateContent]();
+
+			if (this[_easing].length !== 0) this[_applyEasing]();
+
+			if (this[_easing].length === 0 && this[_rotationSpeed] < this.baseSpeed) this[_accelerate]();
+
+			this[_motionData].currentAngle -= this[_rotationSpeed];
+
+			this[_motionData].currentAngle <= -360 ? this[_motionData].turnEvenOdd === 'odd' ? this[_motionData].turnEvenOdd = 'even' : this[_motionData].turnEvenOdd = 'odd' : null;
+
+			this[_motionData].currentAngle <= -360 ? console.log(this[_motionData].turnEvenOdd) : null;
+
+			this[_motionData].currentAngle = this[_motionData].currentAngle <= -360 ? 0 : this[_motionData].currentAngle;
+
+			this.element.css('transform', `rotateY(${this[_motionData].currentAngle}deg)`);
+
+			// targetAngle is set in click event, so after click event rotation will stop
+
+			if (Math.round(this[_motionData].currentAngle) === this[_motionData].targetAngle) {
+				this[_motionData].move = false;
+				this.element.css('transform', `rotateY(${this[_motionData].targetAngle}deg)`);
+			}
+
+			window.requestAnimationFrame(() => this.animateElement());
+		} else {
+			this.animateFace();
+		}
+	}
+
+	animateFace() {
+
+		let myPlane = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
+
+		myPlane.addClass('focus');
+	}
+
+	faceClickEvent() {
+
+		this.slides.on('click', e => {
+
+			this.slides.css('transition', 'transform 1s ease-in-out .3s');
+			if (!this[_motionData].isAboutToStop) {
+
+				let target = $(e.currentTarget);
+				e.stopPropagation();
+				this[_getTargetAngle](e);
+				this[_clickedId] = e.target.id;
+
+				let direction = this[_shouldChangeDirection]();
+
+				this[_motionData].isAboutToStop = true;
+				this[_easing] = this[_computeEasing](direction);
+				this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
+
+				target.css('cursor', 'initial');
+
+				$('body').css('cursor', 'pointer').one('click', e => {
+					this[_motionData].isAboutToStop = false;
+					target.css('cursor', 'pointer');
+					$(e.currentTarget).css('cursor', 'initial');
+					this[_restoreAnimation]();
+				});
+			}
+		});
+	}
+
+	[_calculateEntryValues]() {
+		this[_speedMeasure].avgSpeed = 30 / (this.baseSpeed * 60);
+	}
+
+	[_computeRotatingTime]() {
+
+		let currentAngle = Math.abs(Math.floor(this[_motionData].currentAngle));
+		let rotationTime;
+		let flag = !(currentAngle % 31);
+
+		// return if current angle haven't change from last measurement
+		if (this[_speedMeasure].lastMeasuredAngle === currentAngle) {
+			return null;
+		}
+
+		this[_speedMeasure].lastMeasuredAngle = currentAngle;
+
+		if (this[_speedMeasure].measureAngle === currentAngle) {
+			this[_speedMeasure].stop = new Date();
+			rotationTime = (this[_speedMeasure].stop - this[_speedMeasure].start) / 1000;
+			return rotationTime;
+		}
+		//every 31 degrees start time, and angle, at which speed will be measured, are set
+		if (flag) {
+			this[_speedMeasure].measureAngle = this[_motionData].currentAngle === 360 ? 30 : currentAngle + 30;
+			this[_speedMeasure].start = new Date();
+		}
+		return null;
+	}
+
+	[_computeEasing](direction) {
+		let distance = Math.abs(Math.abs(this[_motionData].targetAngle) - Math.abs(this[_motionData].currentAngle));
+
+		let steps = distance < 20 ? 5 : 10;
+		let threshold,
+		    delay,
+		    speed,
+		    speedChange,
+		    startEase,
+		    slowAngles,
+		    easing = [];
+		let baseSpeed = this[_rotationSpeed];
+
+		switch (true) {
+			case distance <= 10:
+				delay = 0;
+				break;
+			case distance <= 20:
+				delay = 3;
+				break;
+			case distance <= 30:
+				delay = 8;
+				break;
+			case distance <= 40:
+				delay = 15;
+				break;
+			case distance <= 50:
+				delay = 24;
+				break;
+			case distance <= 60:
+				delay = 32;
+				break;
+			case distance <= 70:
+				delay = 40;
+				break;
+			case distance <= 80:
+				delay = 50;
+				break;
+			case distance <= 90:
+				delay = 60;
+				break;
+
+		}
+
+		threshold = (distance - delay) / steps;
+		speedChange = baseSpeed / steps;
+		speed = baseSpeed;
+		startEase = direction === 'forth' ? this[_motionData].currentAngle - delay : this[_motionData].currentAngle + delay;
+		slowAngles = startEase;
+
+		threshold = direction === 'forth' ? -threshold : threshold;
+
+		for (let i = 1; i < steps; i++) {
+			slowAngles += threshold;
+			speed -= speedChange;
+
+			if (speed > 0) speed = speed < 0.1 ? 0.1 : speed;else speed = speed > -0.1 ? -0.1 : speed;
+
+			easing[i - 1] = [];
+
+			easing[i - 1].push(Math.round(slowAngles));
+			easing[i - 1].push(parseFloat(speed.toFixed(2)));
+		}
+		return easing;
+	}
+	[_applyEasing]() {
+
+		this[_easing].forEach(value => {
+			if (Math.round(this[_motionData].currentAngle) === value[0]) this[_rotationSpeed] = value[1];
+		});
+	}
+
+	[_computeAvgSpeed](arg) {
+
+		if (arg === null) return;
+
+		this[_speedMeasure].speedArr.push(arg);
+
+		if (this[_speedMeasure].speedArr.length > 4) {
+			this[_speedMeasure].speedArr.shift();
+		}
+		this[_speedMeasure].avgSpeed = this[_speedMeasure].speedArr.reduce((a, b) => a + b, 0) / this[_speedMeasure].speedArr.length;
+	}
+
+	[_getTargetAngle](e) {
+
+		const targetId = $(e.target).attr('id');
+
+		switch (targetId) {
+			case 'front':
+				this[_motionData].targetAngle = 0;
+				break;
+			case 'right':
+				this[_motionData].targetAngle = -90;
+				break;
+			case 'back':
+				this[_motionData].targetAngle = -180;
+				break;
+			case 'left':
+				this[_motionData].targetAngle = -270;
+				break;
+		}
+	}
+
+	[_shouldChangeDirection]() {
+		let direction = 'forth';
+		if (this[_motionData].targetAngle === 0) {
+			//if clicked in front plane, which set target angle to 0 , must have special check, cause current angle is always lesser than 0
+
+			this[_rotationSpeed] = this[_motionData].currentAngle < -180 ? this[_rotationSpeed] : -this[_rotationSpeed];
+
+			direction = this[_motionData].currentAngle < -180 ? 'forth' : 'back';
+		} else if (this[_motionData].currentAngle < this[_motionData].targetAngle) {
+			//all the other cases
+			this[_rotationSpeed] = -this[_rotationSpeed];
+			direction = 'back';
+		}
+		return direction;
+	}
+
+	[_restoreAnimation]() {
+		let targetPlane = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
+		targetPlane.removeClass('focus');
+		this[_easing] = [];
+		this[_motionData].move = true;
+		this[_motionData].targetAngle = undefined;
+		this[_clickedId] = '';
+		this[_rotationSpeed] = this[_rotationSpeed] < 0 ? -this[_rotationSpeed] : this[_rotationSpeed];
+
+		targetPlane.one('transitionend', () => {
+			this.animateElement();
+		});
+	}
+
+	[_accelerate]() {
+		this[_rotationSpeed] = parseFloat((this[_rotationSpeed] + 0.005).toFixed(3));
+	}
+
+	[_updateContent]() {
+
+		if (this[_motionData].currentAngle < -10 && this[_motionData].currentAngle > -20 && this[_dynamicContent].willUpdate) {
+
+			this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content + 2 : this[_dynamicContent].content; //3/7/11...
+			this[_dynamicContent].willUpdate = false;
+
+			$(this.slides[2]).text(`face ${this[_dynamicContent].content}`);
+			$(this.slides[3]).text(`face ${this[_dynamicContent].content + 1}`);
+		} else if (this[_motionData].currentAngle < -20 && this[_motionData].currentAngle > -30 && !this[_dynamicContent].willUpdate) {
+
+			this[_dynamicContent].willUpdate = true;
+		} else if (this[_motionData].currentAngle < -190 && this[_motionData].currentAngle > -200 && this[_dynamicContent].willUpdate) {
+
+			this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content + 2 : this[_dynamicContent].content; // 5/9/13...
+			this[_dynamicContent].willUpdate = false;
+
+			$(this.slides[0]).text(`face ${this[_dynamicContent].content}`);
+			$(this.slides[1]).text(`face ${this[_dynamicContent].content + 1}`);
+		} else if (this[_motionData].currentAngle < -200 && this[_motionData].currentAngle > -210 && !this[_dynamicContent].willUpdate) {
+
+			this[_dynamicContent].willUpdate = true;
+		}
 	}
 }
 
 $(() => {
 	/* Media query for smaller screens*/
 
-	const mqMobile = window.matchMedia('(max-width: 1023px)');
+	const mqMobile = window.matchMedia('(max-width: 1023px)'),
+	      slider3d = new Slider($('.swiper-wrapper'), .7);
 	let swiper;
 
 	/* Main condition: either swiper mode or 3d slider*/
@@ -84,6 +359,8 @@ $(() => {
 		/* 3d-slider */
 
 		$('#skills-content').addClass('_3d');
+		slider3d.animateElement();
+		console.log(slider3d);
 
 		/* If in 3d mode reload page on matchmedia to change on flat */
 
@@ -222,9 +499,5 @@ $(() => {
 	$('.back-face').on('click', event => {
 		event.stopPropagation();
 	});
-
-	const tl3dSlider = new TimelineMax({ repeat: -1 });
-
-	//tl3dSlider.to($('.swiper-wrapper'), 12, { rotationY: 360, ease: Power0.easeNone });
 });
 //# sourceMappingURL=skills.js.map
