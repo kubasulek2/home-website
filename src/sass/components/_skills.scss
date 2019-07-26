@@ -409,7 +409,7 @@ html.preserve3d.csstransforms3d {
 	}
 	.right,
 	.right-2{
-		transform: translateX($sm-3d) scale(.8) rotateY(90deg);
+		transform: translateX($sm-3d) rotateY(90deg) scale(.8);
 	}
 	.back,
 	.back-2{

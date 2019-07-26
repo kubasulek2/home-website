@@ -156,7 +156,8 @@ $(() => {
 		if (Modernizr.svgclippaths) {
 
 			tlSkills.fromTo(skillsLists.find('#stars-background'), .7, { width: '0%' }, {
-				width: (i, e) => `${Number($(e).parent().parent().data('level')) * 20}%`, ease: Power0.easeNone });
+				width: (i, e) => `${Number($(e).parent().parent().data('level')) * 20}%`, ease: Power0.easeNone
+			});
 		}
 
 		/* return an event handling function */
@@ -188,19 +189,42 @@ $(() => {
 	      leftHandler = skillsHandler($('.swiper-slide.left'));
 
 	/* attach handlers to slides */
+	/* 
+ $('.swiper-slide.front')
+ 	.off()
+ 	.on('click', () => frontHandler());
+ 	$('.swiper-slide.front-2')
+ 	.off()
+ 	.on('click', () => front2Handler());
+ 		
+ $('.swiper-slide.right')
+ 	.off()
+ 	.on('click', () => rightHandler());	
+ 
+ $('.swiper-slide.right-2')
+ 	.off()
+ 	.on('click', () => right2Handler());	
+ 
+ $('.swiper-slide.back')
+ 	.off()
+ 	.on('click', () => backHandler());	
+ 
+ $('.swiper-slide.back-2')
+ 	.off()
+ 	.on('click', () => back2Handler());	
+ 
+ $('.swiper-slide.left')
+ 	.off()
+ 	.on('click', () => leftHandler());	 */
 
-	$('.swiper-slide.front').off().on('click', () => frontHandler());
+	/* stop propagation on back-face */
 
-	$('.swiper-slide.front-2').off().on('click', () => front2Handler());
+	$('.back-face').on('click', event => {
+		event.stopPropagation();
+	});
 
-	$('.swiper-slide.right').off().on('click', () => rightHandler());
+	const tl3dSlider = new TimelineMax({ repeat: -1 });
 
-	$('.swiper-slide.right-2').off().on('click', () => right2Handler());
-
-	$('.swiper-slide.back').off().on('click', () => backHandler());
-
-	$('.swiper-slide.back-2').off().on('click', () => back2Handler());
-
-	$('.swiper-slide.left').off().on('click', () => leftHandler());
+	//tl3dSlider.to($('.swiper-wrapper'), 12, { rotationY: 360, ease: Power0.easeNone });
 });
 //# sourceMappingURL=skills.js.map

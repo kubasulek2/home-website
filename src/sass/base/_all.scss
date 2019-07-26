@@ -312,12 +312,11 @@ footer #menu-media .bar {
 	transform: translate(-50%, -50%);
 	
 	.after, .before{
+		background: $base-yellow;
 		position: absolute;
-		background: 'inherit';
 		width: 30%;
 		height: 50%;
 		left: 0;
-		
 		
 	}
 
