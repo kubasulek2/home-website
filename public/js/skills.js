@@ -99,7 +99,6 @@ $(() => {
 		const tlSkills = new TimelineMax({ paused: true });
 
 		return e => {
-			console.log(counter);
 			// check if e exist
 			e = e || window.event;
 			// variables 1
@@ -112,10 +111,10 @@ $(() => {
 
 			if ($('#skills-content._3d').length > 0) {
 				//3d layout
-				tlSkills.to(slide, 1, { scale: 1 }, 'firstStage');
+				tlSkills.fromTo(slide, 1, { scale: .8 }, { scale: 1 }, 'firstStage');
 			} else {
 				//swiper layout
-				tlSkills.to(buttons, 1, { autoAlpha: 0 }, 'firstStage');
+				tlSkills.fromTo(buttons, 1, { autoAlpha: 1 }, { autoAlpha: 0 }, 'firstStage');
 			}
 
 			tlSkills.fromTo(icon, 1, { opacity: 1, 'filter': 'grayscale(0%)' }, { opacity: .05, 'filter': 'grayscale(90%)' }, 'firstStage').staggerFromTo(techLists, .5, { scale: .3, opacity: 0 }, {
@@ -129,7 +128,6 @@ $(() => {
 			/* Here looping through techlists to create stagger efect for any given list length */
 
 			$(skillsLists.get().reverse()).each((ind, e) => {
-
 				const stars = $(e).find('.star'),
 				      cycle = ind % 2 ? -.1 : .1;
 
@@ -155,6 +153,7 @@ $(() => {
 
 			counter % 2 ? tlSkills.reverse(startAnimFrom) : tlSkills.play();
 			counter++;
+			console.log(tlSkills.timeline);
 		};
 	})();
 
