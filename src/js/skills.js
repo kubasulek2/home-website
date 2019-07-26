@@ -101,11 +101,11 @@ $(() => {
 		const tlSkills = new TimelineMax({ paused: true });
 
 		return (e) => {
+			
 
 			// check if e exist
 			e = e || window.event;
-
-			// variables
+			// variables 1
 
 			const
 				slide = $(e.currentTarget),
@@ -160,9 +160,10 @@ $(() => {
 
 			/* Skip part of animation  if reversed*/
 			counter % 2 && startAnimFrom > tlSkills.getLabelTime('synch') ? startAnimFrom = tlSkills.getLabelTime('synch') : null; 
+			
 			// animation direction reversed each time
 
-			counter % 2 ? tlSkills.reverse(startAnimFrom) : tlSkills.play(startAnimFrom);
+			counter % 2 ? tlSkills.reverse(startAnimFrom) : tlSkills.play();
 			counter++;
 		};
 	})();
