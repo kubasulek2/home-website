@@ -17,7 +17,15 @@ const _rotationSpeed = Symbol('rotationSpeed'),
       _shouldChangeDirection = Symbol('shouldChangeDirection'),
       _restoreAnimation = Symbol('restoreAnimation'),
       _updateContent = Symbol('updateContent'),
-      _accelerate = Symbol('accelerate');
+      _accelerate = Symbol('accelerate'),
+      _slideHandler = Symbol('slideHandler'),
+      _frontHandler = Symbol('frontHandler'),
+      _front2Handler = Symbol('front2Handler'),
+      _rightHandler = Symbol('rightHandler'),
+      _right2Handler = Symbol('right2Handler'),
+      _backHandler = Symbol('backHandler'),
+      _back2Handler = Symbol('back2Handler'),
+      _leftHandler = Symbol('leftHandler');
 
 /* Htlm element class */
 
@@ -98,11 +106,11 @@ class Slider extends HtmlElement {
 
 			window.requestAnimationFrame(() => this.animateElement());
 		} else {
-			this.animatSlide();
+			this.animateSlide();
 		}
 	}
 
-	animatSlide() {
+	animateSlide() {
 
 		const slide = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
 	}
@@ -283,8 +291,7 @@ class Slider extends HtmlElement {
 	}
 
 	[_restoreAnimation]() {
-		// let targetPlane = this.slides
-		// 	.filter((i, el) => $(el).attr('id') === this[_clickedId]);
+
 		this[_easing] = [];
 		this[_motionData].targetAngle = undefined;
 		this[_clickedId] = '';
@@ -332,46 +339,11 @@ class Slider extends HtmlElement {
 			this[_dynamicContent].willUpdate = true;
 		}
 	}
-}
 
-$(() => {
-
-	const mqMobile = window.matchMedia('(max-width: 1023px)'),
-	      slider3d = new Slider($('.swiper-wrapper'), .6);
-
-	let swiper;
-
-	/* Main condition: either swiper mode or 3d slider*/
-
-	if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || mqMobile.matches) {
-
-		/* Swiper */
-
-		swiper = new Swiper('.swiper-container', {
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev'
-			}
-		});
-		swiper.allowTouchMove = false;
-	} else {
-		/* 3d-slider */
-
-		$('#skills-content').addClass('_3d');
-
-		slider3d.animateElement();
-		slider3d.faceClickEvent();
-
-		/* If in 3d mode reload page on matchmedia to change on flat */
-
-		mqMobile.addListener(() => {
-			window.location.reload();
-		});
-	}
-
-	const skillsHandler = el => {
+	[_slideHandler](el) {
 
 		let counter = 0;
+		console.log(el, this);
 
 		// variables 1
 
@@ -454,16 +426,76 @@ $(() => {
 			counter % 2 ? tlSkills.reverse(startAnimFrom) : tlSkills.play();
 			counter++;
 		};
-	};
+	}
 
-	/* create right handlers for each slide */
-	const frontHandler = skillsHandler($('.swiper-slide.front')),
-	      front2Handler = skillsHandler($('.swiper-slide.front-2')),
-	      rightHandler = skillsHandler($('.swiper-slide.right')),
-	      right2Handler = skillsHandler($('.swiper-slide.right-2')),
-	      backHandler = skillsHandler($('.swiper-slide.back')),
-	      back2Handler = skillsHandler($('.swiper-slide.back-2')),
-	      leftHandler = skillsHandler($('.swiper-slide.left'));
+	[_frontHandler]() {
+		this[_slideHandler](this.slides[0]);
+	}
+	[_front2Handler]() {
+		this[_slideHandler](this.slides[3]);
+	}
+	[_rightHandler]() {
+		this[_slideHandler](this.slides[1]);
+	}
+	[_right2Handler]() {
+		this[_slideHandler](this.slides[4]);
+	}
+	[_backHandler]() {
+		this[_slideHandler](this.slides[2]);
+	}
+	[_back2Handler]() {
+		this[_slideHandler](this.slides[5]);
+	}
+	[_leftHandler]() {
+		this[_slideHandler](this.slides[6]);
+	}
+
+}
+
+$(() => {
+
+	const mqMobile = window.matchMedia('(max-width: 1023px)'),
+	      slider3d = new Slider($('.swiper-wrapper'), .6);
+
+	let swiper;
+
+	/* creating closure for slide handlers */
+
+	slider3d[_frontHandler]();
+	slider3d[_front2Handler]();
+	slider3d[_rightHandler]();
+	slider3d[_right2Handler]();
+	slider3d[_backHandler]();
+	slider3d[_back2Handler]();
+	slider3d[_leftHandler]();
+
+	/* Main condition: either swiper mode or 3d slider*/
+
+	if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || mqMobile.matches) {
+
+		/* Swiper */
+
+		swiper = new Swiper('.swiper-container', {
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev'
+			}
+		});
+		swiper.allowTouchMove = false;
+	} else {
+		/* 3d-slider */
+
+		$('#skills-content').addClass('_3d');
+
+		slider3d.animateElement();
+		slider3d.faceClickEvent();
+
+		/* If in 3d mode reload page on matchmedia change */
+
+		mqMobile.addListener(() => {
+			window.location.reload();
+		});
+	}
 
 	/* attach handlers to slides */
 
