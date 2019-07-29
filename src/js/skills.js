@@ -91,8 +91,6 @@ class Slider extends HtmlElement {
 					: this[_motionData].turnEvenOdd = 'odd'
 				: null;
 
-			this[_motionData].currentAngle <= -360 ? console.log(this[_motionData].turnEvenOdd) : null;
-
 
 			this[_motionData].currentAngle = this[_motionData].currentAngle <= -360 ? 0 : this[_motionData].currentAngle;
 
@@ -124,8 +122,7 @@ class Slider extends HtmlElement {
 	faceClickEvent() {
 
 		this.slides.on('click', (e) => {
-
-			this.slides.css('transition', 'transform 1s ease-in-out .3s');
+			
 			if (!this[_motionData].isAboutToStop) {
 
 				let target = $(e.currentTarget);
@@ -139,7 +136,6 @@ class Slider extends HtmlElement {
 				this[_easing] = this[_computeEasing](direction);
 				this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
 
-				target.css('cursor', 'initial');
 
 				$('body')
 					.css('cursor', 'pointer')
@@ -271,7 +267,7 @@ class Slider extends HtmlElement {
 
 	[_getTargetAngle](e) {
 
-		const targetId = $(e.target).attr('id');
+		const targetId = $(e.currentTarget).data('angle');
 
 		switch (targetId) {
 		case 'front':
@@ -340,21 +336,6 @@ class Slider extends HtmlElement {
 				this.slides.eq(5).show();
 				this.slides.eq(6).show();
 				
-				// 	} else if (this[_motionData].currentAngle < -20 && this[_motionData].currentAngle > -30 && !this[_dynamicContent].willUpdate) {
-
-				// 		this[_dynamicContent].willUpdate = true;
-
-				// 	} else if (this[_motionData].currentAngle < -190 && this[_motionData].currentAngle > -200 && this[_dynamicContent].willUpdate) {
-
-				// 		this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content + 2 : this[_dynamicContent].content; // 5/9/13...
-				// 		this[_dynamicContent].willUpdate = false;
-
-				// 		$(this.slides[0]).text(`face ${this[_dynamicContent].content}`);
-				// 		$(this.slides[1]).text(`face ${this[_dynamicContent].content + 1}`);
-
-				// 	} else if (this[_motionData].currentAngle < -200 && this[_motionData].currentAngle > -210 && !this[_dynamicContent].willUpdate) {
-
-				// 		this[_dynamicContent].willUpdate = true;
 			} 
 		} else {
 			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
@@ -376,10 +357,10 @@ class Slider extends HtmlElement {
 }
 
 $(() => {
-	/* Media query for smaller screens*/
 
 	const mqMobile = window.matchMedia('(max-width: 1023px)'),
-		slider3d = new Slider($('.swiper-wrapper'), .7);
+		slider3d = new Slider($('.swiper-wrapper'), .6);
+	
 	let swiper;
 
 	/* Main condition: either swiper mode or 3d slider*/
@@ -402,6 +383,7 @@ $(() => {
 		$('#skills-content').addClass('_3d');
 
 		slider3d.animateElement();
+		slider3d.faceClickEvent();
 
 
 
