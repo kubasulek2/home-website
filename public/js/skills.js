@@ -311,24 +311,48 @@ class Slider extends HtmlElement {
 
 	[_updateContent]() {
 
-		if (this[_motionData].currentAngle < -90 && this[_motionData].currentAngle > -100 && this[_dynamicContent].willUpdate) {
+		if (this[_motionData].turnEvenOdd === 'odd') {
 
-			this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content + 2 : this[_dynamicContent].content; //3/7/11...
-			this[_dynamicContent].willUpdate = false;
+			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
 
-			$(this.slides[2]).text(`face ${this[_dynamicContent].content}`);
-			$(this.slides[3]).text(`face ${this[_dynamicContent].content + 1}`);
-		} else if (this[_motionData].currentAngle < -20 && this[_motionData].currentAngle > -30 && !this[_dynamicContent].willUpdate) {
+				this[_dynamicContent].willUpdate = false;
+				this.slides.eq(0).hide();
+				this.slides.eq(1).hide();
+				this.slides.eq(2).hide();
+				this.slides.eq(4).show();
+				this.slides.eq(5).show();
+				this.slides.eq(6).show();
 
-			this[_dynamicContent].willUpdate = true;
-		} else if (this[_motionData].currentAngle < -190 && this[_motionData].currentAngle > -200 && this[_dynamicContent].willUpdate) {
+				// 	} else if (this[_motionData].currentAngle < -20 && this[_motionData].currentAngle > -30 && !this[_dynamicContent].willUpdate) {
 
-			this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content + 2 : this[_dynamicContent].content; // 5/9/13...
-			this[_dynamicContent].willUpdate = false;
+				// 		this[_dynamicContent].willUpdate = true;
 
-			$(this.slides[0]).text(`face ${this[_dynamicContent].content}`);
-			$(this.slides[1]).text(`face ${this[_dynamicContent].content + 1}`);
-		} else if (this[_motionData].currentAngle < -200 && this[_motionData].currentAngle > -210 && !this[_dynamicContent].willUpdate) {
+				// 	} else if (this[_motionData].currentAngle < -190 && this[_motionData].currentAngle > -200 && this[_dynamicContent].willUpdate) {
+
+				// 		this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content + 2 : this[_dynamicContent].content; // 5/9/13...
+				// 		this[_dynamicContent].willUpdate = false;
+
+				// 		$(this.slides[0]).text(`face ${this[_dynamicContent].content}`);
+				// 		$(this.slides[1]).text(`face ${this[_dynamicContent].content + 1}`);
+
+				// 	} else if (this[_motionData].currentAngle < -200 && this[_motionData].currentAngle > -210 && !this[_dynamicContent].willUpdate) {
+
+				// 		this[_dynamicContent].willUpdate = true;
+			}
+		} else {
+			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
+
+				this[_dynamicContent].willUpdate = false;
+				this.slides.eq(0).show();
+				this.slides.eq(1).show();
+				this.slides.eq(2).show();
+				this.slides.eq(4).hide();
+				this.slides.eq(5).hide();
+				this.slides.eq(6).hide();
+			}
+		}
+
+		if (this[_motionData].currentAngle < -350 && this[_motionData].currentAngle > -355 && !this[_dynamicContent].willUpdate) {
 
 			this[_dynamicContent].willUpdate = true;
 		}
@@ -359,8 +383,8 @@ $(() => {
 		/* 3d-slider */
 
 		$('#skills-content').addClass('_3d');
+
 		slider3d.animateElement();
-		console.log(slider3d);
 
 		/* If in 3d mode reload page on matchmedia to change on flat */
 

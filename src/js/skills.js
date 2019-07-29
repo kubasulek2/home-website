@@ -68,10 +68,10 @@ class Slider extends HtmlElement {
 		};
 	}
 	animateElement() {
-		
-		if ( !this[_speedMeasure].avgSpeed ) this[_calculateEntryValues]();
 
-		if ( this[_motionData].move ){
+		if (!this[_speedMeasure].avgSpeed) this[_calculateEntryValues]();
+
+		if (this[_motionData].move) {
 
 			let rotationSpeed = this[_computeRotatingTime]();
 
@@ -80,53 +80,53 @@ class Slider extends HtmlElement {
 
 			if (this[_easing].length !== 0) this[_applyEasing]();
 
-			if(this[_easing].length === 0 && this[_rotationSpeed] < this.baseSpeed) this[_accelerate]();
+			if (this[_easing].length === 0 && this[_rotationSpeed] < this.baseSpeed) this[_accelerate]();
 
 
 			this[_motionData].currentAngle -= this[_rotationSpeed];
 
-			this[_motionData].currentAngle <= -360 
+			this[_motionData].currentAngle <= -360
 				? this[_motionData].turnEvenOdd === 'odd'
 					? this[_motionData].turnEvenOdd = 'even'
 					: this[_motionData].turnEvenOdd = 'odd'
-				: null;	
+				: null;
 
-			this[_motionData].currentAngle <= -360 ? console.log(this[_motionData].turnEvenOdd): null;
-				
-			
+			this[_motionData].currentAngle <= -360 ? console.log(this[_motionData].turnEvenOdd) : null;
+
+
 			this[_motionData].currentAngle = this[_motionData].currentAngle <= -360 ? 0 : this[_motionData].currentAngle;
 
 
 
-			this.element.css( 'transform', `rotateY(${this[_motionData].currentAngle}deg)` );
+			this.element.css('transform', `rotateY(${this[_motionData].currentAngle}deg)`);
 
 			// targetAngle is set in click event, so after click event rotation will stop
 
-			if( Math.round(this[_motionData].currentAngle) === this[_motionData].targetAngle ){
+			if (Math.round(this[_motionData].currentAngle) === this[_motionData].targetAngle) {
 				this[_motionData].move = false;
-				this.element.css( 'transform', `rotateY(${this[_motionData].targetAngle}deg)` );
+				this.element.css('transform', `rotateY(${this[_motionData].targetAngle}deg)`);
 			}
 
-			window.requestAnimationFrame( ()=> this.animateElement() );
+			window.requestAnimationFrame(() => this.animateElement());
 		}
 		else {
 			this.animateFace();
 		}
 	}
 
-	animateFace(){
+	animateFace() {
 
-		let myPlane = this.slides.filter( ( i,el ) => $(el).attr('id') === this[_clickedId]);
+		let myPlane = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
 
 		myPlane.addClass('focus');
 	}
 
-	faceClickEvent(){
+	faceClickEvent() {
 
-		this.slides.on( 'click', (e)=> {
-			
+		this.slides.on('click', (e) => {
+
 			this.slides.css('transition', 'transform 1s ease-in-out .3s');
-			if( ! this[_motionData].isAboutToStop ){
+			if (!this[_motionData].isAboutToStop) {
 
 				let target = $(e.currentTarget);
 				e.stopPropagation();
@@ -154,17 +154,17 @@ class Slider extends HtmlElement {
 	}
 
 	[_calculateEntryValues]() {
-		this[_speedMeasure].avgSpeed = (30 / ( this.baseSpeed * 60 ) );
+		this[_speedMeasure].avgSpeed = (30 / (this.baseSpeed * 60));
 	}
 
-	[_computeRotatingTime](){
+	[_computeRotatingTime]() {
 
-		let currentAngle = Math.abs( Math.floor(this[_motionData].currentAngle) );
+		let currentAngle = Math.abs(Math.floor(this[_motionData].currentAngle));
 		let rotationTime;
 		let flag = !(currentAngle % 31);
 
 		// return if current angle haven't change from last measurement
-		if (this[_speedMeasure].lastMeasuredAngle === currentAngle){
+		if (this[_speedMeasure].lastMeasuredAngle === currentAngle) {
 			return null;
 		}
 
@@ -172,59 +172,59 @@ class Slider extends HtmlElement {
 		this[_speedMeasure].lastMeasuredAngle = currentAngle;
 
 
-		if(this[_speedMeasure].measureAngle === currentAngle){
+		if (this[_speedMeasure].measureAngle === currentAngle) {
 			this[_speedMeasure].stop = new Date();
-			rotationTime =  (this[_speedMeasure].stop - this[_speedMeasure].start)/1000;
+			rotationTime = (this[_speedMeasure].stop - this[_speedMeasure].start) / 1000;
 			return rotationTime;
 		}
 		//every 31 degrees start time, and angle, at which speed will be measured, are set
-		if ( flag ) {
+		if (flag) {
 			this[_speedMeasure].measureAngle = this[_motionData].currentAngle === 360 ? 30 : currentAngle + 30;
 			this[_speedMeasure].start = new Date();
 		}
 		return null;
 	}
 
-	[_computeEasing](direction){
-		let distance = Math.abs( Math.abs(this[_motionData].targetAngle) - Math.abs(this[_motionData].currentAngle) );
+	[_computeEasing](direction) {
+		let distance = Math.abs(Math.abs(this[_motionData].targetAngle) - Math.abs(this[_motionData].currentAngle));
 
 		let steps = distance < 20 ? 5 : 10;
 		let threshold, delay, speed, speedChange, startEase, slowAngles, easing = [];
 		let baseSpeed = this[_rotationSpeed];
 
 		switch (true) {
-		case distance <= 10 :
+		case distance <= 10:
 			delay = 0;
 			break;
-		case distance <= 20 :
+		case distance <= 20:
 			delay = 3;
 			break;
-		case distance <= 30 :
+		case distance <= 30:
 			delay = 8;
 			break;
-		case distance <= 40 :
+		case distance <= 40:
 			delay = 15;
 			break;
-		case distance <= 50 :
+		case distance <= 50:
 			delay = 24;
 			break;
-		case distance <= 60 :
+		case distance <= 60:
 			delay = 32;
 			break;
-		case distance <= 70 :
+		case distance <= 70:
 			delay = 40;
 			break;
-		case distance <= 80 :
+		case distance <= 80:
 			delay = 50;
 			break;
-		case distance <= 90 :
+		case distance <= 90:
 			delay = 60;
 			break;
 
 		}
 
-		threshold = ( distance - delay ) / steps;
-		speedChange = baseSpeed/steps;
+		threshold = (distance - delay) / steps;
+		speedChange = baseSpeed / steps;
 		speed = baseSpeed;
 		startEase = direction === 'forth' ? this[_motionData].currentAngle - delay : this[_motionData].currentAngle + delay;
 		slowAngles = startEase;
@@ -232,40 +232,40 @@ class Slider extends HtmlElement {
 		threshold = direction === 'forth' ? -threshold : threshold;
 
 
-		for(let i = 1; i < steps; i++){
+		for (let i = 1; i < steps; i++) {
 			slowAngles += threshold;
 			speed -= speedChange;
 
-			if ( speed > 0 ) speed = speed < 0.1 ? 0.1 : speed;
+			if (speed > 0) speed = speed < 0.1 ? 0.1 : speed;
 			else speed = speed > -0.1 ? -0.1 : speed;
 
-			easing[i-1] = [];
+			easing[i - 1] = [];
 
-			easing[i-1].push( Math.round( slowAngles ) );
-			easing[i-1].push( parseFloat( speed.toFixed(2) ) );
+			easing[i - 1].push(Math.round(slowAngles));
+			easing[i - 1].push(parseFloat(speed.toFixed(2)));
 		}
 		return easing;
 
 	}
-	[_applyEasing](){
+	[_applyEasing]() {
 
-		this[_easing].forEach(  value => {
-			if ( Math.round(this[_motionData].currentAngle) === value[0] )
+		this[_easing].forEach(value => {
+			if (Math.round(this[_motionData].currentAngle) === value[0])
 				this[_rotationSpeed] = value[1];
 		});
 	}
 
-	[_computeAvgSpeed](arg){
+	[_computeAvgSpeed](arg) {
 
-		if ( arg === null ) return;
+		if (arg === null) return;
 
 		this[_speedMeasure].speedArr.push(arg);
 
-		if ( this[_speedMeasure].speedArr.length > 4 ){
+		if (this[_speedMeasure].speedArr.length > 4) {
 			this[_speedMeasure].speedArr.shift();
 
 		}
-		this[_speedMeasure].avgSpeed = this[_speedMeasure].speedArr.reduce((a,b) => a + b, 0) / this[_speedMeasure].speedArr.length;
+		this[_speedMeasure].avgSpeed = this[_speedMeasure].speedArr.reduce((a, b) => a + b, 0) / this[_speedMeasure].speedArr.length;
 
 	}
 
@@ -289,16 +289,16 @@ class Slider extends HtmlElement {
 		}
 	}
 
-	[_shouldChangeDirection](){
+	[_shouldChangeDirection]() {
 		let direction = 'forth';
-		if( this[_motionData].targetAngle === 0 ){
+		if (this[_motionData].targetAngle === 0) {
 			//if clicked in front plane, which set target angle to 0 , must have special check, cause current angle is always lesser than 0
 
 			this[_rotationSpeed] = this[_motionData].currentAngle < -180 ? this[_rotationSpeed] : - this[_rotationSpeed];
 
-			direction = this[_motionData].currentAngle < -180 ? 'forth' :  'back';
+			direction = this[_motionData].currentAngle < -180 ? 'forth' : 'back';
 
-		} else if ( this[_motionData].currentAngle < this[_motionData].targetAngle ){
+		} else if (this[_motionData].currentAngle < this[_motionData].targetAngle) {
 			//all the other cases
 			this[_rotationSpeed] = -this[_rotationSpeed];
 			direction = 'back';
@@ -306,9 +306,9 @@ class Slider extends HtmlElement {
 		return direction;
 	}
 
-	[_restoreAnimation](){
+	[_restoreAnimation]() {
 		let targetPlane = this.slides
-			.filter( ( i,el ) => $(el).attr('id') === this[_clickedId]);
+			.filter((i, el) => $(el).attr('id') === this[_clickedId]);
 		targetPlane.removeClass('focus');
 		this[_easing] = [];
 		this[_motionData].move = true;
@@ -316,42 +316,62 @@ class Slider extends HtmlElement {
 		this[_clickedId] = '';
 		this[_rotationSpeed] = this[_rotationSpeed] < 0 ? -this[_rotationSpeed] : this[_rotationSpeed];
 
-		targetPlane.one('transitionend',  () => {
+		targetPlane.one('transitionend', () => {
 			this.animateElement();
 		});
 
 	}
 
-	[_accelerate](){
-		this[_rotationSpeed] =  parseFloat( ( this[_rotationSpeed] + 0.005 ).toFixed(3) );
+	[_accelerate]() {
+		this[_rotationSpeed] = parseFloat((this[_rotationSpeed] + 0.005).toFixed(3));
 	}
 
-	[_updateContent](){
+	[_updateContent]() {
+		
+		if (this[_motionData].turnEvenOdd === 'odd'){
+			
+			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
+				
+				this[_dynamicContent].willUpdate = false;
+				this.slides.eq(0).hide();
+				this.slides.eq(1).hide();
+				this.slides.eq(2).hide();
+				this.slides.eq(4).show();
+				this.slides.eq(5).show();
+				this.slides.eq(6).show();
+				
+				// 	} else if (this[_motionData].currentAngle < -20 && this[_motionData].currentAngle > -30 && !this[_dynamicContent].willUpdate) {
 
-		if ( this[_motionData].currentAngle < -90 && this[_motionData].currentAngle > -100 && this[_dynamicContent].willUpdate){
+				// 		this[_dynamicContent].willUpdate = true;
 
-			this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content +2 : this[_dynamicContent].content;  //3/7/11...
-			this[_dynamicContent].willUpdate = false;
+				// 	} else if (this[_motionData].currentAngle < -190 && this[_motionData].currentAngle > -200 && this[_dynamicContent].willUpdate) {
 
-			$(this.slides[2]).text(`face ${this[_dynamicContent].content}`);
-			$(this.slides[3]).text(`face ${this[_dynamicContent].content +1}`);
+				// 		this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content + 2 : this[_dynamicContent].content; // 5/9/13...
+				// 		this[_dynamicContent].willUpdate = false;
 
-		} else if (this[_motionData].currentAngle < -20 && this[_motionData].currentAngle > -30 && !this[_dynamicContent].willUpdate){
+				// 		$(this.slides[0]).text(`face ${this[_dynamicContent].content}`);
+				// 		$(this.slides[1]).text(`face ${this[_dynamicContent].content + 1}`);
 
-			this[_dynamicContent].willUpdate = true;
+				// 	} else if (this[_motionData].currentAngle < -200 && this[_motionData].currentAngle > -210 && !this[_dynamicContent].willUpdate) {
 
-		} else if ( this[_motionData].currentAngle < -190 && this[_motionData].currentAngle > -200 && this[_dynamicContent].willUpdate ){
+				// 		this[_dynamicContent].willUpdate = true;
+			} 
+		} else {
+			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
 
-			this[_dynamicContent].content = this[_rotationSpeed] > 0 ? this[_dynamicContent].content +2 : this[_dynamicContent].content; // 5/9/13...
-			this[_dynamicContent].willUpdate = false;
-
-			$(this.slides[0]).text(`face ${this[_dynamicContent].content}`);
-			$(this.slides[1]).text(`face ${this[_dynamicContent].content + 1}`);
-
-		} else if ( this[_motionData].currentAngle < -200 && this[_motionData].currentAngle > -210 && !this[_dynamicContent].willUpdate){
-
-			this[_dynamicContent].willUpdate = true;
+				this[_dynamicContent].willUpdate = false;
+				this.slides.eq(0).show();
+				this.slides.eq(1).show();
+				this.slides.eq(2).show();
+				this.slides.eq(4).hide();
+				this.slides.eq(5).hide();
+				this.slides.eq(6).hide();
+			}
 		}
+
+		if (this[_motionData].currentAngle < -350 && this[_motionData].currentAngle > -355 && !this[_dynamicContent].willUpdate) {
+				
+			this[_dynamicContent].willUpdate = true;}
 	}
 }
 
@@ -359,7 +379,7 @@ $(() => {
 	/* Media query for smaller screens*/
 
 	const mqMobile = window.matchMedia('(max-width: 1023px)'),
-		slider3d = new Slider($('.swiper-wrapper'), .7); 
+		slider3d = new Slider($('.swiper-wrapper'), .7);
 	let swiper;
 
 	/* Main condition: either swiper mode or 3d slider*/
@@ -380,9 +400,10 @@ $(() => {
 		/* 3d-slider */
 
 		$('#skills-content').addClass('_3d');
+
 		slider3d.animateElement();
-		console.log(slider3d);
-		
+
+
 
 
 		/* If in 3d mode reload page on matchmedia to change on flat */
