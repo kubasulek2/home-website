@@ -108,27 +108,26 @@ class Slider extends HtmlElement {
 			window.requestAnimationFrame(() => this.animateElement());
 		}
 		else {
-			this.animateFace();
+			this.animatSlide();
 		}
 	}
 
-	animateFace() {
+	animatSlide() {
 
-		let myPlane = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
+		const slide = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
 
-		myPlane.addClass('focus');
 	}
 
 	faceClickEvent() {
 
 		this.slides.on('click', (e) => {
-			
+
 			if (!this[_motionData].isAboutToStop) {
 
-				let target = $(e.currentTarget);
+				let target = e.currentTarget;
 				e.stopPropagation();
 				this[_getTargetAngle](e);
-				this[_clickedId] = e.target.id;
+				this[_clickedId] = target.id;
 
 				let direction = this[_shouldChangeDirection]();
 
@@ -138,11 +137,8 @@ class Slider extends HtmlElement {
 
 
 				$('body')
-					.css('cursor', 'pointer')
-					.one('click', (e) => {
+					.one('click', () => {
 						this[_motionData].isAboutToStop = false;
-						target.css('cursor', 'pointer');
-						$(e.currentTarget).css('cursor', 'initial');
 						this[_restoreAnimation]();
 					});
 			}
@@ -189,33 +185,33 @@ class Slider extends HtmlElement {
 		let baseSpeed = this[_rotationSpeed];
 
 		switch (true) {
-		case distance <= 10:
-			delay = 0;
-			break;
-		case distance <= 20:
-			delay = 3;
-			break;
-		case distance <= 30:
-			delay = 8;
-			break;
-		case distance <= 40:
-			delay = 15;
-			break;
-		case distance <= 50:
-			delay = 24;
-			break;
-		case distance <= 60:
-			delay = 32;
-			break;
-		case distance <= 70:
-			delay = 40;
-			break;
-		case distance <= 80:
-			delay = 50;
-			break;
-		case distance <= 90:
-			delay = 60;
-			break;
+			case distance <= 10:
+				delay = 0;
+				break;
+			case distance <= 20:
+				delay = 3;
+				break;
+			case distance <= 30:
+				delay = 8;
+				break;
+			case distance <= 40:
+				delay = 15;
+				break;
+			case distance <= 50:
+				delay = 24;
+				break;
+			case distance <= 60:
+				delay = 32;
+				break;
+			case distance <= 70:
+				delay = 40;
+				break;
+			case distance <= 80:
+				delay = 50;
+				break;
+			case distance <= 90:
+				delay = 60;
+				break;
 
 		}
 
@@ -270,18 +266,18 @@ class Slider extends HtmlElement {
 		const targetId = $(e.currentTarget).data('angle');
 
 		switch (targetId) {
-		case 'front':
-			this[_motionData].targetAngle = 0;
-			break;
-		case 'right':
-			this[_motionData].targetAngle = -90;
-			break;
-		case 'back':
-			this[_motionData].targetAngle = -180;
-			break;
-		case 'left':
-			this[_motionData].targetAngle = -270;
-			break;
+			case 'front':
+				this[_motionData].targetAngle = 0;
+				break;
+			case 'right':
+				this[_motionData].targetAngle = -90;
+				break;
+			case 'back':
+				this[_motionData].targetAngle = -180;
+				break;
+			case 'left':
+				this[_motionData].targetAngle = -270;
+				break;
 		}
 	}
 
@@ -303,18 +299,18 @@ class Slider extends HtmlElement {
 	}
 
 	[_restoreAnimation]() {
-		let targetPlane = this.slides
-			.filter((i, el) => $(el).attr('id') === this[_clickedId]);
-		targetPlane.removeClass('focus');
+		// let targetPlane = this.slides
+		// 	.filter((i, el) => $(el).attr('id') === this[_clickedId]);
 		this[_easing] = [];
-		this[_motionData].move = true;
 		this[_motionData].targetAngle = undefined;
 		this[_clickedId] = '';
 		this[_rotationSpeed] = this[_rotationSpeed] < 0 ? -this[_rotationSpeed] : this[_rotationSpeed];
-
-		targetPlane.one('transitionend', () => {
+		
+		if (!this[_motionData].move) {	
+			this[_motionData].move = true;
 			this.animateElement();
-		});
+		}
+		
 
 	}
 
@@ -323,11 +319,11 @@ class Slider extends HtmlElement {
 	}
 
 	[_updateContent]() {
-		
-		if (this[_motionData].turnEvenOdd === 'odd'){
-			
+
+		if (this[_motionData].turnEvenOdd === 'odd') {
+
 			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
-				
+
 				this[_dynamicContent].willUpdate = false;
 				this.slides.eq(0).hide();
 				this.slides.eq(1).hide();
@@ -335,8 +331,8 @@ class Slider extends HtmlElement {
 				this.slides.eq(4).show();
 				this.slides.eq(5).show();
 				this.slides.eq(6).show();
-				
-			} 
+
+			}
 		} else {
 			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
 
@@ -351,8 +347,9 @@ class Slider extends HtmlElement {
 		}
 
 		if (this[_motionData].currentAngle < -350 && this[_motionData].currentAngle > -355 && !this[_dynamicContent].willUpdate) {
-				
-			this[_dynamicContent].willUpdate = true;}
+
+			this[_dynamicContent].willUpdate = true;
+		}
 	}
 }
 
@@ -360,7 +357,7 @@ $(() => {
 
 	const mqMobile = window.matchMedia('(max-width: 1023px)'),
 		slider3d = new Slider($('.swiper-wrapper'), .6);
-	
+
 	let swiper;
 
 	/* Main condition: either swiper mode or 3d slider*/
@@ -456,11 +453,11 @@ $(() => {
 							opacity: [0, 1]
 						}
 					}, {
-						cycle: {
-							opacity: [1, 0]
-						},
-						repeat: -1
-					}, .2, 'synch');
+							cycle: {
+								opacity: [1, 0]
+							},
+							repeat: -1
+						}, .2, 'synch');
 			});
 		}
 
@@ -504,8 +501,8 @@ $(() => {
 		leftHandler = skillsHandler($('.swiper-slide.left'));
 
 	/* attach handlers to slides */
-	/* 
-	$('.swiper-slide.front')
+
+	/* $('.swiper-slide.front')
 		.off()
 		.on('click', () => frontHandler());
 
@@ -531,7 +528,7 @@ $(() => {
 	
 	$('.swiper-slide.left')
 		.off()
-		.on('click', () => leftHandler());	 */
+		.on('click', () => leftHandler()); */
 
 	/* stop propagation on back-face */
 

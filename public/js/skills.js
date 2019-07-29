@@ -98,15 +98,13 @@ class Slider extends HtmlElement {
 
 			window.requestAnimationFrame(() => this.animateElement());
 		} else {
-			this.animateFace();
+			this.animatSlide();
 		}
 	}
 
-	animateFace() {
+	animatSlide() {
 
-		let myPlane = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
-
-		myPlane.addClass('focus');
+		const slide = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
 	}
 
 	faceClickEvent() {
@@ -115,10 +113,10 @@ class Slider extends HtmlElement {
 
 			if (!this[_motionData].isAboutToStop) {
 
-				let target = $(e.currentTarget);
+				let target = e.currentTarget;
 				e.stopPropagation();
 				this[_getTargetAngle](e);
-				this[_clickedId] = e.target.id;
+				this[_clickedId] = target.id;
 
 				let direction = this[_shouldChangeDirection]();
 
@@ -126,10 +124,8 @@ class Slider extends HtmlElement {
 				this[_easing] = this[_computeEasing](direction);
 				this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
 
-				$('body').css('cursor', 'pointer').one('click', e => {
+				$('body').one('click', () => {
 					this[_motionData].isAboutToStop = false;
-					target.css('cursor', 'pointer');
-					$(e.currentTarget).css('cursor', 'initial');
 					this[_restoreAnimation]();
 				});
 			}
@@ -287,17 +283,17 @@ class Slider extends HtmlElement {
 	}
 
 	[_restoreAnimation]() {
-		let targetPlane = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
-		targetPlane.removeClass('focus');
+		// let targetPlane = this.slides
+		// 	.filter((i, el) => $(el).attr('id') === this[_clickedId]);
 		this[_easing] = [];
-		this[_motionData].move = true;
 		this[_motionData].targetAngle = undefined;
 		this[_clickedId] = '';
 		this[_rotationSpeed] = this[_rotationSpeed] < 0 ? -this[_rotationSpeed] : this[_rotationSpeed];
 
-		targetPlane.one('transitionend', () => {
+		if (!this[_motionData].move) {
+			this[_motionData].move = true;
 			this.animateElement();
-		});
+		}
 	}
 
 	[_accelerate]() {
@@ -470,8 +466,8 @@ $(() => {
 	      leftHandler = skillsHandler($('.swiper-slide.left'));
 
 	/* attach handlers to slides */
-	/* 
- $('.swiper-slide.front')
+
+	/* $('.swiper-slide.front')
  	.off()
  	.on('click', () => frontHandler());
  	$('.swiper-slide.front-2')
@@ -496,7 +492,7 @@ $(() => {
  
  $('.swiper-slide.left')
  	.off()
- 	.on('click', () => leftHandler());	 */
+ 	.on('click', () => leftHandler()); */
 
 	/* stop propagation on back-face */
 
