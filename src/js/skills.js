@@ -75,7 +75,7 @@ class Slider extends HtmlElement {
 
 		};
 	}
-	animateElement() {
+	rotateElement() {
 
 		if (!this[_speedMeasure].avgSpeed) this[_calculateEntryValues]();
 
@@ -84,7 +84,7 @@ class Slider extends HtmlElement {
 			let rotationSpeed = this[_computeRotatingTime]();
 
 			this[_computeAvgSpeed](rotationSpeed);
-			this[_updateContent]();
+			//this[_updateContent]();
 
 			if (this[_easing].length !== 0) this[_applyEasing]();
 
@@ -113,9 +113,11 @@ class Slider extends HtmlElement {
 				this.element.css('transform', `rotateY(${this[_motionData].targetAngle}deg)`);
 			}
 
-			window.requestAnimationFrame(() => this.animateElement());
+			window.requestAnimationFrame(() => this.rotateElement());
 		}
 		else {
+			console.log(this[_rotationSpeed]);
+			
 			this.animateSlide();
 		}
 	}
@@ -158,9 +160,7 @@ class Slider extends HtmlElement {
 		this.slides
 			.off('click')
 			.on('click', (e) => {
-				console.log(this[_motionData].isAboutToStop);
-				
-
+			
 				if (!this[_motionData].isAboutToStop) {
 
 					let target = e.currentTarget;
@@ -221,33 +221,33 @@ class Slider extends HtmlElement {
 		let baseSpeed = this[_rotationSpeed];
 
 		switch (true) {
-			case distance <= 10:
-				delay = 0;
-				break;
-			case distance <= 20:
-				delay = 3;
-				break;
-			case distance <= 30:
-				delay = 8;
-				break;
-			case distance <= 40:
-				delay = 15;
-				break;
-			case distance <= 50:
-				delay = 24;
-				break;
-			case distance <= 60:
-				delay = 32;
-				break;
-			case distance <= 70:
-				delay = 40;
-				break;
-			case distance <= 80:
-				delay = 50;
-				break;
-			case distance <= 90:
-				delay = 60;
-				break;
+		case distance <= 10:
+			delay = 0;
+			break;
+		case distance <= 20:
+			delay = 3;
+			break;
+		case distance <= 30:
+			delay = 8;
+			break;
+		case distance <= 40:
+			delay = 15;
+			break;
+		case distance <= 50:
+			delay = 24;
+			break;
+		case distance <= 60:
+			delay = 32;
+			break;
+		case distance <= 70:
+			delay = 40;
+			break;
+		case distance <= 80:
+			delay = 50;
+			break;
+		case distance <= 90:
+			delay = 60;
+			break;
 
 		}
 
@@ -303,18 +303,18 @@ class Slider extends HtmlElement {
 		const targetId = $(e.currentTarget).data('angle');
 
 		switch (targetId) {
-			case 'front':
-				this[_motionData].targetAngle = 0;
-				break;
-			case 'right':
-				this[_motionData].targetAngle = -90;
-				break;
-			case 'back':
-				this[_motionData].targetAngle = -180;
-				break;
-			case 'left':
-				this[_motionData].targetAngle = -270;
-				break;
+		case 'front':
+			this[_motionData].targetAngle = 0;
+			break;
+		case 'right':
+			this[_motionData].targetAngle = -90;
+			break;
+		case 'back':
+			this[_motionData].targetAngle = -180;
+			break;
+		case 'left':
+			this[_motionData].targetAngle = -270;
+			break;
 		}
 	}
 
@@ -344,7 +344,7 @@ class Slider extends HtmlElement {
 
 		if (!this[_motionData].move) {
 			this[_motionData].move = true;
-			this.animateElement();
+			this.rotateElement();
 		}
 
 	}
@@ -360,24 +360,24 @@ class Slider extends HtmlElement {
 			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
 
 				this[_dynamicContent].willUpdate = false;
-				this.slides.eq(0).hide();
-				this.slides.eq(1).hide();
-				this.slides.eq(2).hide();
-				this.slides.eq(4).show();
-				this.slides.eq(5).show();
-				this.slides.eq(6).show();
+				this.slides.eq(0).css('display','none');
+				this.slides.eq(1).css('display','none');
+				this.slides.eq(2).css('display','none');
+				this.slides.eq(4).css('display', 'flex');
+				this.slides.eq(5).css('display', 'flex');
+				this.slides.eq(6).css('display', 'flex');
 
 			}
 		} else {
 			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
 
 				this[_dynamicContent].willUpdate = false;
-				this.slides.eq(0).show();
-				this.slides.eq(1).show();
-				this.slides.eq(2).show();
-				this.slides.eq(4).hide();
-				this.slides.eq(5).hide();
-				this.slides.eq(6).hide();
+				this.slides.eq(0).css('display', 'flex');
+				this.slides.eq(1).css('display', 'flex');
+				this.slides.eq(2).css('display', 'flex');
+				this.slides.eq(4).css('display','none');
+				this.slides.eq(5).css('display','none');
+				this.slides.eq(6).css('display','none');
 			}
 		}
 
@@ -447,11 +447,11 @@ class Slider extends HtmlElement {
 							opacity: [0, 1]
 						}
 					}, {
-							cycle: {
-								opacity: [1, 0]
-							},
-							repeat: -1
-						}, .2, 'synch');
+						cycle: {
+							opacity: [1, 0]
+						},
+						repeat: -1
+					}, .2, 'synch');
 			});
 
 
@@ -538,11 +538,11 @@ $(() => {
 							opacity: [0, 1]
 						}
 					}, {
-							cycle: {
-								opacity: [1, 0]
-							},
-							repeat: -1
-						}, .2, 'synch');
+						cycle: {
+							opacity: [1, 0]
+						},
+						repeat: -1
+					}, .2, 'synch');
 			});
 		}
 
@@ -634,7 +634,7 @@ $(() => {
 
 		$('#skills-content').addClass('_3d');
 
-		slider3d.animateElement();
+		slider3d.rotateElement();
 		slider3d.faceClickEvent();
 
 

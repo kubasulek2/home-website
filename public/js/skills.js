@@ -74,7 +74,7 @@ class Slider extends HtmlElement {
 
 		};
 	}
-	animateElement() {
+	rotateElement() {
 
 		if (!this[_speedMeasure].avgSpeed) this[_calculateEntryValues]();
 
@@ -83,7 +83,7 @@ class Slider extends HtmlElement {
 			let rotationSpeed = this[_computeRotatingTime]();
 
 			this[_computeAvgSpeed](rotationSpeed);
-			this[_updateContent]();
+			//this[_updateContent]();
 
 			if (this[_easing].length !== 0) this[_applyEasing]();
 
@@ -104,8 +104,10 @@ class Slider extends HtmlElement {
 				this.element.css('transform', `rotateY(${this[_motionData].targetAngle}deg)`);
 			}
 
-			window.requestAnimationFrame(() => this.animateElement());
+			window.requestAnimationFrame(() => this.rotateElement());
 		} else {
+			console.log(this[_rotationSpeed]);
+
 			this.animateSlide();
 		}
 	}
@@ -142,7 +144,6 @@ class Slider extends HtmlElement {
 	faceClickEvent() {
 
 		this.slides.off('click').on('click', e => {
-			console.log(this[_motionData].isAboutToStop);
 
 			if (!this[_motionData].isAboutToStop) {
 
@@ -324,7 +325,7 @@ class Slider extends HtmlElement {
 
 		if (!this[_motionData].move) {
 			this[_motionData].move = true;
-			this.animateElement();
+			this.rotateElement();
 		}
 	}
 
@@ -339,23 +340,23 @@ class Slider extends HtmlElement {
 			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
 
 				this[_dynamicContent].willUpdate = false;
-				this.slides.eq(0).hide();
-				this.slides.eq(1).hide();
-				this.slides.eq(2).hide();
-				this.slides.eq(4).show();
-				this.slides.eq(5).show();
-				this.slides.eq(6).show();
+				this.slides.eq(0).css('display', 'none');
+				this.slides.eq(1).css('display', 'none');
+				this.slides.eq(2).css('display', 'none');
+				this.slides.eq(4).css('display', 'flex');
+				this.slides.eq(5).css('display', 'flex');
+				this.slides.eq(6).css('display', 'flex');
 			}
 		} else {
 			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
 
 				this[_dynamicContent].willUpdate = false;
-				this.slides.eq(0).show();
-				this.slides.eq(1).show();
-				this.slides.eq(2).show();
-				this.slides.eq(4).hide();
-				this.slides.eq(5).hide();
-				this.slides.eq(6).hide();
+				this.slides.eq(0).css('display', 'flex');
+				this.slides.eq(1).css('display', 'flex');
+				this.slides.eq(2).css('display', 'flex');
+				this.slides.eq(4).css('display', 'none');
+				this.slides.eq(5).css('display', 'none');
+				this.slides.eq(6).css('display', 'none');
 			}
 		}
 
@@ -574,7 +575,7 @@ $(() => {
 
 		$('#skills-content').addClass('_3d');
 
-		slider3d.animateElement();
+		slider3d.rotateElement();
 		slider3d.faceClickEvent();
 
 		/* If in 3d mode reload page on matchmedia to change on flat */
