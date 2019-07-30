@@ -140,28 +140,27 @@ class Slider extends HtmlElement {
 		this[_animationData].counters[index] = this[_animationData].counters[index] + 1;
 	}
 
-	faceClickEvent() {
+	slideClickHandler(event) {
+		event = event || window.event;
+		event.stopPropagation();
+		event.preventDefault();
 
-		this.slides.off('click').on('click', e => {
+		if (!this[_motionData].isAboutToStop) {
 
-			if (!this[_motionData].isAboutToStop) {
+			let target = event.currentTarget;
+			this[_getTargetAngle](event);
+			this[_clickedId] = target.id;
 
-				let target = e.currentTarget;
-				e.stopPropagation();
-				this[_getTargetAngle](e);
-				this[_clickedId] = target.id;
+			let direction = this[_shouldChangeDirection]();
 
-				let direction = this[_shouldChangeDirection]();
-
-				this[_motionData].isAboutToStop = true;
-				this[_easing] = this[_computeEasing](direction);
-				this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
-			} else if (this[_motionData].isAboutToStop && this[_motionData].move) {
-				this[_restoreRotation]();
-			} else if (!this[_motionData].move) {
-				this.animateSlide();
-			}
-		});
+			this[_motionData].isAboutToStop = true;
+			this[_easing] = this[_computeEasing](direction);
+			this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
+		} else if (this[_motionData].isAboutToStop && this[_motionData].move) {
+			this[_restoreRotation]();
+		} else if (!this[_motionData].move) {
+			this.animateSlide();
+		}
 	}
 
 	[_calculateEntryValues]() {
@@ -578,7 +577,9 @@ $(() => {
 		$('#skills-content').addClass('_3d');
 
 		slider3d.rotateElement();
-		slider3d.faceClickEvent();
+		slider3d.slides.off('click').on('click', event => {
+			slider3d.slideClickHandler(event);
+		});
 
 		/* If in 3d mode reload page on matchmedia to change on flat */
 
