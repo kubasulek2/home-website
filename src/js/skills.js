@@ -84,7 +84,7 @@ class Slider extends HtmlElement {
 			let rotationSpeed = this[_computeRotatingTime]();
 
 			this[_computeAvgSpeed](rotationSpeed);
-			//this[_updateContent]();
+			this[_updateContent]();
 
 			if (this[_easing].length !== 0) this[_applyEasing]();
 
@@ -360,24 +360,25 @@ class Slider extends HtmlElement {
 			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
 
 				this[_dynamicContent].willUpdate = false;
-				this.slides.eq(0).css('display','none');
-				this.slides.eq(1).css('display','none');
-				this.slides.eq(2).css('display','none');
-				this.slides.eq(4).css('display', 'flex');
-				this.slides.eq(5).css('display', 'flex');
-				this.slides.eq(6).css('display', 'flex');
+				this.slides.eq(0).toggleClass('hidden');
+				this.slides.eq(1).toggleClass('hidden');
+				this.slides.eq(2).toggleClass('hidden');
+				this.slides.eq(4).toggleClass('hidden');
+				this.slides.eq(5).toggleClass('hidden');
+				this.slides.eq(6).toggleClass('hidden');
 
 			}
 		} else {
 			if (this[_motionData].currentAngle < -265 && this[_motionData].currentAngle > -270 && this[_dynamicContent].willUpdate) {
 
 				this[_dynamicContent].willUpdate = false;
-				this.slides.eq(0).css('display', 'flex');
-				this.slides.eq(1).css('display', 'flex');
-				this.slides.eq(2).css('display', 'flex');
-				this.slides.eq(4).css('display','none');
-				this.slides.eq(5).css('display','none');
-				this.slides.eq(6).css('display','none');
+				this.slides.eq(0).toggleClass('hidden');
+				this.slides.eq(1).toggleClass('hidden');
+				this.slides.eq(2).toggleClass('hidden');
+				this.slides.eq(4).toggleClass('hidden');
+				this.slides.eq(5).toggleClass('hidden');
+				this.slides.eq(6).toggleClass('hidden');
+
 			}
 		}
 

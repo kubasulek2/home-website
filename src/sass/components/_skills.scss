@@ -421,11 +421,9 @@ html.preserve3d.csstransforms3d {
 	}
 
 	/* Hide additional faces */
-	.front-2,
-	.right-2,
-	.back-2,
-	.left-2{
-		display: none;
+	.swiper-slide.hidden{
+		opacity:0;
+		pointer-events: none;
 	}
 	/* Back-faces positioning */
 	
