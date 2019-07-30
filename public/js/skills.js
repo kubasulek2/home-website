@@ -141,7 +141,7 @@ class Slider extends HtmlElement {
 
 	faceClickEvent() {
 
-		this.slides.on('click', e => {
+		this.slides.off('click').on('click', e => {
 
 			if (!this[_motionData].isAboutToStop) {
 
@@ -155,10 +155,8 @@ class Slider extends HtmlElement {
 				this[_motionData].isAboutToStop = true;
 				this[_easing] = this[_computeEasing](direction);
 				this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
-
-				$('body').one('click', () => {
-					this[_restoreRotation]();
-				});
+			} else {
+				this.animateSlide();
 			}
 		});
 	}
@@ -368,7 +366,8 @@ class Slider extends HtmlElement {
 
 		// variables 1
 
-		const tlSkills = new TimelineMax({ paused: true }),
+		const binded = this[_restoreRotation].bind(this),
+		      tlSkills = new TimelineMax({ paused: true, onReverseComplete: binded }),
 		      slide = this[_animationData].slide,
 		      techLists = slide.find('.techs li'),
 		      skillsLists = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),

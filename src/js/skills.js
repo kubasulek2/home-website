@@ -155,28 +155,26 @@ class Slider extends HtmlElement {
 
 	faceClickEvent() {
 
-		this.slides.on('click', (e) => {
+		this.slides
+			.off('click')
+			.on('click', (e) => {
 
-			if (!this[_motionData].isAboutToStop) {
+				if (!this[_motionData].isAboutToStop) {
 
-				let target = e.currentTarget;
-				e.stopPropagation();
-				this[_getTargetAngle](e);
-				this[_clickedId] = target.id;
+					let target = e.currentTarget;
+					e.stopPropagation();
+					this[_getTargetAngle](e);
+					this[_clickedId] = target.id;
 
-				let direction = this[_shouldChangeDirection]();
+					let direction = this[_shouldChangeDirection]();
 
-				this[_motionData].isAboutToStop = true;
-				this[_easing] = this[_computeEasing](direction);
-				this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
-
-
-				$('body')
-					.one('click', () => {
-						this[_restoreRotation]();
-					});
-			}
-		});
+					this[_motionData].isAboutToStop = true;
+					this[_easing] = this[_computeEasing](direction);
+					this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
+				} else {
+					this.animateSlide();
+				}
+			});
 	}
 
 	[_calculateEntryValues]() {
@@ -334,7 +332,7 @@ class Slider extends HtmlElement {
 	}
 
 	[_restoreRotation]() {
-		this[_motionData].isAboutToStop = false;
+		this[_motionData].isAboutToStop = false;	
 		this[_easing] = [];
 		this[_motionData].targetAngle = undefined;
 		this[_clickedId] = '';
@@ -344,7 +342,6 @@ class Slider extends HtmlElement {
 			this[_motionData].move = true;
 			this.animateElement();
 		}
-		
 
 	}
 
@@ -392,7 +389,8 @@ class Slider extends HtmlElement {
 		// variables 1
 
 		const
-			tlSkills = new TimelineMax({ paused: true }),
+			binded = this[_restoreRotation].bind(this),
+			tlSkills = new TimelineMax({ paused: true , onReverseComplete: binded}),
 			slide = this[_animationData].slide,
 			techLists = slide.find('.techs li'),
 			skillsLists = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
