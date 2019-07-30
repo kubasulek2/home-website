@@ -70,9 +70,9 @@ class Slider extends HtmlElement {
 		};
 		this[_animationData] = {
 			slide: '',
-			counters: [0,0,0,0,0,0,0],
+			counters: [0, 0, 0, 0, 0, 0, 0],
 			animations: []
-			
+
 		};
 	}
 	animateElement() {
@@ -121,22 +121,22 @@ class Slider extends HtmlElement {
 	}
 
 	animateSlide() {
-		
+
 		// set active slide
 		this[_animationData].slide = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
-		
+
 		// find index of active slide in all slides array
-		const 
+		const
 			index = this.slides.index(this[_animationData].slide),
 			counter = this[_animationData].counters[index];
 
 		// if counter for active slide is 0, create animation for this slide.
 
 		counter === 0 ? this[_animationData].animations[index] = this[_createAnimation]() : null;
-		
+
 		/* Determining current progress of animation */
-		
-		let 
+
+		let
 			animation = this[_animationData].animations[index],
 			startAnimFrom = animation.isActive() ? Number((animation.time()).toFixed(1)) : 0;
 
@@ -147,9 +147,9 @@ class Slider extends HtmlElement {
 		// animation direction reversed each time
 
 		counter % 2 ? animation.reverse(startAnimFrom) : animation.play();
-		
+
 		this[_animationData].counters[index] = this[_animationData].counters[index] + 1;
-		
+
 
 	}
 
@@ -158,6 +158,8 @@ class Slider extends HtmlElement {
 		this.slides
 			.off('click')
 			.on('click', (e) => {
+				console.log(this[_motionData].isAboutToStop);
+				
 
 				if (!this[_motionData].isAboutToStop) {
 
@@ -171,7 +173,11 @@ class Slider extends HtmlElement {
 					this[_motionData].isAboutToStop = true;
 					this[_easing] = this[_computeEasing](direction);
 					this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
-				} 
+				} else if (this[_motionData].isAboutToStop && this[_motionData].move) {
+					this[_restoreRotation]();
+				} else if (!this[_motionData].move){
+					this.animateSlide();
+				}
 			});
 	}
 
@@ -215,33 +221,33 @@ class Slider extends HtmlElement {
 		let baseSpeed = this[_rotationSpeed];
 
 		switch (true) {
-		case distance <= 10:
-			delay = 0;
-			break;
-		case distance <= 20:
-			delay = 3;
-			break;
-		case distance <= 30:
-			delay = 8;
-			break;
-		case distance <= 40:
-			delay = 15;
-			break;
-		case distance <= 50:
-			delay = 24;
-			break;
-		case distance <= 60:
-			delay = 32;
-			break;
-		case distance <= 70:
-			delay = 40;
-			break;
-		case distance <= 80:
-			delay = 50;
-			break;
-		case distance <= 90:
-			delay = 60;
-			break;
+			case distance <= 10:
+				delay = 0;
+				break;
+			case distance <= 20:
+				delay = 3;
+				break;
+			case distance <= 30:
+				delay = 8;
+				break;
+			case distance <= 40:
+				delay = 15;
+				break;
+			case distance <= 50:
+				delay = 24;
+				break;
+			case distance <= 60:
+				delay = 32;
+				break;
+			case distance <= 70:
+				delay = 40;
+				break;
+			case distance <= 80:
+				delay = 50;
+				break;
+			case distance <= 90:
+				delay = 60;
+				break;
 
 		}
 
@@ -297,18 +303,18 @@ class Slider extends HtmlElement {
 		const targetId = $(e.currentTarget).data('angle');
 
 		switch (targetId) {
-		case 'front':
-			this[_motionData].targetAngle = 0;
-			break;
-		case 'right':
-			this[_motionData].targetAngle = -90;
-			break;
-		case 'back':
-			this[_motionData].targetAngle = -180;
-			break;
-		case 'left':
-			this[_motionData].targetAngle = -270;
-			break;
+			case 'front':
+				this[_motionData].targetAngle = 0;
+				break;
+			case 'right':
+				this[_motionData].targetAngle = -90;
+				break;
+			case 'back':
+				this[_motionData].targetAngle = -180;
+				break;
+			case 'left':
+				this[_motionData].targetAngle = -270;
+				break;
 		}
 	}
 
@@ -330,13 +336,13 @@ class Slider extends HtmlElement {
 	}
 
 	[_restoreRotation]() {
-		this[_motionData].isAboutToStop = false;	
+		this[_motionData].isAboutToStop = false;
 		this[_easing] = [];
 		this[_motionData].targetAngle = undefined;
 		this[_clickedId] = '';
 		this[_rotationSpeed] = this[_rotationSpeed] < 0 ? -this[_rotationSpeed] : this[_rotationSpeed];
-		
-		if (!this[_motionData].move) {	
+
+		if (!this[_motionData].move) {
 			this[_motionData].move = true;
 			this.animateElement();
 		}
@@ -388,7 +394,7 @@ class Slider extends HtmlElement {
 
 		const
 			binded = this[_restoreRotation].bind(this),
-			tlSkills = new TimelineMax({ paused: true , onReverseComplete: binded}),
+			tlSkills = new TimelineMax({ paused: true, onReverseComplete: binded }),
 			slide = this[_animationData].slide,
 			techLists = slide.find('.techs li'),
 			skillsLists = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
@@ -441,14 +447,14 @@ class Slider extends HtmlElement {
 							opacity: [0, 1]
 						}
 					}, {
-						cycle: {
-							opacity: [1, 0]
-						},
-						repeat: -1
-					}, .2, 'synch');
+							cycle: {
+								opacity: [1, 0]
+							},
+							repeat: -1
+						}, .2, 'synch');
 			});
 
-			
+
 		}
 
 		/* Last Part of animation only if svg-clipPath is supported */
@@ -532,11 +538,11 @@ $(() => {
 							opacity: [0, 1]
 						}
 					}, {
-						cycle: {
-							opacity: [1, 0]
-						},
-						repeat: -1
-					}, .2, 'synch');
+							cycle: {
+								opacity: [1, 0]
+							},
+							repeat: -1
+						}, .2, 'synch');
 			});
 		}
 
@@ -602,23 +608,23 @@ $(() => {
 		$('.swiper-slide.front-2')
 			.off()
 			.on('click', () => front2Handler());
-				
+
 		$('.swiper-slide.right')
 			.off()
-			.on('click', () => rightHandler());	
-		
+			.on('click', () => rightHandler());
+
 		$('.swiper-slide.right-2')
 			.off()
-			.on('click', () => right2Handler());	
-		
+			.on('click', () => right2Handler());
+
 		$('.swiper-slide.back')
 			.off()
-			.on('click', () => backHandler());	
-		
+			.on('click', () => backHandler());
+
 		$('.swiper-slide.back-2')
 			.off()
-			.on('click', () => back2Handler());	
-		
+			.on('click', () => back2Handler());
+
 		$('.swiper-slide.left')
 			.off()
 			.on('click', () => leftHandler());
@@ -642,7 +648,7 @@ $(() => {
 	}
 
 	/* stop propagation on back-face */
-	
+
 	$('.back-face').on('click', (event) => {
 		event.stopPropagation();
 	});

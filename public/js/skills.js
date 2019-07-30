@@ -142,6 +142,7 @@ class Slider extends HtmlElement {
 	faceClickEvent() {
 
 		this.slides.off('click').on('click', e => {
+			console.log(this[_motionData].isAboutToStop);
 
 			if (!this[_motionData].isAboutToStop) {
 
@@ -155,6 +156,10 @@ class Slider extends HtmlElement {
 				this[_motionData].isAboutToStop = true;
 				this[_easing] = this[_computeEasing](direction);
 				this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
+			} else if (this[_motionData].isAboutToStop && this[_motionData].move) {
+				this[_restoreRotation]();
+			} else if (!this[_motionData].move) {
+				this.animateSlide();
 			}
 		});
 	}
