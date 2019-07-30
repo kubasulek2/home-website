@@ -16,7 +16,7 @@ const
 	_computeAvgSpeed = Symbol('computeAvgSpeed'),
 	_getTargetAngle = Symbol('getTargetAngle'),
 	_shouldChangeDirection = Symbol('shouldChangeDirection'),
-	_restoreAnimation = Symbol('restoreAnimation'),
+	_restoreRotation = Symbol('restoreRotation'),
 	_updateContent = Symbol('updateContent'),
 	_accelerate = Symbol('accelerate'),
 	_animationData = Symbol('animationData'),
@@ -70,6 +70,8 @@ class Slider extends HtmlElement {
 		};
 		this[_animationData] = {
 			slide: '',
+			counters: [0,0,0,0,0,0,0],
+			animations: []
 			
 		};
 	}
@@ -119,9 +121,34 @@ class Slider extends HtmlElement {
 	}
 
 	animateSlide() {
+		
+		// set active slide
+		this[_animationData].slide = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
+		
+		// find index of active slide in all slides array
+		const 
+			index = this.slides.index(this[_animationData].slide),
+			counter = this[_animationData].counters[index];
 
-		const slide = this.slides.filter((i, el) => $(el).attr('id') === this[_clickedId]);
-		console.log(slide);
+		// if counter for active slide is 0, create animation for this slide.
+
+		counter === 0 ? this[_animationData].animations[index] = this[_createAnimation]() : null;
+		
+		/* Determining current progress of animation */
+		
+		let 
+			animation = this[_animationData].animations[index],
+			startAnimFrom = animation.isActive() ? Number((animation.time()).toFixed(1)) : 0;
+
+		/* Skip part of animation  if reversed */
+
+		counter % 2 && (startAnimFrom > animation.getLabelTime('synch') || startAnimFrom === 0) ? startAnimFrom = animation.getLabelTime('synch') : null;
+
+		// animation direction reversed each time
+
+		counter % 2 ? animation.reverse(startAnimFrom) : animation.play();
+		
+		this[_animationData].counters[index] = this[_animationData].counters[index] + 1;
 		
 
 	}
@@ -146,8 +173,7 @@ class Slider extends HtmlElement {
 
 				$('body')
 					.one('click', () => {
-						this[_motionData].isAboutToStop = false;
-						this[_restoreAnimation]();
+						this[_restoreRotation]();
 					});
 			}
 		});
@@ -247,6 +273,7 @@ class Slider extends HtmlElement {
 		return easing;
 
 	}
+
 	[_applyEasing]() {
 
 		this[_easing].forEach(value => {
@@ -306,8 +333,8 @@ class Slider extends HtmlElement {
 		return direction;
 	}
 
-	[_restoreAnimation]() {
-
+	[_restoreRotation]() {
+		this[_motionData].isAboutToStop = false;
 		this[_easing] = [];
 		this[_motionData].targetAngle = undefined;
 		this[_clickedId] = '';
@@ -359,14 +386,14 @@ class Slider extends HtmlElement {
 		}
 	}
 
-	[_createAnimation](el) {
+	[_createAnimation]() {
 
 
 		// variables 1
 
 		const
 			tlSkills = new TimelineMax({ paused: true }),
-			slide = $(el),
+			slide = this[_animationData].slide,
 			techLists = slide.find('.techs li'),
 			skillsLists = Modernizr.svgclippaths ? slide.find('.svg-clipped') : slide.find('.svg-fallback'),
 			icon = slide.find('.icon-wrapper'),
@@ -424,6 +451,8 @@ class Slider extends HtmlElement {
 						repeat: -1
 					}, .2, 'synch');
 			});
+
+			
 		}
 
 		/* Last Part of animation only if svg-clipPath is supported */
@@ -435,7 +464,8 @@ class Slider extends HtmlElement {
 			});
 		}
 
-		/* return an event handling function */
+		/* return animation */
+		return tlSkills;
 	}
 }
 
