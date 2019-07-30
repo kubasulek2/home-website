@@ -171,9 +171,7 @@ class Slider extends HtmlElement {
 					this[_motionData].isAboutToStop = true;
 					this[_easing] = this[_computeEasing](direction);
 					this[_motionData].angleWhenClicked = this[_motionData].currentAngle;
-				} else {
-					this.animateSlide();
-				}
+				} 
 			});
 	}
 
@@ -474,39 +472,6 @@ $(() => {
 
 	let swiper;
 
-	/* Main condition: either swiper mode or 3d slider*/
-
-	if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || mqMobile.matches) {
-
-		/* Swiper */
-
-		swiper = new Swiper('.swiper-container', {
-			navigation: {
-				nextEl: '.swiper-button-next',
-				prevEl: '.swiper-button-prev',
-			},
-		});
-		swiper.allowTouchMove = false;
-
-	} else {
-		/* 3d-slider */
-
-		$('#skills-content').addClass('_3d');
-
-		slider3d.animateElement();
-		slider3d.faceClickEvent();
-
-
-
-
-		/* If in 3d mode reload page on matchmedia to change on flat */
-
-		mqMobile.addListener(() => {
-			window.location.reload();
-		});
-	}
-
-
 	const skillsHandler = (el) => {
 
 		let counter = 0;
@@ -614,38 +579,70 @@ $(() => {
 		back2Handler = skillsHandler($('.swiper-slide.back-2')),
 		leftHandler = skillsHandler($('.swiper-slide.left'));
 
-	/* attach handlers to slides */
+	/* Main condition: either swiper mode or 3d slider*/
 
-	/* $('.swiper-slide.front')
-		.off()
-		.on('click', () => frontHandler());
+	if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || mqMobile.matches) {
 
-	$('.swiper-slide.front-2')
-		.off()
-		.on('click', () => front2Handler());
-			
-	$('.swiper-slide.right')
-		.off()
-		.on('click', () => rightHandler());	
-	
-	$('.swiper-slide.right-2')
-		.off()
-		.on('click', () => right2Handler());	
-	
-	$('.swiper-slide.back')
-		.off()
-		.on('click', () => backHandler());	
-	
-	$('.swiper-slide.back-2')
-		.off()
-		.on('click', () => back2Handler());	
-	
-	$('.swiper-slide.left')
-		.off()
-		.on('click', () => leftHandler());
- */
+		/* Swiper */
+
+		swiper = new Swiper('.swiper-container', {
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+		});
+		swiper.allowTouchMove = false;
+
+		/* attach handlers to slides */
+
+		$('.swiper-slide.front')
+			.off()
+			.on('click', () => frontHandler());
+
+		$('.swiper-slide.front-2')
+			.off()
+			.on('click', () => front2Handler());
+				
+		$('.swiper-slide.right')
+			.off()
+			.on('click', () => rightHandler());	
+		
+		$('.swiper-slide.right-2')
+			.off()
+			.on('click', () => right2Handler());	
+		
+		$('.swiper-slide.back')
+			.off()
+			.on('click', () => backHandler());	
+		
+		$('.swiper-slide.back-2')
+			.off()
+			.on('click', () => back2Handler());	
+		
+		$('.swiper-slide.left')
+			.off()
+			.on('click', () => leftHandler());
+
+	} else {
+		/* 3d-slider */
+
+		$('#skills-content').addClass('_3d');
+
+		slider3d.animateElement();
+		slider3d.faceClickEvent();
+
+
+
+
+		/* If in 3d mode reload page on matchmedia to change on flat */
+
+		mqMobile.addListener(() => {
+			window.location.reload();
+		});
+	}
+
 	/* stop propagation on back-face */
-
+	
 	$('.back-face').on('click', (event) => {
 		event.stopPropagation();
 	});
