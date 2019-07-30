@@ -422,6 +422,7 @@ html.preserve3d.csstransforms3d {
 
 	/* Hide additional faces */
 	.swiper-slide.hidden{
+		// only this way, svg clip path works properly with dynamic content update in 3dslider
 		opacity:0;
 		pointer-events: none;
 	}

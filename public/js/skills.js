@@ -106,7 +106,6 @@ class Slider extends HtmlElement {
 
 			window.requestAnimationFrame(() => this.rotateElement());
 		} else {
-			console.log(this[_rotationSpeed]);
 
 			this.animateSlide();
 		}
@@ -196,7 +195,11 @@ class Slider extends HtmlElement {
 	}
 
 	[_computeEasing](direction) {
+
 		let distance = Math.abs(Math.abs(this[_motionData].targetAngle) - Math.abs(this[_motionData].currentAngle));
+
+		// special case when target angle is 0 and current angle is over 3/4 turn
+		if (this[_motionData].currentAngle < -270 && this[_motionData].targetAngle === 0) distance = Math.abs(Math.abs(this[_motionData].currentAngle) - 360);
 
 		let steps = distance < 20 ? 5 : 10;
 		let threshold,
@@ -254,7 +257,6 @@ class Slider extends HtmlElement {
 			if (speed > 0) speed = speed < 0.1 ? 0.1 : speed;else speed = speed > -0.1 ? -0.1 : speed;
 
 			easing[i - 1] = [];
-
 			easing[i - 1].push(Math.round(slowAngles));
 			easing[i - 1].push(parseFloat(speed.toFixed(2)));
 		}
