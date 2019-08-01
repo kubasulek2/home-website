@@ -1,6 +1,49 @@
-#projects-content{
-	min-height: calc(100vh - 10rem);
+#projects-content {
+  min-height: calc(100vh - 10rem);
 }
-body#projects footer{
-	position: fixed
+body#projects header {
+  position: fixed;
+}
+body#projects footer {
+  position: fixed;
+}
+
+/* responsive styles */
+
+@media (min-width: 1024px) and( orientation:landscape), (min-width: 1025px) {
+  #projects-content {
+    section {
+			height: 100vh;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+
+
+			&:nth-child(even){
+				background: $darker-background;
+			}
+		}
+		h1{
+			font-size: 3em;
+			font-family: 'Archivo', sans-serif;
+
+		}
+		.fas{
+			color: $base-yellow;
+		}
+
+		.row{
+			width: 100%;
+			display: flex;
+			justify-content: space-around
+		}
+
+		.project{
+			width: 35%;
+			height: 0;
+  		padding-top: 30%;
+			background: #111;
+		}
+		
+  }
 }

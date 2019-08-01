@@ -12,7 +12,7 @@ const viewPortWidth = () => {
 (function (Modernizr) {
 
 	// Here are all the values we will test. If you want to use just one or two, comment out the lines of test you don't need.
-	var tests = [{ name: 'polygon', value: 'polygon(50% 0%, 0% 100%, 100% 100%)' }];
+	const tests = [{ name: 'polygon', value: 'polygon(50% 0%, 0% 100%, 100% 100%)' }];
 
 	var t = 0,
 	    name,
@@ -425,6 +425,36 @@ $(document).ready(function () {
 		showAbout();
 	}
 
+	/* projects.html code */
+
+	if ($('body#projects').length) {
+		const controller = new ScrollMagic.Controller();
+		const tl = new TimelineMax();
+		const elements = $('title>h1').children();
+		console.log(elements);
+
+		tl.staggerFrom('.box', 1.25, {
+			scale: 0,
+			cycle: {
+				y: [-50, 50]
+			},
+			ease: Elastic.easeOut,
+			stagger: {
+				from: 'center',
+				amount: 0.25
+			}
+		});
+
+		const scene = new ScrollMagic.Scene({
+			triggerElement: '#stage',
+			triggerHook: 0
+		}).addIndicators({
+			colorTrigger: 'white',
+			colorStart: 'white',
+			colorEnd: 'white',
+			indent: 5
+		}).setTween(tl).addTo(controller);
+	}
 	/* init common functions */
 	bgTransition();
 });

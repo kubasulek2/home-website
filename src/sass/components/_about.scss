@@ -1,4 +1,4 @@
-.row {
+.row.about {
 	position: relative;
 	margin: 0 auto;
 	min-height: calc(100vh - 10rem);
@@ -237,7 +237,7 @@ body#about {
 
 	@media 
 	(min-width: 1024px) and( orientation:landscape),
-	(min-width:1199px) {
+	(min-width:1025px) {  //changed from 1199
 		.row {
 			width: 95%;
 			display: flex;
