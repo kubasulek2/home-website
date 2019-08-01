@@ -8,6 +8,8 @@ const viewPortWidth = () => {
 	return $(window).outerWidth();
 };
 
+const mqDesktop = window.matchMedia('(min-width: 1024px) and (orientation: landscape), (min-width: 1025px)');
+
 /* Update Modernizr to recognize support for CSS clip-path polygon */
 (function (Modernizr) {
 
@@ -538,15 +540,15 @@ $(document).ready(function () {
 
 		const
 			controller = new ScrollMagic.Controller(),
-			tl = new TimelineMax({ease: Power0.easeNone}),
+			tl = new TimelineMax({ ease: Power0.easeNone }),
 			elements = $('.title>h1').children(),
 			scene = new ScrollMagic.Scene({
 				triggerElement: '#section-0',
 				triggerHook: 0,
 				offset: 10,
 			});
-		
-		if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || isMobileDevice()) {
+
+		if (!Modernizr.csstransforms3d || !Modernizr.preserve3d) {
 
 			tl.staggerTo(elements, 1.25, {
 				scale: 0,
@@ -560,7 +562,7 @@ $(document).ready(function () {
 				}
 			});
 		} else {
-		
+
 			TweenMax.defaultEase = Linear.easeNone;
 			scene.duration('40%');
 
@@ -568,22 +570,27 @@ $(document).ready(function () {
 				.staggerTo(elements, 1, {
 					cycle: {
 						z: [-300, 50],
-						y: [50, -50]
+						y: [50, -50],
+						rotationX: [20, -20]
 					},
-				
+
 				}, 0, 0)
-				.staggerTo(elements, 1,{
+				.staggerTo(elements, 1, {
 					cycle: {
 						x: [-1000, 1000],
 					},
 					opacity: 0
-				},0);
+				}, 0,.8);
 		}
 
-	
-			
+
+
 		scene.setTween(tl)
 			.addTo(controller);
+		
+		mqDesktop.addListener(() => {
+			window.location.reload();
+		});
 	}
 	/* init common functions */
 	bgTransition();

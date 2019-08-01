@@ -8,6 +8,8 @@ const viewPortWidth = () => {
 	return $(window).outerWidth();
 };
 
+const mqDesktop = window.matchMedia('(min-width: 1024px) and (orientation: landscape), (min-width: 1025px)');
+
 /* Update Modernizr to recognize support for CSS clip-path polygon */
 (function (Modernizr) {
 
@@ -438,7 +440,7 @@ $(document).ready(function () {
 			offset: 10
 		});
 
-		if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || isMobileDevice()) {
+		if (!Modernizr.csstransforms3d || !Modernizr.preserve3d) {
 
 			tl.staggerTo(elements, 1.25, {
 				scale: 0,
@@ -459,7 +461,8 @@ $(document).ready(function () {
 			tl.staggerTo(elements, 1, {
 				cycle: {
 					z: [-300, 50],
-					y: [50, -50]
+					y: [50, -50],
+					rotationX: [20, -20]
 				}
 
 			}, 0, 0).staggerTo(elements, 1, {
@@ -467,10 +470,14 @@ $(document).ready(function () {
 					x: [-1000, 1000]
 				},
 				opacity: 0
-			}, 0);
+			}, 0, .8);
 		}
 
 		scene.setTween(tl).addTo(controller);
+
+		mqDesktop.addListener(() => {
+			window.location.reload();
+		});
 	}
 	/* init common functions */
 	bgTransition();

@@ -477,7 +477,7 @@ class Slider extends HtmlElement {
 
 $(() => {
 
-	const mqMobile = window.matchMedia('(max-width: 1023px)'),
+	const mqDesktop = window.matchMedia('(min-width: 1024px) and (orientation: landscape), (min-width: 1025px)'),
 		slider3d = new Slider($('.swiper-wrapper'), .6);
 
 	let swiper;
@@ -591,7 +591,7 @@ $(() => {
 
 	/* Main condition: either swiper mode or 3d slider*/
 
-	if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || mqMobile.matches) {
+	if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || !mqDesktop.matches) {
 
 		/* Swiper */
 
@@ -650,7 +650,7 @@ $(() => {
 
 		/* If in 3d mode reload page on matchmedia to change on flat */
 
-		mqMobile.addListener(() => {
+		mqDesktop.addListener(() => {
 			window.location.reload();
 		});
 	}

@@ -1,11 +1,14 @@
 #projects-content {
   min-height: calc(100vh - 10rem);
 }
-body#projects header {
-  position: fixed;
-}
+body#projects header,
 body#projects footer {
-  position: fixed;
+	position: fixed;
+	z-index: 2;
+	}
+
+#section-0{
+	display: none;
 }
 
 /* responsive styles */
