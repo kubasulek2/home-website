@@ -23,9 +23,17 @@ body#projects footer {
 				background: $darker-background;
 			}
 		}
+		#section-0{
+			perspective: 400px;
+			overflow: hidden;
+		}
 		h1{
+			transform-style: preserve-3d;
 			font-size: 3em;
 			font-family: 'Archivo', sans-serif;
+			span{
+				display: inline-block;
+			}
 
 		}
 		.fas{

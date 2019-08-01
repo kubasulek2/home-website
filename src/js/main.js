@@ -249,10 +249,10 @@ $(document).ready(function () {
 			.to(mediaMenuIconPath, .4, { strokeDashoffset: 0, ease: Power1.easeOut }, 'arrow')
 			.to(mediaMenuBars.find('.before'), .4, { rotation: -50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow')
 			.to(mediaMenuBars.find('.after'), .4, { rotation: 50, x: '-10%', height: '100%', ease: Power0.easeNone }, 'arrow')
-			.to(mediaItems,.4, { autoAlpha: 1, }, 'items+=.3')
+			.to(mediaItems, .4, { autoAlpha: 1, }, 'items+=.3')
 			.to(barWrapper, .5, { rotation: 60, ease: Power0.easeNone }, 'items+=.3')
-			.to(mediaItems[0], .5,{ rotation: 60, ease: Power0.easeNone }, 'items+=.3')
-			.to(mediaItems[1], .5,{ rotation: 30, ease: Power0.easeNone }, 'items+=.3');
+			.to(mediaItems[0], .5, { rotation: 60, ease: Power0.easeNone }, 'items+=.3')
+			.to(mediaItems[1], .5, { rotation: 30, ease: Power0.easeNone }, 'items+=.3');
 
 
 
@@ -314,9 +314,9 @@ $(document).ready(function () {
 			.set([background, columnWrapper], { background: $darkerBackground })
 			.add(() => bgTransitionEnd = true);
 	};
-	
-	
-	
+
+
+
 
 
 	/* Set default link behaviour */
@@ -343,8 +343,8 @@ $(document).ready(function () {
 					$readMoreButton = $('.show-more'),
 					tlAbout = new TimelineMax();
 
-				viewPortWidth() >= 1024 ? tlAbout.to($row, .6, { width: '100%' }): tlAbout.set($row, { width: '100%' });
-				
+				viewPortWidth() >= 1024 ? tlAbout.to($row, .6, { width: '100%' }) : tlAbout.set($row, { width: '100%' });
+
 				tlAbout
 					.set([$letterVeilsBottom, $letterVeilsTop], { background: $lighterBackground })
 					.to($letterVeilsTop, .5, { x: '-100%' }, 'synch')
@@ -377,7 +377,7 @@ $(document).ready(function () {
 					.fromTo($readMoreButton, .7, { opacity: 0, y: 150 }, { opacity: 1, y: 0, ease: Power3.easeOut }, 'image-=.3')
 					.addCallback(() => {
 						$readMoreButton.one('click', showReadMoreSection);
-					},'-=0.4')
+					}, '-=0.4')
 					.addCallback(() => {
 
 						// call this function only if  not on mobile and with 3d support
@@ -399,8 +399,8 @@ $(document).ready(function () {
 
 
 			tlShowMore
-				.to($readMoreButton, .5, { x: 200, autoAlpha: 0, ease: Power2.easeIn },'synch')
-				.set($readMoreButton, { display: 'none'});
+				.to($readMoreButton, .5, { x: 200, autoAlpha: 0, ease: Power2.easeIn }, 'synch')
+				.set($readMoreButton, { display: 'none' });
 
 			if (Modernizr.csstransforms3d && !isMobileDevice()) {
 
@@ -408,7 +408,7 @@ $(document).ready(function () {
 					.staggerTo($lineWrapper, 1.2, { opacity: 1, ease: Power3.easeIn }, .1, 'synch+=.3')
 					.staggerFrom($lineWrapper, 1.2, { y: 400, z: -200, ease: Power2.easeOut }, .1, 'synch+=.3');
 
-			} else tlShowMore.fromTo($lineWrapper, .6, { y: 300 }, { y: 0, opacity: 1, ease: Power2.easeOut },'synch+=.3');
+			} else tlShowMore.fromTo($lineWrapper, .6, { y: 300 }, { y: 0, opacity: 1, ease: Power2.easeOut }, 'synch+=.3');
 		};
 
 		/* title css clip-path on mouse over */
@@ -440,7 +440,7 @@ $(document).ready(function () {
 			});
 		};
 
-		
+
 		/* 3d rotation of image on mouse over */
 
 		const mouseOver3dEffect = () => {
@@ -528,41 +528,61 @@ $(document).ready(function () {
 		};
 
 		/* Init about functions */
-		
+
 		showAbout();
 	}
-	
+
 	/* projects.html code */
 
-	if ($('body#projects').length){
-		const controller = new ScrollMagic.Controller();
-		const tl = new TimelineMax();
-		const elements = $('title>h1').children();
-		console.log(elements);
-		
-		tl.staggerFrom('.box', 1.25, {
-			scale: 0,
-			cycle: {
-				y: [-50, 50]
-			},
-			ease: Elastic.easeOut,
-			stagger: {
-				from: 'center',
-				amount: 0.25
-			}
-		});
+	if ($('body#projects').length) {
 
-		const scene = new ScrollMagic.Scene({
-			triggerElement: '#stage',
-			triggerHook: 0
-		})
-			.addIndicators({
-				colorTrigger: 'white',
-				colorStart: 'white',
-				colorEnd: 'white',
-				indent: 5
-			})
-			.setTween(tl)
+		const
+			controller = new ScrollMagic.Controller(),
+			tl = new TimelineMax({ease: Power0.easeNone}),
+			elements = $('.title>h1').children(),
+			scene = new ScrollMagic.Scene({
+				triggerElement: '#section-0',
+				triggerHook: 0,
+				offset: 10,
+			});
+		
+		if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || isMobileDevice()) {
+
+			tl.staggerTo(elements, 1.25, {
+				scale: 0,
+				cycle: {
+					y: [-50, 50]
+				},
+				ease: Elastic.easeIn,
+				stagger: {
+					from: 'center',
+					amount: 0.25,
+				}
+			});
+		} else {
+		
+			TweenMax.defaultEase = Linear.easeNone;
+			scene.duration('40%');
+
+			tl
+				.staggerTo(elements, 1, {
+					cycle: {
+						z: [-300, 50],
+						y: [50, -50]
+					},
+				
+				}, 0, 0)
+				.staggerTo(elements, 1,{
+					cycle: {
+						x: [-1000, 1000],
+					},
+					opacity: 0
+				},0);
+		}
+
+	
+			
+		scene.setTween(tl)
 			.addTo(controller);
 	}
 	/* init common functions */

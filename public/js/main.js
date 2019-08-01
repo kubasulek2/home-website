@@ -428,32 +428,49 @@ $(document).ready(function () {
 	/* projects.html code */
 
 	if ($('body#projects').length) {
-		const controller = new ScrollMagic.Controller();
-		const tl = new TimelineMax();
-		const elements = $('title>h1').children();
-		console.log(elements);
 
-		tl.staggerFrom('.box', 1.25, {
-			scale: 0,
-			cycle: {
-				y: [-50, 50]
-			},
-			ease: Elastic.easeOut,
-			stagger: {
-				from: 'center',
-				amount: 0.25
-			}
+		const controller = new ScrollMagic.Controller(),
+		      tl = new TimelineMax({ ease: Power0.easeNone }),
+		      elements = $('.title>h1').children(),
+		      scene = new ScrollMagic.Scene({
+			triggerElement: '#section-0',
+			triggerHook: 0,
+			offset: 10
 		});
 
-		const scene = new ScrollMagic.Scene({
-			triggerElement: '#stage',
-			triggerHook: 0
-		}).addIndicators({
-			colorTrigger: 'white',
-			colorStart: 'white',
-			colorEnd: 'white',
-			indent: 5
-		}).setTween(tl).addTo(controller);
+		if (!Modernizr.csstransforms3d || !Modernizr.preserve3d || isMobileDevice()) {
+
+			tl.staggerTo(elements, 1.25, {
+				scale: 0,
+				cycle: {
+					y: [-50, 50]
+				},
+				ease: Elastic.easeIn,
+				stagger: {
+					from: 'center',
+					amount: 0.25
+				}
+			});
+		} else {
+
+			TweenMax.defaultEase = Linear.easeNone;
+			scene.duration('40%');
+
+			tl.staggerTo(elements, 1, {
+				cycle: {
+					z: [-300, 50],
+					y: [50, -50]
+				}
+
+			}, 0, 0).staggerTo(elements, 1, {
+				cycle: {
+					x: [-1000, 1000]
+				},
+				opacity: 0
+			}, 0);
+		}
+
+		scene.setTween(tl).addTo(controller);
 	}
 	/* init common functions */
 	bgTransition();
