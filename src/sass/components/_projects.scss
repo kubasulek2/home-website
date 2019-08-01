@@ -16,20 +16,23 @@ body#projects footer {
 @media (min-width: 1024px) and( orientation:landscape), (min-width: 1025px) {
   #projects-content {
     section {
-			height: 100vh;
+			height: 200vh;
 			display: flex;
 			justify-content: center;
-			align-items: center;
+			align-items: flex-start;
 
 
 			&:nth-child(even){
-				background: $darker-background;
+				//background: $darker-background;
 			}
 		}
 		#section-0{
+			height: 100vh;
 			perspective: 400px;
 			overflow: hidden;
+			align-items: center;
 		}
+
 		h1{
 			transform-style: preserve-3d;
 			font-size: 3em;
@@ -48,7 +51,6 @@ body#projects footer {
 			display: flex;
 			justify-content: space-around
 		}
-
 		.project{
 			width: 35%;
 			height: 0;
