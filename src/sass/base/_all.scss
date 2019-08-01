@@ -373,6 +373,7 @@ nav#media-items ul{
 		transform: translate(0, -50%);
 		transform-origin: 100% 50%;
 		opacity: 0;
+		visibility: hidden;
 		
 		a{
 			padding: .6rem;
