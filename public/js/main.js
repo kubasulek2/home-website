@@ -483,16 +483,17 @@ $(document).ready(function () {
 
 		scene1.setPin('#section-0').addTo(controller);
 
-		$('.row').each(function () {
+		$('.row').each(function (i) {
 
-			const projects = $(this).find('.project'),
-			      projectsIn = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .25 }).addIndicators({ name: 'In', colorTrigger: 'green' }),
-			      projectsOut = new ScrollMagic.Scene({ triggerElement: $(this).parent().next()[0], triggerHook: 1 }).addIndicators({ name: 'Out', colorStart: 'yellow', indent: 250 }),
-			      sectionPin = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .25, duration: '125%' }).addIndicators({ name: 'Pin', colorStart: 'red', indent: 100 });
+			const triggerOut = $(this).parent().find('.project-out')[0],
+			      projects = $(this).find('.project'),
+			      projectsIn = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .15 }).addIndicators({ name: 'In', colorTrigger: 'green', colorStart: 'green' }),
+			      projectsOut = new ScrollMagic.Scene({ triggerElement: triggerOut, triggerHook: .8 }).addIndicators({ name: 'Out', colorStart: 'yellow', colorTrigger: 'yellow', indent: 250 }),
+			      sectionPin = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .25, duration: '100%' }).addIndicators({ name: 'Pin', colorStart: 'red', colorTrigger: 'red', indent: 100 });
 
-			projectsIn.setTween(TweenMax.from(projects, 1, { opacity: 0, ease: Power3.easeIn })).addTo(controller);
+			projectsIn.setTween(TweenMax.staggerFrom(projects, 1, { opacity: 0, ease: Power2.easeIn, cycle: { x: [-1000, 1000] } }, 0)).addTo(controller);
 
-			projectsOut.setTween(TweenMax.to(projects, 1, { opacity: 0, ease: Power3.easeIn })).addTo(controller);
+			if (i < $('.row').length - 1) projectsOut.setTween(TweenMax.to(projects, 1, { opacity: 0, ease: Power2.easeOut })).addTo(controller);
 
 			sectionPin.setPin(this).addTo(controller);
 		});

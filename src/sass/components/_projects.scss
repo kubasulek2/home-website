@@ -16,11 +16,12 @@ body#projects footer {
 @media (min-width: 1024px) and( orientation:landscape), (min-width: 1025px) {
   #projects-content {
     section {
-			height: 200vh;
+			height: 150vh;
 			display: flex;
 			justify-content: center;
 			align-items: flex-start;
 			overflow: hidden;
+			position: relative;
 
 
 			&:nth-child(even){
@@ -33,7 +34,7 @@ body#projects footer {
 			align-items: center;
 		}
 		#section-4{
-			height: 75vh;
+			height: 100vh;
 		}
 
 		h1{
@@ -61,5 +62,12 @@ body#projects footer {
 			background: #111;
 		}
 		
-  }
+	}
+	.project-out{
+		position: absolute;
+		height: 1px;
+		width: 100%;
+		bottom: 25vh;
+		background: red;
+	}
 }
