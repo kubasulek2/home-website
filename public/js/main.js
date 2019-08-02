@@ -102,6 +102,7 @@ $(document).ready(function () {
 			cursor.css('top', position.y + 'px');
 		};
 		$(document).on('mousemove', getMouse);
+
 		setInterval(followMouse, 20);
 	};
 	/* Decide if custom cursor is enabled*/
@@ -430,7 +431,6 @@ $(document).ready(function () {
 	/* projects.html code */
 
 	if ($('body#projects').length && mqDesktop.matches) {
-
 		const controller = new ScrollMagic.Controller(),
 		      tl = new TimelineMax({ ease: Power0.easeNone }),
 		      elements = $('.title>h1').children(),
@@ -439,6 +439,7 @@ $(document).ready(function () {
 			triggerHook: 0,
 			offset: 10,
 			duration: '40%'
+
 		}),
 		      scene1 = new ScrollMagic.Scene({
 			triggerElement: '#section-0',
@@ -447,7 +448,7 @@ $(document).ready(function () {
 		});
 
 		if (!Modernizr.csstransforms3d || !Modernizr.preserve3d) {
-
+			scene0.duration(0);
 			tl.staggerTo(elements, 1.25, {
 				scale: 0,
 				cycle: {
@@ -462,7 +463,6 @@ $(document).ready(function () {
 		} else {
 
 			TweenMax.defaultEase = Linear.easeNone;
-			scene1.duration('40%');
 
 			tl.staggerTo(elements, 1, {
 				cycle: {
@@ -471,7 +471,7 @@ $(document).ready(function () {
 					rotationX: [40, -40]
 				}
 
-			}, 0, 0).staggerTo(elements, 1, {
+			}, 0, 0).staggerTo(elements, .5, {
 				cycle: {
 					x: [-1000, 1000]
 				},
@@ -486,23 +486,23 @@ $(document).ready(function () {
 		$('.row').each(function () {
 
 			const projects = $(this).find('.project'),
-			      projectScene = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .25, duration: '125%' }),
+			      projectsOn = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .5, duration: '125%' }).addIndicators(),
 			      tlProjects = new TimelineMax(),
-			      sectionScene = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .25, duration: '125%' });
+			      sectionScene = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .25, duration: '150%' });
 
-			tlProjects.staggerFrom(projects, 1, {
+			tlProjects.from(projects, 2, {
 				opacity: 0,
-				cycle: {
-					x: [-500, 500]
-				}
-			}, 0).to(projects, 2.4, { x: 0 }).staggerTo(projects, 1, {
+				y: 100,
+				scale: .2,
+				ease: Power2.easeIn
+			}).to(projects, 1, { x: 0 }).to(projects, 2, {
 				opacity: 0,
-				cycle: {
-					x: [-500, 500]
-				}
-			}, 0);
+				y: 100,
+				scale: .2,
+				ease: Power2.easeOut
+			});
 
-			projectScene.setTween(tlProjects).addTo(controller);
+			projectsOn.setTween(tlProjects).addTo(controller);
 
 			sectionScene.setPin(this).addTo(controller);
 		});

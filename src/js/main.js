@@ -109,6 +109,7 @@ $(document).ready(function () {
 
 		};
 		$(document).on('mousemove', getMouse);
+
 		setInterval(followMouse, 20);
 	};
 	/* Decide if custom cursor is enabled*/
@@ -537,7 +538,6 @@ $(document).ready(function () {
 	/* projects.html code */
 
 	if ($('body#projects').length && mqDesktop.matches) {
-
 		const
 			controller = new ScrollMagic.Controller(),
 			tl = new TimelineMax({ ease: Power0.easeNone }),
@@ -547,6 +547,7 @@ $(document).ready(function () {
 				triggerHook: 0,
 				offset: 10,
 				duration: '40%'
+
 			}),
 			scene1 = new ScrollMagic.Scene({
 				triggerElement: '#section-0',
@@ -554,8 +555,10 @@ $(document).ready(function () {
 				duration: '40%'
 			});
 
-		if (!Modernizr.csstransforms3d || !Modernizr.preserve3d) {
 
+
+		if (!Modernizr.csstransforms3d || !Modernizr.preserve3d) {
+			scene0.duration(0);
 			tl.staggerTo(elements, 1.25, {
 				scale: 0,
 				cycle: {
@@ -570,7 +573,6 @@ $(document).ready(function () {
 		} else {
 
 			TweenMax.defaultEase = Linear.easeNone;
-			scene1.duration('40%');
 
 			tl
 				.staggerTo(elements, 1, {
@@ -581,12 +583,12 @@ $(document).ready(function () {
 					},
 
 				}, 0, 0)
-				.staggerTo(elements, 1, {
+				.staggerTo(elements, .5, {
 					cycle: {
 						x: [-1000, 1000],
 					},
 					opacity: 0
-				}, 0,.8);
+				}, 0, .8);
 		}
 
 
@@ -595,41 +597,43 @@ $(document).ready(function () {
 			.addTo(controller);
 
 		scene1.setPin('#section-0')
-			.addTo(controller);	
+			.addTo(controller);
 
 		$('.row').each(function () {
-			
-			const 
+
+			const
 				projects = $(this).find('.project'),
-				projectScene = new ScrollMagic.Scene({triggerElement: this, triggerHook:.25, duration: '125%'}),
+				projectsOn = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .5, duration: '125%' }).addIndicators(),
 				tlProjects = new TimelineMax(),
-				sectionScene = new ScrollMagic.Scene({triggerElement: this, triggerHook:.25, duration: '125%'})
-			
+				projectsOff = new ScrollMagic.Scene({ triggerElement: $(this).parent().next(), triggerHook: .5, duration: '125%' }).addIndicators(),
+				tlProjects = new TimelineMax(),
+				sectionScene = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .25, duration: '150%' });
+
 			tlProjects
-				.staggerFrom(projects, 1, {
-					opacity:0,
-					cycle: {
-						x: [-500, 500]
-					}
-				},0)
-				.to(projects, 2.4, {x: 0})
-				.staggerTo(projects, 1, {
-					opacity:0,
-					cycle: {
-						x: [-500, 500]
-					},
-				},0);	
-			
-			projectScene
-				.setTween(tlProjects)
+				.from(projects, 2, {
+					opacity: 0,
+					y: 100,
+					scale: .2,
+					ease: Power2.easeIn
+				})
+				.to(projects, 1, { x: 0 })
+				.to(projects, 2, {
+					opacity: 0,
+					y: 100,
+					scale: .2,
+					ease: Power2.easeOut
+				});
+
+			projectsOn
+				.setTween(TweenMax.from())
 				.addTo(controller);
 
 			sectionScene
 				.setPin(this)
 				.addTo(controller);
-		});	
-			
-		
+		});
+
+
 		mqDesktop.addListener(() => {
 			window.location.reload();
 		});

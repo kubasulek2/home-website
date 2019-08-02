@@ -20,17 +20,20 @@ body#projects footer {
 			display: flex;
 			justify-content: center;
 			align-items: flex-start;
+			overflow: hidden;
 
 
 			&:nth-child(even){
-				//background: $darker-background;
+				background: $darker-background;
 			}
 		}
 		#section-0{
 			height: 100vh;
 			perspective: 400px;
-			overflow: hidden;
 			align-items: center;
+		}
+		#section-4{
+			height: 75vh;
 		}
 
 		h1{
