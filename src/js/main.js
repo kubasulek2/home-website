@@ -617,11 +617,11 @@ $(document).ready(function () {
 				duration: '100%' 
 			});
 
-			timeline.from(projects, 1, { x: -200, opacity: 0, scale: .5 })
+			timeline.staggerFrom(projects, 1, { cycle:{x: [-200,200]}, opacity: 0, scale: .5 },0)
 				.add(() => projects.toggleClass('clickable'))
 				.to(projects, 2, { x: 0 })
 				.add(() => projects.toggleClass('clickable'))
-				.to(projects, 1, { x: 200, opacity: 0, scale: .5 });
+				.staggerTo(projects, 1, { x: 200, y: -100, opacity: 0, scale: .5 },0);
 
 			scene
 				.setTween(timeline)
