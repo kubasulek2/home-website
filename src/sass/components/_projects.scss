@@ -56,32 +56,29 @@ body#projects footer {
 			justify-content: center
 		}
 		.project{
-			width: 35%;
+			width: 40%;
 			height: 0;
-  		padding-top: 30%;
+  		padding-top: 28%;
 			background: #111;
 			pointer-events: none;
+			position: relative;
 			margin: 0 5vw 5vw 0;
 		}
 		.project.clickable{
 			pointer-events: auto
 		}
-		.row-1>.project{
-			//filter: grayscale(100%);
-			position: relative;
-			background: rgb(0, 0, 0);
+		
+		.project-background{
+			background: url() center center/cover;
+			opacity: .25;
+		
+			position: absolute;
+			top: 0;
+			width: 100%;
+			height: 100%;
 
-			.background{
-				background: url(../../images/projects/svg.jpg) center center/cover;
-				opacity: .25;
-				z-index: 1;
-				position: absolute;
-				top: 0;
-				width: 100%;
-				height: 100%;
-
-			}
-		}	
+		}
+			
 	}
 	
 

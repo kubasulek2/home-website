@@ -536,6 +536,58 @@ $(document).ready(function () {
 	}
 
 	/* projects.html code */
+	if ($('body#projects').length){
+		const projectsData = [
+			{
+				title: 'janekpietrzak.pl',
+				image: './images/projects/janekpietrzak.jpg',
+				description: '',
+				href: 'http://janekpietrzak.pl/'	
+			},
+			{
+				title: '3d-Slider',
+				image: './images/projects/slider.jpg',
+				description: '',
+				href: 'http://www.kubasulek2.pl/slider3d/'
+			},
+			{
+				title: 'Parallax',
+				image: './images/projects/parallax.jpg',
+				description: '',
+				href: 'http://www.kubasulek2.pl/parallax/'
+			},
+			{
+				title: 'Find Recipe',
+				image: './images/projects/recipe.jpg',
+				description: '',
+				href: 'http://kubasulek2.pl/recipe/'
+			},
+			{
+				title: 'Alien Invasion',
+				image: './images/projects/alien.jpg',
+				description: '',
+				href: 'http://www.kubasulek2.pl/alien_invasion/'
+			},
+			{
+				title: 'SVG animated',
+				image: './images/projects/svg.jpg',
+				description: '',
+				href: 'http://www.kubasulek2.pl/svg-gsap/'
+			},
+			{
+				title: 'Responsive layout',
+				image: './images/projects/layout.jpg',
+				description: '',
+				href: 'http://kubasulek2.pl/layout/main.html'
+			},
+		];
+
+		$('.project').each((i, el) => {
+			$(el).find('.project-background').css('background',`url(${projectsData[i].image}) left top/cover`);
+		});
+	}
+	
+
 
 	if ($('body#projects').length && mqDesktop.matches) {
 		const
