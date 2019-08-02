@@ -483,17 +483,26 @@ $(document).ready(function () {
 
 		scene1.setPin('#section-0').addTo(controller);
 
-		$('.row').each(function (i) {
+		$('.row').each(function () {
 
-			const triggerOut = $(this).parent().find('.project-out')[0],
-			      projects = $(this).find('.project'),
-			      projectsIn = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .15 }).addIndicators({ name: 'In', colorTrigger: 'green', colorStart: 'green' }),
-			      projectsOut = new ScrollMagic.Scene({ triggerElement: triggerOut, triggerHook: .8 }).addIndicators({ name: 'Out', colorStart: 'yellow', colorTrigger: 'yellow', indent: 250 }),
-			      sectionPin = new ScrollMagic.Scene({ triggerElement: this, triggerHook: .25, duration: '100%' }).addIndicators({ name: 'Pin', colorStart: 'red', colorTrigger: 'red', indent: 100 });
+			const projects = $(this).find('.project'),
+			      timeline = new TimelineMax();
 
-			projectsIn.setTween(TweenMax.staggerFrom(projects, 1, { opacity: 0, ease: Power2.easeIn, cycle: { x: [-1000, 1000] } }, 0)).addTo(controller);
+			const scene = new ScrollMagic.Scene({
+				triggerElement: this,
+				triggerHook: .15,
+				duration: '120%'
+			});
 
-			if (i < $('.row').length - 1) projectsOut.setTween(TweenMax.to(projects, 1, { opacity: 0, ease: Power2.easeOut })).addTo(controller);
+			const sectionPin = new ScrollMagic.Scene({
+				triggerElement: this,
+				triggerHook: .25,
+				duration: '100%'
+			});
+
+			timeline.from(projects, 1, { x: -200, opacity: 0, scale: .5 }).add(() => projects.toggleClass('clickable')).to(projects, 2, { x: 0 }).add(() => projects.toggleClass('clickable')).to(projects, 1, { x: 200, opacity: 0, scale: .5 });
+
+			scene.setTween(timeline).addTo(controller);
 
 			sectionPin.setPin(this).addTo(controller);
 		});

@@ -25,7 +25,7 @@ body#projects footer {
 
 
 			&:nth-child(even){
-				background: $darker-background;
+				//background: $darker-background;
 			}
 		}
 		#section-0{
@@ -53,21 +53,20 @@ body#projects footer {
 		.row{
 			width: 100%;
 			display: flex;
-			justify-content: space-around
+			justify-content: center
 		}
 		.project{
 			width: 35%;
 			height: 0;
   		padding-top: 30%;
 			background: #111;
+			pointer-events: none;
+			margin: 0 5vw 5vw 0;
+		}
+		.project.clickable{
+			pointer-events: auto
 		}
 		
 	}
-	.project-out{
-		position: absolute;
-		height: 1px;
-		width: 100%;
-		bottom: 25vh;
-		background: red;
-	}
+
 }
